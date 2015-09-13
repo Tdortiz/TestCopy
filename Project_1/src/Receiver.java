@@ -4,6 +4,7 @@ import java.io.*;
 /**
  * Receiver takes in an input file full of Messages and packets 
  * and reprints them in the correct sequential order.
+ * 
  * @author Thomas Ortiz
  * @author Michael Mackrell
  * @author Jacob Stone
@@ -43,14 +44,15 @@ public class Receiver {
 			readLine.close();
 		}
 		in.close();
-		printMessages(messageList);
+		printMessages(messageList, output);
 	}
 
 	/**
 	 * Prints the messages.
 	 * @param messageList list of messages.
+	 * @param output the output file.
 	 */
-	private static void printMessages(MessageList messageList) {
+	private static void printMessages(MessageList messageList, File output) {
 		while(messageList.hasNext()){
 			System.out.println("--- Message ");
 			
