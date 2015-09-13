@@ -19,7 +19,8 @@ public class Message {
 	 * @param message the message to be printed
 	 */
 	public Message(int messNum, int packNum, String message){
-		
+		// Fields and create a packetList in this constructor
+		// Hi michael
 	}
 	
 	/**
