@@ -37,15 +37,20 @@ public class Message {
 		return messNum;
 		
 	}
-
-	public PacketList getPacketList() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	/**
+	 * toString method that prints the packet number and message
+	 * @param packNum the number of the packet
+	 * @param message the message to be printed
+	 * @return s the string to be printed
+	 */
+	public String messToString(int messNum, int packNum, String message){
+		String s = "";
+		Packet pack = new Packet(packNum, message);
+		s = messNum + pack.packToString(packNum, message);
+		return s;
 	}
-
-	public int getMessageNum() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
+	
 	
 }

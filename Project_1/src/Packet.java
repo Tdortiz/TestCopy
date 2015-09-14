@@ -43,7 +43,7 @@ public class Packet {
 	 */
 	public String packToString(int packNum, String message){
 		String s = "";
-		s = getMessNum() + " " + packNum + " " + message;
+		s = " " + packNum + " " + message;
 		return s;
 	}
 	
