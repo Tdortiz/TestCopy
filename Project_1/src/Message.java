@@ -13,22 +13,28 @@
 public class Message {
 	
 	/**
+	 * the number for the message
+	 */
+	private int messNum;
+	
+	/**
 	 * constructor for the message
 	 * @param messNum the message number
 	 * @param packNum the packet number
 	 * @param message the message to be printed
 	 */
 	public Message(int messNum, int packNum, String message){
-		// Fields and create a packetList in this constructor
-		// Hi michael
+		
+		PacketList sixPack = new PacketList();
+		
 	}
 	
 	/**
 	 * getter for the message number
 	 * @return the current message number
 	 */
-	public String getMessNum(){
-		return this.messNum;
+	public int getMessNum(){
+		return messNum;
 		
 	}
 	
