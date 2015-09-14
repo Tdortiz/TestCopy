@@ -30,20 +30,23 @@ public class Receiver {
 			FNFE.getMessage();
 		}
 		
+		Scanner readLine = null;
+		
 		while(in.hasNextLine()){
 			String line = in.nextLine();
-			Scanner readLine = new Scanner(line);
+			readLine = new Scanner(line);
 			
 			int mssg_num = readLine.nextInt();
 			int packet_num = readLine.nextInt();
 			String mssg = readLine.next();
 			 
 			Message a = new Message(mssg_num, packet_num, mssg);
-			//messageList.add(a);
-			
-			readLine.close();
+			messageList.add(a);  	
 		}
+		readLine.close();
+		
 		in.close();
+		// At this point all message should be in the list.
 		printMessages(messageList, output);
 	}
 
@@ -53,19 +56,30 @@ public class Receiver {
 	 * @param output the output file.
 	 */
 	private static void printMessages(MessageList messageList, File output) {
-		while(messageList.hasNext()){
-			System.out.println("--- Message ");
+		PrintStream out = null;
+		try {
+			out = new PrintStream(output);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		Message currentMessage = messageList.getHead();
+		
+		while(messageList.next() != null){ // While the data isn't null
+			out.println("--- Message " + currentMessage.getMessageNum());
 			
-			Packet a = null;
+			PacketList packetList = currentMessage.getPacketList();
+			Packet currentPacket = packetList.getHead();
 			
-			while( messageList.getCurrent().getPacketList().hasNext() ){
-				PacketList a = messageList.getCurrent().getPacketList();
-				
-				
-				System.out.println(a.);
+			while( packetList.next() != null ){
+				currentPacket = packetList.getPacket();
+				out.println(currentPacket);
+				currentPacket = packetList.next();
 			}
 			
-			System.out.println("--- End Message");
+			currentMessage = messageList.getNext();
+			out.println("--- End Message " + currentMessage.getMessageNum() + "\n" );
 		}
+		out.close();
 	}
 }

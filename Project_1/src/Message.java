@@ -31,5 +31,15 @@ public class Message {
 		return this.messNum;
 		
 	}
+
+	public PacketList getPacketList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getMessageNum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
