@@ -6,55 +6,68 @@
  */
 
 public class MessageList {
-	
-	public Message head;
-	
-	
-		
+
+	public Node head;
+	public Node current;
+
 	/**
 	 * This should check if Param A is already in the message list and if it is
-	 * add the new packet to the already existant message in the list. 
+	 * add the new packet to the already existant message in the list.
 	 * 
 	 * If the Param A isn't in the message list add A to the MessageList
+	 * 
 	 * @param a
 	 */
 	public void add(Message a) {
-		// TODO Auto-generated method stub
+		if (head == null) {
+			head = new Node(a);
+		}
 	}
-	
-	public Message getHead(){
-		return head;
+
+	public Message getHead() {
+		return head.data;
 	}
-	
+
 	public Message next() {
-		// TODO Auto-generated method stub
-		return null;
+		Message nextData;
+		if (head.next == null) {
+			nextData = head.data;
+			head = null;
+			return nextData;
+		}
+		nextData = head.data;
+		head = head.next;
+		return nextData;
+
 	}
-	
-	
-	
+
 	public class Node {
-		
-		public int data;
+
+		public Message data;
 		public Node next;
-		
-		public Node(int data){
+
+		public Node(Message data) {
 			this(data, null);
 		}
-		
-		public Node(int data, Node next){
+
+		public Node(Message data, Node next) {
 			this.data = data;
 			this.next = next;
 		}
 	}
 
-
-
 	public Message getNext() {
-		// TODO Auto-generated method stub
-		return null;
+		Message nextData;
+		if (head.next == null) {
+			nextData = head.data;
+			head = null;
+			return nextData;
+		}else if(current == null) {
+			current = head.next;
+			return current.data;
+		}
+		current = current.next;
+		return current.data;
 	}
-	
-	
-	
+
 }
