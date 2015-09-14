@@ -18,6 +18,12 @@ public class Message {
 	private int messNum;
 	
 	/**
+	 * the packet to get returned
+	 */
+	private PacketList sixPack;
+	
+	
+	/**
 	 * constructor for the message
 	 * @param messNum the message number
 	 * @param packNum the packet number
@@ -25,7 +31,7 @@ public class Message {
 	 */
 	public Message(int messNum, int packNum, String message){
 		
-		PacketList sixPack = new PacketList();
+		sixPack = new PacketList();
 		
 	}
 	
@@ -33,7 +39,7 @@ public class Message {
 	 * getter for the message number
 	 * @return the current message number
 	 */
-	public int getMessNum(){
+	public int getMessageNum(){
 		return messNum;
 		
 	}
@@ -51,6 +57,16 @@ public class Message {
 		return s;
 	}
 	
+	/**
+	 * returns the packet list
+	 * @return sixpack the packet list
+	 */
+	public PacketList getPacketList() {
+		
+		return sixPack;
+	}
+
+		
 	
 	
 }
