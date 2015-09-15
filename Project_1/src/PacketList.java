@@ -17,7 +17,7 @@ public class PacketList {
 	
 	public PacketNode getHead() {
 		// TODO Auto-generated method stub
-		return null;
+		return head;
 	}
 
 	/**
