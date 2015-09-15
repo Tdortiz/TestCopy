@@ -22,7 +22,6 @@ public class Message {
 	 */
 	private PacketList sixPack;
 	
-	
 	/**
 	 * constructor for the message
 	 * @param messNum the message number
@@ -62,7 +61,6 @@ public class Message {
 	 * @return sixpack the packet list
 	 */
 	public PacketList getPacketList() {
-		
 		return sixPack;
 	}
 
@@ -75,17 +73,15 @@ public class Message {
 		s += "--- Message " + this.messNum + "\n";
 		
 		// Adds each packet to the Message String
-		Packet currentPacket = sixPack.getHead();
-		while(this.sixPack.next() != null){
-			currentPacket = sixPack.getPacket();
-			s += currentPacket + "\n";
+		PacketNode current = sixPack.getHead();
+		while(current != null){
+			s += current.data + "\n";
+			current = current.next;
 		}
 		// --------------------------------------
 		
 		s += "--- End Message " + this.messNum + "\n";
-		
 		return s;
-	}
-	
+	}	
 	
 }
