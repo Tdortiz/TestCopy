@@ -15,16 +15,6 @@ public class PacketList {
 		// TODO Auto-generated method stub
 	}
 	
-	public Packet next() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Packet getPacket() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public PacketNode getHead() {
 		// TODO Auto-generated method stub
 		return null;

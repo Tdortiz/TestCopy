@@ -27,33 +27,6 @@ public class MessageList {
 	public MessageNode getHead() {
 		return head;
 	}
-
-	public Message next() {
-		Message nextData;
-		if (head.next == null) {
-			nextData = head.data;
-			head = null;
-			return nextData;
-		}
-		nextData = head.data;
-		head = head.next;
-		return nextData;
-
-	}
-
-	public Message getNext() {
-		Message nextData;
-		if (head.next == null) {
-			nextData = head.data;
-			head = null;
-			return nextData;
-		}else if(current == null) {
-			current = head.next;
-			return current.data;
-		}
-		current = current.next;
-		return current.data;
-	}
 	
 	/**
 	public class MessageNode {
