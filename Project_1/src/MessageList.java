@@ -7,8 +7,8 @@
 
 public class MessageList {
 
-	public Node head;
-	public Node current;
+	public MessageNode head;
+	public MessageNode current;
 
 	/**
 	 * This should check if Param A is already in the message list and if it is
@@ -20,12 +20,12 @@ public class MessageList {
 	 */
 	public void add(Message a) {
 		if (head == null) {
-			head = new Node(a);
+			head = new MessageNode(a);
 		}
 	}
 
-	public Message getHead() {
-		return head.data;
+	public MessageNode getHead() {
+		return head;
 	}
 
 	public Message next() {
@@ -41,21 +41,6 @@ public class MessageList {
 
 	}
 
-	public class Node {
-
-		public Message data;
-		public Node next;
-
-		public Node(Message data) {
-			this(data, null);
-		}
-
-		public Node(Message data, Node next) {
-			this.data = data;
-			this.next = next;
-		}
-	}
-
 	public Message getNext() {
 		Message nextData;
 		if (head.next == null) {
@@ -69,4 +54,22 @@ public class MessageList {
 		current = current.next;
 		return current.data;
 	}
+	
+	/**
+	public class MessageNode {
+
+		public Message data;
+		public MessageNode next;
+
+		public MessageNode(Message data) {
+			this(data, null);
+		}
+
+		public MessageNode(Message data, MessageNode next) {
+			this.data = data;
+			this.next = next;
+		}
+	} */
+
+	
 }
