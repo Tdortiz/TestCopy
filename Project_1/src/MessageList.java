@@ -69,5 +69,4 @@ public class MessageList {
 		current = current.next;
 		return current.data;
 	}
-
 }

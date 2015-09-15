@@ -12,6 +12,9 @@
  */
 public class Packet {
 	
+	public int packNum;
+	public String message;
+	
 	/**
 	 * constructor for packet objects
 	 * @param packNum the number of the packet
@@ -45,6 +48,14 @@ public class Packet {
 		String s = "";
 		s = " " + packNum + " " + message;
 		return s;
+	}
+	
+	/**
+	 * toString method to print out a packet.
+	 * @return s packet message
+	 */
+	public String toString(){
+		return this.message;
 	}
 	
 }

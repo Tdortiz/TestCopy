@@ -66,7 +66,26 @@ public class Message {
 		return sixPack;
 	}
 
+	/**
+	 * toString method to print out a message and its packets.
+	 * @return s message with its packets
+	 */
+	public String toString(){
+		String s = "";
+		s += "--- Message " + this.messNum + "\n";
 		
+		// Adds each packet to the Message String
+		Packet currentPacket = sixPack.getHead();
+		while(this.sixPack.next() != null){
+			currentPacket = sixPack.getPacket();
+			s += currentPacket + "\n";
+		}
+		// --------------------------------------
+		
+		s += "--- End Message " + this.messNum + "\n";
+		
+		return s;
+	}
 	
 	
 }

@@ -64,6 +64,14 @@ public class Receiver {
 		}
 
 		Message currentMessage = messageList.getHead();
+		while(messageList.next() != null){
+			out.println(currentMessage);
+			out.println();
+			currentMessage = messageList.getNext();
+		}
+		
+		/**
+		Message currentMessage = messageList.getHead();
 		
 		while(messageList.next() != null){ // While the data isn't null
 			out.println("--- Message " + currentMessage.getMessageNum());
@@ -80,6 +88,8 @@ public class Receiver {
 			currentMessage = messageList.getNext();
 			out.println("--- End Message " + currentMessage.getMessageNum() + "\n" );
 		}
+		*/
+		
 		out.close();
 	}
 }
