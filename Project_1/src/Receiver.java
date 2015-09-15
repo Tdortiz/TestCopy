@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.io.*;
 
+
+
 /**
  * Receiver takes in an input file full of Messages and packets 
  * and reprints them in the correct sequential order.
@@ -46,7 +48,9 @@ public class Receiver {
 		readLine.close();
 		
 		in.close();
-		// At this point all message should be in the list.
+		
+		// At this point all message should be in the list and ordered
+		
 		printMessages(messageList, output);
 	}
 
@@ -63,11 +67,11 @@ public class Receiver {
 			e.printStackTrace();
 		}
 
-		Message currentMessage = messageList.getHead();
-		while(messageList.next() != null){
-			out.println(currentMessage);
+		MessageNode currentMessage = messageList.getHead();
+		while(currentMessage != null){
+			out.println(currentMessage.data);
 			out.println();
-			currentMessage = messageList.getNext();
+			currentMessage = currentMessage.next;
 		}
 		
 		/**
