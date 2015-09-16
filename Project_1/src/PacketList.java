@@ -31,42 +31,47 @@ public class PacketList {
 		if (front == null) {
 			front = new Node(packetToAdd, null);
 		} else {
-			this.addToRest(packetToAdd);
+			this.addHelper(packetToAdd);
 		}
 	}	
 	
 	/**
 	 * Adds a packet to the rest of the list
 	 * PRE: the front of the list is not null
-	 * @param packetToAdd
+	 * @param packetToAdd the packet to add to the list
+	 */
+	public void addHelper(Packet packetToAdd) {
+		if (packetToAdd.getPackNum() < front.packet.getPackNum()) {
+			front = new Node(packetToAdd, front);
+		} else {
+			this.addToRest(packetToAdd);
+		}
+	}
+	
+	/**
+	 * Adds a packet to the rest of the list
+	 * PRE: Packet does not need to enter the front of the list
+	 * @param packetToAdd the packet to add to the list
 	 */
 	public void addToRest(Packet packetToAdd) {
 		Node current = front;
 		Node previous = front;
 		
-		if (packetToAdd.getPackNum() < front.packet.getPackNum()) {
-			front = new Node(packetToAdd, front);
-		} else {
-			
-			
-			while (current != null) {
-				int currentNum = current.packet.getPackNum();
-				int toAddNum = packetToAdd.getPackNum();
-				if ( toAddNum > currentNum) {
-					if (current.next == null) {
-						current.next = new Node(packetToAdd, null);
-						break;
-					} else {
-						previous = current;
-						current = current.next;
-					}
+		while (current != null) {
+			int currentNum = current.packet.getPackNum();
+			int toAddNum = packetToAdd.getPackNum();
+			if ( toAddNum > currentNum) {
+				if (current.next == null) {
+					current.next = new Node(packetToAdd, null);
+					break;
 				} else {
-					previous.next = new Node(packetToAdd, current);
+					previous = current;
+					current = current.next;
 				}
+			} else {
+				previous.next = new Node(packetToAdd, current);
 			}
-			
 		}
-		
 	}
 	
 	/**
@@ -79,7 +84,6 @@ public class PacketList {
 	public String toString(int messageNum) {
 		Node current = front;
 		int nextNum = 1;
-		//boolean foundMatch = false;
 		String listString = "";
 		
 		while (current != null) {
