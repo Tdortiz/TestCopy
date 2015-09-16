@@ -1,8 +1,6 @@
 import java.util.Scanner;
 import java.io.*;
 
-
-
 /**
  * Receiver takes in an input file full of Messages and packets 
  * and reprints them in the correct sequential order.
