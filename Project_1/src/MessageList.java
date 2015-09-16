@@ -8,7 +8,6 @@
 public class MessageList {
 
 	public MessageNode head;
-	public MessageNode current;
 
 	/**
 	 * This should check if Param A is already in the message list and if it is
