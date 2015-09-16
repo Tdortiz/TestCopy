@@ -1,14 +1,10 @@
 /**
+ * Message class of the project.
+ * Has a getter to make the message number public access
  * @author Thomas Ortiz
  * @author Michael Mackrell
  * @author Jacob Stone
  * @author Curtis Moore
- */
-
-
-/**
- * Message class of the project.
- * Has a getter to make the message number public access
  */
 public class Message {
 	
@@ -29,9 +25,7 @@ public class Message {
 	 * @param message the message to be printed
 	 */
 	public Message(int messNum, int packNum, String message){
-		
 		sixPack = new PacketList();
-		
 	}
 	
 	/**
@@ -72,13 +66,7 @@ public class Message {
 		String s = "";
 		s += "--- Message " + this.messNum + "\n";
 		
-		// Adds each packet to the Message String
-		PacketNode current = sixPack.getHead();
-		while(current != null){
-			s += current.data + "\n";
-			current = current.next;
-		}
-		// --------------------------------------
+		System.out.println(sixPack.toString());
 		
 		s += "--- End Message " + this.messNum + "\n";
 		return s;
