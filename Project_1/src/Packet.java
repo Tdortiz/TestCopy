@@ -1,14 +1,11 @@
 /**
+ * Class to represent the packet objects
+ * contains a constructor as well as a toString method and an
+ * error message
  * @author Thomas Ortiz
  * @author Michael Mackrell
  * @author Jacob Stone
  * @author Curtis Moore
- */
-
-/**
- * class to represent the packet objects
- * contains a constructor as well as a toString method and an
- * error message
  */
 public class Packet {
 	
@@ -56,6 +53,10 @@ public class Packet {
 	 */
 	public String toString(){
 		return this.message;
+	}
+
+	public int getPackNum() {
+		return this.packNum;
 	}
 	
 }
