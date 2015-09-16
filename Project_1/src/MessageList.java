@@ -8,7 +8,6 @@
 public class MessageList {
 
 	public MessageNode head;
-	public MessageNode current;
 
 	/**
 	 * This should check if Param A is already in the message list and if it is
@@ -28,7 +27,16 @@ public class MessageList {
 		return head;
 	}
 	
-	/**
+	public String toString(){
+		String s = "";
+		MessageNode current = head;
+		while(current != null){
+			s += current.data.toString() + "\n";
+		}
+		return s;
+	}
+	
+	
 	public class MessageNode {
 
 		public Message data;
@@ -42,7 +50,7 @@ public class MessageList {
 			this.data = data;
 			this.next = next;
 		}
-	} */
+	} 
 
 	
 }
