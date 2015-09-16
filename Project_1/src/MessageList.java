@@ -28,7 +28,16 @@ public class MessageList {
 		return head;
 	}
 	
-	/**
+	public String toString(){
+		String s = "";
+		MessageNode current = head;
+		while(current != null){
+			s += current.data.toString() + "\n";
+		}
+		return s;
+	}
+	
+	
 	public class MessageNode {
 
 		public Message data;
@@ -42,7 +51,7 @@ public class MessageList {
 			this.data = data;
 			this.next = next;
 		}
-	} */
+	} 
 
 	
 }

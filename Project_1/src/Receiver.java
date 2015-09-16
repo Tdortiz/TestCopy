@@ -66,34 +66,9 @@ public class Receiver {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		
+		out.println(messageList.toString());
 
-		MessageNode currentMessage = messageList.getHead();
-		while(currentMessage != null){
-			out.println(currentMessage.data);
-			out.println();
-			currentMessage = currentMessage.next;
-		}
-		
-		/**
-		Message currentMessage = messageList.getHead();
-		
-		while(messageList.next() != null){ // While the data isn't null
-			out.println("--- Message " + currentMessage.getMessageNum());
-			
-			PacketList packetList = currentMessage.getPacketList();
-			Packet currentPacket = packetList.getHead();
-			
-			while( packetList.next() != null ){
-				currentPacket = packetList.getPacket();
-				out.println(currentPacket);
-				currentPacket = packetList.next();
-			}
-			
-			currentMessage = messageList.getNext();
-			out.println("--- End Message " + currentMessage.getMessageNum() + "\n" );
-		}
-		*/
-		
 		out.close();
 	}
 }

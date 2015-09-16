@@ -59,4 +59,7 @@ public class Packet {
 		return this.packNum;
 	}
 	
+	public String getMessage(){
+		return this.message;
+	}
 }

@@ -25,9 +25,7 @@ public class Message {
 	 * @param message the message to be printed
 	 */
 	public Message(int messNum, int packNum, String message){
-		
 		sixPack = new PacketList();
-		
 	}
 	
 	/**
@@ -68,13 +66,7 @@ public class Message {
 		String s = "";
 		s += "--- Message " + this.messNum + "\n";
 		
-		// Adds each packet to the Message String
-		PacketNode current = sixPack.getFront();
-		while(current != null){
-			s += current.data + "\n";
-			current = current.next;
-		}
-		// --------------------------------------
+		System.out.println(sixPack.toString());
 		
 		s += "--- End Message " + this.messNum + "\n";
 		return s;
