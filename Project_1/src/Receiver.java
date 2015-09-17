@@ -33,7 +33,7 @@ public class Receiver {
 		
 		Scanner readLine = null; // Read individual tokens in a line.
 		
-		while(in.hasNextLine()){
+		while(in.hasNextLine()){ // While the file has another line
 			String line = in.nextLine();
 			readLine = new Scanner(line);
 			
@@ -49,7 +49,6 @@ public class Receiver {
 		in.close();
 		
 		// At this point all message should be in the list and ordered
-		
 		printMessages(messageList, output);
 	}
 
@@ -64,6 +63,7 @@ public class Receiver {
 			out = new PrintStream(output);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			System.out.println("You done goofed");
 		}
 		
 		out.println(messageList.toString());
