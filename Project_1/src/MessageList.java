@@ -12,7 +12,7 @@ public class MessageList {
 
 	/**
 	 * This should check if Param A is already in the message list and if it is
-	 * add the new packet to the already existant message in the list.
+	 * add the new packet to the already existing message in the list.
 	 * 
 	 * If the Param A isn't in the message list add A to the MessageList
 	 * 
@@ -21,7 +21,16 @@ public class MessageList {
 	public void add(Message a) {
 		if (head == null) {
 			head = new MessageNode(a);
+			return;
 		}
+		if (head.next == null) {
+			current = new MessageNode(a, null);
+			head.next = current;
+			return;
+		}
+		current.next = new MessageNode(a, null);
+		current = current.next;
+
 	}
 
 	public Message next() {
@@ -35,36 +44,47 @@ public class MessageList {
 		head = head.next;
 		return nextData;
 	}
-	
+
 	public Message getNext() {
 		Message nextData;
 		if (head.next == null) {
 			nextData = head.data;
 			head = null;
 			return nextData;
-		}else if(current == null) {
+		} else if (current == null) {
 			current = head.next;
 			return current.data;
 		}
 		current = current.next;
 		return current.data;
 	}
-	
+
 	public MessageNode getHead() {
 		return head;
 	}
-	
-	public String toString(){
+
+	/**
+	 * Sends message to a string
+	 */
+	public String toString() {
 		String s = "";
-		MessageNode current = head;
-		while(current != null){
+		/*MessageNode current = head;
+		while (current != null) {
 			s += current.data.toString() + "\n";
-		}
-		return s;
+		}*/
+		return toStringRec(s, head);
 	}
-	
-	
-	public class MessageNode {
+	private String toStringRec(String s, ) {
+		s += current.data.toString() + "\n";
+	}
+
+	/**
+	 * Inner class to create nodes for lists.
+	 * 
+	 * @author Curtis
+	 *
+	 */
+	private class MessageNode {
 
 		public Message data;
 		public MessageNode next;
@@ -77,7 +97,6 @@ public class MessageList {
 			this.data = data;
 			this.next = next;
 		}
-	} 
+	}
 
-	
 }
