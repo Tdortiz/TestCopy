@@ -42,7 +42,7 @@ public class Message {
 	 * @param messNum the number of the message
 	 * @return s the string to be printed
 	 */
-	public String toString(int messNum){
+	public String toString(){
 		String s = "";
 		s = "--- Message " + messNum;
 		s+= "/n";
