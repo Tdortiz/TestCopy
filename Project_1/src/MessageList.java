@@ -8,6 +8,7 @@
 public class MessageList {
 
 	public MessageNode head;
+	public MessageNode current;
 
 	/**
 	 * This should check if Param A is already in the message list and if it is
@@ -23,6 +24,36 @@ public class MessageList {
 		}
 	}
 
+	public Message next() {
+		// TODO Auto-generated method stub
+		return null;
+		Message nextData;
+		if (head.next == null) {
+			nextData = head.data;
+			head = null;
+			return nextData;
+		}
+		nextData = head.data;
+		head = head.next;
+		return nextData;
+	}
+	
+	public Message getNext() {
+		// TODO Auto-generated method stub
+		return null;
+		Message nextData;
+		if (head.next == null) {
+			nextData = head.data;
+			head = null;
+			return nextData;
+		}else if(current == null) {
+			current = head.next;
+			return current.data;
+		}
+		current = current.next;
+		return current.data;
+	}
+	
 	public MessageNode getHead() {
 		return head;
 	}
