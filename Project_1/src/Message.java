@@ -45,9 +45,9 @@ public class Message {
 	public String toString(){
 		String s = "";
 		s = "--- Message " + messNum;
-		s+= "/n";
+		s+= "\n";
 		s+= sixPack.toString(messNum);
-		s+= "/n";
+		s+= "\n";
 		s+= "--- End Message " + messNum;
 		
 		return s;
