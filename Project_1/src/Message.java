@@ -25,6 +25,7 @@ public class Message {
 	 * @param message the message to be printed
 	 */
 	public Message(int messNum, int packNum, String message){
+		this.messNum = messNum;
 		sixPack = new PacketList();
 	}
 	
