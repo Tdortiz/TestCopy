@@ -30,7 +30,7 @@ public class Receiver {
 			FNFE.getMessage();
 		}
 		
-		Scanner readLine = null;
+		Scanner readLine = null; // Read individual tokens in a line.
 		
 		while(in.hasNextLine()){
 			String line = in.nextLine();
