@@ -60,12 +60,12 @@ public class PacketList {
 		while (current != null) {
 			int currentNum = current.packet.getPackNum();
 			int toAddNum = packetToAdd.getPackNum();
-			if ( toAddNum > currentNum) {
-				if (current.next == null) {
-					current.next = new Node(packetToAdd, null);
-					break;
-				} else if (toAddNum == currentNum){
+			if (toAddNum >= currentNum) {
+				if (toAddNum == currentNum ) {
 					previous.next = new Node(packetToAdd, current.next);
+					break;
+				} else if (current.next == null){
+					current.next = new Node(packetToAdd, null);
 					break;
 				} else {
 					previous = current;
