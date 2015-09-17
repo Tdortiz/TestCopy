@@ -42,7 +42,14 @@ public class Receiver {
 			String mssg = readLine.next();
 			 
 			Message a = new Message(mssg_num, packet_num, mssg);
-			messageList.add(a);  	
+			Message b = messageList.contains(mssg_num);
+			
+			if( b == null  ){ // If message isn't in the list
+				messageList.add(a);
+			} else { // If it is, add a packet to the existing message
+				b.add(packet_num, mssg); 
+				
+			}
 		}
 		readLine.close();
 		

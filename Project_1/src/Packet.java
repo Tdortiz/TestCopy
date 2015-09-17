@@ -41,6 +41,7 @@ public class Packet {
 		return s;
 	}
 	
+	
 	/**
 	 * toString method to print out a packet.
 	 * @return s packet message

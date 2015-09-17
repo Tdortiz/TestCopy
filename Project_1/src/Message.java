@@ -41,6 +41,16 @@ public class Message {
 	}
 	
 	/**
+	 * adds a packet to the packet list
+	 * @param packetNum the number of the packet
+	 * @param message the message to be added
+	 */
+	public void add(int packetNum, String message){
+		Packet pack = new Packet(packetNum, message);
+		sixPack.add(pack);
+	}
+	
+	/**
 	 * toString method that prints the packet number and message
 	 * @param messNum the number of the message
 	 * @return s the string to be printed
