@@ -74,8 +74,12 @@ public class MessageList {
 		}*/
 		return toStringRec(s, head);
 	}
-	private String toStringRec(String s, ) {
-		s += current.data.toString() + "\n";
+	private String toStringRec(String s, MessageNode here ) {
+		if(here.next == null) {
+			return s;
+		}
+		s += here.data.toString() + "\n";
+		return toStringRec(s, here.next);
 	}
 
 	/**
@@ -84,7 +88,7 @@ public class MessageList {
 	 * @author Curtis
 	 *
 	 */
-	private class MessageNode {
+	public class MessageNode {
 
 		public Message data;
 		public MessageNode next;
