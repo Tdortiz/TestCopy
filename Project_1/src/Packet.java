@@ -22,18 +22,6 @@ public class Packet {
 		
 	}
 	
-	/**
-	 * prints error message if packet is not found
-	 * @param packNum the number of the packet
-	 * @param messNum the number of the message
-	 * @return the error message to be printed
-	 */
-	public String getErrorMessage(int packNum, int messNum){
-		
-		String errorMessage = ("WARNING: packet " + packNum + " of message " + messNum + " is missing");
-		return errorMessage;
-	}
-	
 	
 	/**
 	 * toString method that prints the packet number and message

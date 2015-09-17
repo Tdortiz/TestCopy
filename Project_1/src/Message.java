@@ -43,10 +43,14 @@ public class Message {
 	 * @param message the message to be printed
 	 * @return s the string to be printed
 	 */
-	public String messToString(int messNum, int packNum, String message){
+	public String messToString(int messNum){
 		String s = "";
-		Packet pack = new Packet(packNum, message);
-		s = messNum + pack.packToString(packNum, message);
+		s = "--- Message " + messNum;
+		s+= "/n";
+		s+= sixPack.toString(messNum);
+		s+= "/n";
+		s+= "--- End Message " + messNum;
+		
 		return s;
 	}
 	
