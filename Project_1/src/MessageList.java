@@ -25,8 +25,6 @@ public class MessageList {
 	}
 
 	public Message next() {
-		// TODO Auto-generated method stub
-		return null;
 		Message nextData;
 		if (head.next == null) {
 			nextData = head.data;
@@ -39,8 +37,6 @@ public class MessageList {
 	}
 	
 	public Message getNext() {
-		// TODO Auto-generated method stub
-		return null;
 		Message nextData;
 		if (head.next == null) {
 			nextData = head.data;
