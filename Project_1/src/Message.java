@@ -39,11 +39,10 @@ public class Message {
 	
 	/**
 	 * toString method that prints the packet number and message
-	 * @param packNum the number of the packet
-	 * @param message the message to be printed
+	 * @param messNum the number of the message
 	 * @return s the string to be printed
 	 */
-	public String messToString(int messNum){
+	public String toString(int messNum){
 		String s = "";
 		s = "--- Message " + messNum;
 		s+= "/n";
@@ -62,18 +61,5 @@ public class Message {
 		return sixPack;
 	}
 
-	/**
-	 * toString method to print out a message and its packets.
-	 * @return s message with its packets
-	 */
-	public String toString(){
-		String s = "";
-		s += "--- Message " + this.messNum + "\n";
-		
-		System.out.println(sixPack.toString());
-		
-		s += "--- End Message " + this.messNum + "\n";
-		return s;
-	}	
 	
 }
