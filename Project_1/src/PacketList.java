@@ -1,3 +1,4 @@
+
 /**
  * @author Thomas Ortiz
  * @author Michael Mackrell
@@ -15,7 +16,6 @@ public class PacketList {
 	public PacketList () {
 		front = null;
 	}
-	
 	/** extended constructor for PacketList.
 	 * @param packetToStart the packet to start off the list
 	 */
@@ -64,6 +64,9 @@ public class PacketList {
 				if (current.next == null) {
 					current.next = new Node(packetToAdd, null);
 					break;
+				} else if (toAddNum == currentNum){
+					previous.next = new Node(packetToAdd, current.next);
+					break;
 				} else {
 					previous = current;
 					current = current.next;
@@ -104,10 +107,6 @@ public class PacketList {
 		return listString;
 	}
 	
-	public Node getFront(){
-		return this.front;
-	}
-	
 	/**
 	 * The node object used in a linked list.
 	 * @author Jacob Stone
@@ -115,7 +114,7 @@ public class PacketList {
 	 * @author Jacob Stone
 	 * @author Curtis Moore
 	 */
-	public class Node {
+	private class Node {
 		
 		/**
 		 * The packet that the Node contains.
@@ -137,7 +136,6 @@ public class PacketList {
 			this.next = next;
 		}
 	}
-	
 	
 	
 }
