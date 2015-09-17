@@ -28,7 +28,7 @@ public class MessageList {
 			head.next = current;
 			return;
 		}
-		current.next = new MessageNode (a, null);
+		current.next = new MessageNode(a, null);
 		current = current.next;
 
 	}
@@ -63,22 +63,28 @@ public class MessageList {
 		return head;
 	}
 
+	/**
+	 * Sends message to a string
+	 */
 	public String toString() {
 		String s = "";
-		MessageNode current = head;
+		/*MessageNode current = head;
 		while (current != null) {
 			s += current.data.toString() + "\n";
-		}
-		return s;
+		}*/
+		return toStringRec(s, head);
+	}
+	private String toStringRec(String s, ) {
+		s += current.data.toString() + "\n";
 	}
 
 	/**
-	 * Inner class
+	 * Inner class to create nodes for lists.
 	 * 
-	 * @author f6ffr
+	 * @author Curtis
 	 *
 	 */
-	public class MessageNode {
+	private class MessageNode {
 
 		public Message data;
 		public MessageNode next;
