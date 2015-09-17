@@ -99,6 +99,12 @@ public class MessageList {
 	}
 	
 	private Message recContains(int messToFind, MessageNode curr) {
+		if(curr == null) {
+			return null;
+		}
+		if(curr.next == null && messToFind != curr.data.getMessageNum()) {
+			return null;
+		}
 		if(messToFind < curr.data.getMessageNum()) {
 			return recContains(messToFind, curr.next);
 		}
