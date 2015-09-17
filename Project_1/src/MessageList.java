@@ -93,6 +93,17 @@ public class MessageList {
 		s += here.data.toString() + "\n\n";
 		return toStringRec(s, here.next);
 	}
+	
+	public Message contains (int messToFind) {
+		return recContains(messToFind, head);
+	}
+	
+	private Message recContains(int messToFind, MessageNode curr) {
+		if(messToFind < curr.data.getMessageNum()) {
+			return recContains(messToFind, curr.next);
+		}
+		return curr.data;
+	}
 
 	/**
 	 * Inner class to create nodes for lists.
