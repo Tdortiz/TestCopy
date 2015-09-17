@@ -68,17 +68,14 @@ public class MessageList {
 	 */
 	public String toString() {
 		String s = "";
-		/*MessageNode current = head;
-		while (current != null) {
-			s += current.data.toString() + "\n";
-		}*/
 		return toStringRec(s, head);
 	}
+	
 	private String toStringRec(String s, MessageNode here ) {
 		if(here.next == null) {
 			return s;
 		}
-		s += here.data.toString() + "\n";
+		s += here.data.toString() + "\n\n";
 		return toStringRec(s, here.next);
 	}
 
