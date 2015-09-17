@@ -25,7 +25,10 @@ public class Message {
 	 * @param message the message to be printed
 	 */
 	public Message(int messNum, int packNum, String message){
+		this.messNum = messNum;
 		sixPack = new PacketList();
+		Packet packet = new Packet(packNum, message);
+		sixPack.add(packet);
 	}
 	
 	/**
@@ -42,12 +45,12 @@ public class Message {
 	 * @param messNum the number of the message
 	 * @return s the string to be printed
 	 */
-	public String toString(int messNum){
+	public String toString(){
 		String s = "";
 		s = "--- Message " + messNum;
-		s+= "/n";
+		s+= "\n";
 		s+= sixPack.toString(messNum);
-		s+= "/n";
+		s+= "\n";
 		s+= "--- End Message " + messNum;
 		
 		return s;

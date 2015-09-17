@@ -8,8 +8,13 @@
  * @author Curtis Moore
  */
 public class Packet {
-	
+	/**
+	 * packet number
+	 */
 	public int packNum;
+	/**
+	 * message
+	 */
 	public String message;
 	
 	/**
@@ -18,7 +23,8 @@ public class Packet {
 	 * @param message the message to be printed
 	 */
 	public Packet(int packNum, String message){
-		
+		this.packNum = packNum;
+		this.message = message;
 		
 	}
 	
