@@ -23,14 +23,29 @@ public class MessageList {
 			head = new MessageNode(a);
 			return;
 		}
-		if (head.next == null) {
-			current = new MessageNode(a, null);
-			head.next = current;
+		if (head.next == null && head.data.getMessageNum() < a.getMessageNum()) {
+			MessageNode nextNode = new MessageNode(a, null);
+			head.next = nextNode;
+			return;
+		} else {
+			MessageNode nextNode = head;
+			head = new MessageNode(a, nextNode);
+		}
+		
+		recursiveAdd(head, a, null);
+	}
+	
+	private void recursiveAdd(MessageNode currNode, Message MessageToAdd, MessageNode prev) {
+		if(currNode.data.getMessageNum() < MessageToAdd.getMessageNum()) {
+			recursiveAdd(currNode.next, MessageToAdd, currNode);
 			return;
 		}
-		current.next = new MessageNode(a, null);
-		current = current.next;
-
+		if(currNode.data.getMessageNum() == MessageToAdd.getMessageNum()) {
+			prev.next= new MessageNode(MessageToAdd, currNode.next);
+			return;
+		}
+		MessageNode nodeToAdd = new MessageNode(MessageToAdd, currNode.next);
+		currNode.next = nodeToAdd;
 	}
 
 	public Message next() {
