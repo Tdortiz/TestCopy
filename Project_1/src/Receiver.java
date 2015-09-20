@@ -60,7 +60,7 @@ public class Receiver {
 	}
 
 	/**
-	 * Prints the messages.
+	 * Prints the messages to the output file.
 	 * @param messageList list of messages.
 	 * @param output the output file.
 	 */
