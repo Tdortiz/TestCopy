@@ -4,7 +4,7 @@ import java.io.*;
 /**
  * Receiver takes in an input file full of Messages and packets 
  * and reprints them in the correct sequential order.
- * 
+ *
  * @author Thomas Ortiz
  * @author Michael Mackrell
  * @author Jacob Stone
@@ -60,7 +60,7 @@ public class Receiver {
 	}
 
 	/**
-	 * Prints the messages.
+	 * Prints the messages to the output file.
 	 * @param messageList list of messages.
 	 * @param output the output file.
 	 */
