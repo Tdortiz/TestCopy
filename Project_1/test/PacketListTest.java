@@ -259,6 +259,76 @@ public class PacketListTest {
 		assertEquals(testString, sixPack.toStringNodes());
 	}
 	
+	/**
+	 * Test method for {@link PacketList#toStringNodes(int)}.
+	 */
+	@Test
+	public void testToStringNodesTwo() {
+		pack1 = new Packet(1, "Good");
+		pack2 = new Packet(2, "Morning");
+		pack3 = new Packet(3, "Seven");
+		pack4 = new Packet(4, "yasss");
+		pack5 = new Packet(5, "Bad");
+		pack6 = new Packet(6, "Afternoon");
+		pack7 = new Packet(7, "Four");
+		pack8 = new Packet(8, "Nuuuu");
+		Packet pack9 = new Packet(1, "asdf");
+		Packet pack10 = new Packet(2,"jklp");
+		
+		sixPack.add(pack6);
+		sixPack.add(pack8);
+		sixPack.add(pack1);
+		sixPack.add(pack3);
+		sixPack.add(pack2);
+		sixPack.add(pack5); // 1 2 3 5 6 8
+		sixPack.add(pack9);  // should replace 1 
+		sixPack.add(pack10); // should replace 2 
+		
+		testString = "asdf\n";
+		testString += "jklp\n";
+		testString += "Seven\n";
+		testString += "Bad\n";
+		testString += "Afternoon\n";
+		testString += "Nuuuu\n";
+		System.out.println(sixPack.toStringNodes());
+		assertEquals(testString, sixPack.toStringNodes());
+	}
+	
+	/**
+	 * Test method for {@link PacketList#toStringNodes(int)}.
+	 */
+	@Test
+	public void testToStringNodesThree() {
+		pack1 = new Packet(1, "Good");
+		pack2 = new Packet(2, "Morning");
+		pack3 = new Packet(3, "Seven");
+		pack4 = new Packet(4, "yasss");
+		pack5 = new Packet(5, "Bad");
+		pack6 = new Packet(6, "Afternoon");
+		pack7 = new Packet(7, "Four");
+		pack8 = new Packet(8, "Nuuuu");
+		Packet pack9 = new Packet(1, "asdf");
+		Packet pack10 = new Packet(8,"jklp");
+		
+		sixPack.add(pack6);
+		sixPack.add(pack8);
+		sixPack.add(pack1);
+		sixPack.add(pack3);
+		sixPack.add(pack2);
+		sixPack.add(pack5); // 1 2 3 5 6 8
+		sixPack.add(pack9);  // should replace 1 
+		sixPack.add(pack10); // should replace 8 
+		
+		testString = "asdf\n";
+		testString += "Morning\n";
+		testString += "Seven\n";
+		testString += "Bad\n";
+		testString += "Afternoon\n";
+		testString += "jklp\n";
+		System.out.println(sixPack.toStringNodes());
+		assertEquals(testString, sixPack.toStringNodes());
+	}
+	
 	
 	
 
