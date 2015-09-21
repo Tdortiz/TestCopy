@@ -52,32 +52,6 @@ public class MessageList {
 		currNode.next = nodeToAdd;
 	}
 
-	public Message next() {
-		Message nextData;
-		if (head.next == null) {
-			nextData = head.data;
-			head = null;
-			return nextData;
-		}
-		nextData = head.data;
-		head = head.next;
-		return nextData;
-	}
-
-	public Message getNext() {
-		Message nextData;
-		if (head.next == null) {
-			nextData = head.data;
-			head = null;
-			return nextData;
-		} else if (current == null) {
-			current = head.next;
-			return current.data;
-		}
-		current = current.next;
-		return current.data;
-	}
-
 	public MessageNode getHead() {
 		return head;
 	}
@@ -86,8 +60,11 @@ public class MessageList {
 	 * Sends message to a string
 	 */
 	public String toString() {
-		String s = "";
-		return toStringRec(s, head);
+		//String s = "";
+		if(head == null){
+			return null;
+		}
+		return toStringRec(head.data.toString(), head);
 	}
 	
 	private String toStringRec(String s, MessageNode here ) {
