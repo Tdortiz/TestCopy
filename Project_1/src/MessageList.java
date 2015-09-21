@@ -39,13 +39,17 @@ public class MessageList {
 		
 		recursiveAdd(head, a, null);
 	}
-	
+	/**
+	 * Slightly broken.
+	 * @param currNode
+	 * @param messageToAdd
+	 * @param prev
+	 */
 	private void recursiveAdd(MessageNode currNode, Message messageToAdd, MessageNode prev) {
-		if(currNode.data.getMessageNum() < messageToAdd.getMessageNum()) {
-			if(currNode.next == null){
+		if(currNode.data.getMessageNum() > messageToAdd.getMessageNum()) {
+			/*if(currNode.next == null){
 				currNode.next = new MessageNode(messageToAdd, null);
-				return;
-			}
+			}*/
 			recursiveAdd(currNode.next, messageToAdd, currNode);
 			return;
 		}
