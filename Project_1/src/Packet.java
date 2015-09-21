@@ -49,11 +49,19 @@ public class Packet {
 	public String toString(){
 		return this.message;
 	}
-
+	
+	/**
+	 * getter for the packet number
+	 * @return the packet number
+	 */
 	public int getPackNum() {
 		return this.packNum;
 	}
 	
+	/**
+	 * getter for the message
+	 * @return the message
+	 */
 	public String getMessage(){
 		return this.message;
 	}
