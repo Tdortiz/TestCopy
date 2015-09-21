@@ -141,5 +141,64 @@ public class PacketListTest {
 		assertEquals(testString, sixPack.toString(3));
 	}
 	
+	/**
+	 * Test method for {@link PacketList#toString(int)}.
+	 */
+	@Test
+	public void testToStringThree() {
+		pack1 = new Packet(1, "Good");
+		pack2 = new Packet(2, "Morning");
+		pack3 = new Packet(3, "Seven");
+		pack4 = new Packet(4, "yasss");
+		pack5 = new Packet(5, "Bad");
+		pack6 = new Packet(6, "Afternoon");
+		pack7 = new Packet(7, "Four");
+		pack8 = new Packet(8, "Nuuuu");
+		
+		sixPack.add(pack6);
+		sixPack.add(pack8);
+		sixPack.add(pack1);
+		sixPack.add(pack3);
+		sixPack.add(pack2);
+		sixPack.add(pack5); // 1 2 3 5 6 8
+		
+		testString = "Good\n";
+		testString += "Morning\n";
+		testString += "Seven\n";
+		testString += "WARNING: packet 4 of message 3 is missing\n";
+		testString += "Bad\n";
+		testString += "Afternoon\n";
+		testString += "WARNING: packet 7 of message 3 is missing\n";
+		testString += "Nuuuu\n";
+		assertEquals(testString, sixPack.toString(3));
+	}
+	
+	/**
+	 * Test method for {@link PacketList#toString(int)}.
+	 */
+	@Test
+	public void testToStringFour() {
+		pack1 = new Packet(1, "Good");
+		pack2 = new Packet(2, "Morning");
+		pack3 = new Packet(3, "Seven");
+		pack4 = new Packet(4, "yasss");
+		pack5 = new Packet(5, "Bad");
+		pack6 = new Packet(6, "Afternoon");
+		pack7 = new Packet(7, "Four");
+		pack8 = new Packet(8, "Nuuuu");
+		
+		sixPack.add(pack8); // 8
+		
+		testString = "WARNING: packet 1 of message 3 is missing\n";
+		testString += "WARNING: packet 2 of message 3 is missing\n";
+		testString += "WARNING: packet 3 of message 3 is missing\n";
+		testString += "WARNING: packet 4 of message 3 is missing\n";
+		testString += "WARNING: packet 5 of message 3 is missing\n";
+		testString += "WARNING: packet 6 of message 3 is missing\n";
+		testString += "WARNING: packet 7 of message 3 is missing\n";
+		testString += "Nuuuu\n";
+		assertEquals(testString, sixPack.toString(3));
+	}
+	
 
 }
