@@ -9,7 +9,11 @@ public class MessageList {
 
 	public MessageNode head;
 	public MessageNode current;
-
+	
+	/*public MessageList(){
+		
+	}*/
+	
 	/**
 	 * This should check if Param A is already in the message list and if it is
 	 * add the new packet to the already existing message in the list.
@@ -87,7 +91,7 @@ public class MessageList {
 	}
 	
 	private String toStringRec(String s, MessageNode here ) {
-		if(here.next == null) {
+		if(here == null || here.next == null) {
 			return s;
 		}
 		s += here.data.toString() + "\n\n";
