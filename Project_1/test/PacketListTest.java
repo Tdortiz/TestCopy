@@ -76,7 +76,13 @@ public class PacketListTest {
 	 */
 	@Test
 	public void testAdd() {
-		fail("Not yet implemented");
+		sixPack.add(pack1);
+		sixPack.add(pack2);
+		sixPack.add(pack3);
+		sixPack.add(pack4);
+		assertEquals(testString, sixPack.toString(3));
+		
+		
 	}
 
 	/**
