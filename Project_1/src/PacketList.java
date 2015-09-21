@@ -58,6 +58,7 @@ public class PacketList {
 		Node previous = front;
 		
 		while (current != null) {
+			System.out.println("AM I THE PROB?");
 			int currentNum = current.packet.getPackNum();
 			int toAddNum = packetToAdd.getPackNum();
 			if (toAddNum >= currentNum) {
@@ -72,7 +73,11 @@ public class PacketList {
 					current = current.next;
 				}
 			} else {
+				System.out.println("CurrNum is " + currentNum);
+				System.out.println("toAddNum is " + toAddNum);
 				previous.next = new Node(packetToAdd, current);
+				break;
+				
 			}
 		}
 	}
@@ -94,6 +99,7 @@ public class PacketList {
 				listString += current.packet.getMessage() + "\n";
 			} else {
 				while (nextNum != current.packet.getPackNum()) {
+					System.out.println("Right now, nextNum is" + nextNum + ". CurrentNum is " + current.packet.getPackNum());
 					listString += "WARNING: packet " + nextNum + " of message ";
 					listString += messageNum + " is missing\n";
 					nextNum++;

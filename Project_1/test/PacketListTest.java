@@ -21,6 +21,10 @@ public class PacketListTest {
 	
 	private Packet pack4;
 	
+	private Packet pack5;
+	
+	private Packet pack6;
+	
 	private String testString;
 	
 	private PacketList sixPack;
@@ -43,6 +47,8 @@ public class PacketListTest {
 		testString += "yasss\n";
 		
 		sixPack = new PacketList();
+		
+		
 	}
 
 	/**
