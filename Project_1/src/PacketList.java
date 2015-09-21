@@ -119,7 +119,7 @@ public class PacketList {
 		String s = "";
 		Node currentNode = front;
 		while(currentNode != null){
-			s += currentNode.packet.toString() + " ";
+			s += currentNode.packet.toString() + "\n";
 			currentNode = currentNode.next;
 		}
 		return s;

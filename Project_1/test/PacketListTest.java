@@ -249,9 +249,14 @@ public class PacketListTest {
 		sixPack.add(pack5); // 1 2 3 5 6 8
 		sixPack.add(pack9);  // should replace 1 but doesnt.
 		
-		testString = "Good\n";
+		testString = "asdf\n";
+		testString += "Morning\n";
+		testString += "Seven\n";
+		testString += "Bad\n";
+		testString += "Afternoon\n";
+		testString += "Nuuuu\n";
 		System.out.println(sixPack.toStringNodes());
-		assertEquals("a", "a");
+		assertEquals(testString, sixPack.toStringNodes());
 	}
 	
 	
