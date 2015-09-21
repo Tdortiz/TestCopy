@@ -30,6 +30,8 @@ public class PacketList {
 	public void add(Packet packetToAdd) {
 		if (front == null) {
 			front = new Node(packetToAdd, null);
+		} else if (packetToAdd.getPackNum() == front.packet.getPackNum()) {
+			front = new Node(packetToAdd, front.next);
 		} else {
 			this.addHelper(packetToAdd);
 		}
