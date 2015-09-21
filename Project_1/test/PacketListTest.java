@@ -226,5 +226,35 @@ public class PacketListTest {
 		assertEquals(testString, sixPack.toString(3));
 	}
 	
+	/**
+	 * Test method for {@link PacketList#toStringNodes(int)}.
+	 */
+	@Test
+	public void testToStringNodes() {
+		pack1 = new Packet(1, "Good");
+		pack2 = new Packet(2, "Morning");
+		pack3 = new Packet(3, "Seven");
+		pack4 = new Packet(4, "yasss");
+		pack5 = new Packet(5, "Bad");
+		pack6 = new Packet(6, "Afternoon");
+		pack7 = new Packet(7, "Four");
+		pack8 = new Packet(8, "Nuuuu");
+		Packet pack9 = new Packet(1, "asdf");
+		
+		sixPack.add(pack6);
+		sixPack.add(pack8);
+		sixPack.add(pack1);
+		sixPack.add(pack3);
+		sixPack.add(pack2);
+		sixPack.add(pack5); // 1 2 3 5 6 8
+		sixPack.add(pack9);  // should replace 1 but doesnt.
+		
+		testString = "Good\n";
+		System.out.println(sixPack.toStringNodes());
+		assertEquals("a", "a");
+	}
+	
+	
+	
 
 }

@@ -113,6 +113,17 @@ public class PacketList {
 		return listString;
 	}
 	
+	public String toStringNodes(){
+		String s = "";
+		Node currentNode = front;
+		while(currentNode != null){
+			s += currentNode.packet.toString() + " ";
+			currentNode = currentNode.next;
+		}
+		return s;
+	}
+	
+	
 	/**
 	 * The node object used in a linked list.
 	 * @author Jacob Stone
