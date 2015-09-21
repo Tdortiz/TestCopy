@@ -12,8 +12,8 @@ public class MessageListTest {
 	@Before
 	public void setUp() throws Exception {
 		messyList = new MessageList();
-		mes0 = new Message(0, 0, "testing");
-		mes1 = new Message(1, 0, "test2");
+		mes0 = new Message(0, 1, "testing");
+		mes1 = new Message(1, 2, "test2");
 		goPack = new Packet(1, "123");
 	}
 
