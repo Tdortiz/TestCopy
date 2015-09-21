@@ -17,47 +17,47 @@ public class MessageList {
 	
 	/**
 	 * Adds a packet to the list in ascending order
-	 * @param packetToAdd the packet to add to the list.
+	 * @param messageToAdd the packet to add to the list.
 	 */
-	public void add(Message packetToAdd) {
+	public void add(Message messageToAdd) {
 		if (head == null) {
-			head = new MessageNode(packetToAdd, null);
-		} else if (packetToAdd.getMessageNum() == head.data.getMessageNum()) {
-			head = new MessageNode(packetToAdd, head.next);
+			head = new MessageNode(messageToAdd, null);
+		} else if (messageToAdd.getMessageNum() == head.data.getMessageNum()) {
+			head = new MessageNode(messageToAdd, head.next);
 		} else {
-			this.addHelper(packetToAdd);
+			this.addHelper(messageToAdd);
 		}
 	}	
 	
 	/**
 	 * Adds a packet to the rest of the list
 	 * PRE: the front of the list is not null
-	 * @param packetToAdd the packet to add to the list
+	 * @param messageToAdd the packet to add to the list
 	 */
-	public void addHelper(Message packetToAdd) {
-		if (packetToAdd.getMessageNum() < head.data.getMessageNum()) {
-			head = new MessageNode(packetToAdd, head);
+	public void addHelper(Message messageToAdd) {
+		if (messageToAdd.getMessageNum() < head.data.getMessageNum()) {
+			head = new MessageNode(messageToAdd, head);
 		} else {
-			this.addToRest(packetToAdd);
+			this.addToRest(messageToAdd);
 		}
 	}
 	
 	/**
 	 * Adds a packet to the rest of the list
 	 * PRE: Packet does not need to enter the front of the list
-	 * @param packetToAdd the packet to add to the list
+	 * @param messageToAdd the packet to add to the list
 	 */
-	public void addToRest(Message packetToAdd) {
+	public void addToRest(Message messageToAdd) {
 		MessageNode current = head;
 		MessageNode previous = head;
 		
 		while (current != null) {
 			System.out.println("AM I THE PROB?");
 			int currentNum = current.data.getMessageNum();
-			int toAddNum = packetToAdd.getMessageNum();
+			int toAddNum = messageToAdd.getMessageNum();
 			if (toAddNum >= currentNum) {
 				if (current.next == null){
-					current.next = new MessageNode(packetToAdd, null);
+					current.next = new MessageNode(messageToAdd, null);
 					break;
 				} else {
 					previous = current;
@@ -66,7 +66,7 @@ public class MessageList {
 			} else {
 				System.out.println("CurrNum is " + currentNum);
 				System.out.println("toAddNum is " + toAddNum);
-				previous.next = new MessageNode(packetToAdd, current);
+				previous.next = new MessageNode(messageToAdd, current);
 				break;
 				
 			}
