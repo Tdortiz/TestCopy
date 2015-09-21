@@ -4,29 +4,43 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MessageListTest {
-	MessageList messyList;
-	Message mes0;
-	Message mes1;
-	Packet goPack;
-	
-	@Before
-	public void setUp() throws Exception {
-		messyList = new MessageList();
-		mes0 = new Message(0, 1, "testing");
-		mes1 = new Message(1, 2, "test2");
-		goPack = new Packet(1, "123");
-	}
+    MessageList messyList;
+    Message mes0;
+    Message mes1;
+    Packet goPack;
+    
+    @Before
+    public void setUp() throws Exception {
+        messyList = new MessageList();
+        mes0 = new Message(0, 1, "testing");
+        mes1 = new Message(1, 1, "test2");
+        goPack = new Packet(1, "123");
+    }
 
-	@Test
-	public void test() {
-		assertEquals(null, messyList.toString());
-		
-		mes0.add(goPack.getPackNum(), goPack.getMessage());
-		messyList.add(mes0);
-		messyList.add(mes1);
-		
-		
-		assertEquals("1", messyList.head.data.toString());
-	}
+    @Test
+    public void testAdd() {
+        assertEquals(null, messyList.toString());
+        
+        mes0.add(goPack.getPackNum(), goPack.getMessage());
+        messyList.add(mes0);
+        messyList.add(mes1);
+        
+        
+        assertEquals("1", messyList.head.data.toString());
+    }
+    
+    @Test
+    public void testToString(){
+        assertEquals(null, messyList.toString());
+        
+        messyList.add(mes0);
+        messyList.add(mes1);
+        
+        //a set of sanity-check printlns to ensure nodes are added correctly.
+        System.out.println(messyList.head.data.toString());
+        System.out.println(messyList.head.next.toString());
+        
+        assertEquals("", messyList.toString());
+    }
 
 }

@@ -16,7 +16,7 @@ public class MessageList {
 	}
 	
 	/**
-	 * Adds a packet to the list in ascending order
+	 * Adds a message to the list in ascending order
 	 * @param messageToAdd the packet to add to the list.
 	 */
 	public void add(Message messageToAdd) {
@@ -30,7 +30,7 @@ public class MessageList {
 	}	
 	
 	/**
-	 * Adds a packet to the rest of the list
+	 * Adds a message to the rest of the list
 	 * PRE: the front of the list is not null
 	 * @param messageToAdd the packet to add to the list
 	 */
@@ -43,8 +43,8 @@ public class MessageList {
 	}
 	
 	/**
-	 * Adds a packet to the rest of the list
-	 * PRE: Packet does not need to enter the front of the list
+	 * Adds a message to the rest of the list
+	 * PRE: Message does not need to enter the front of the list
 	 * @param messageToAdd the packet to add to the list
 	 */
 	public void addToRest(Message messageToAdd) {
@@ -138,7 +138,7 @@ public class MessageList {
 	/**
 	 * Sends message to a string
 	 */
-	public String toString() {
+	/**public String toString() {
 		//String s = "";
 		if(head == null){
 			return null;
@@ -152,6 +152,16 @@ public class MessageList {
 		}
 		s += here.data.toString() + "\n\n";
 		return toStringRec(s, here.next);
+	} */
+	
+	public String toString(){
+		String s = "";
+		MessageNode current = head;
+		while(current != null){
+			s += current.data.toString() + "\n\n";
+			current = current.next;
+		}
+		return s;
 	}
 	
 	public Message contains (int messToFind) {
