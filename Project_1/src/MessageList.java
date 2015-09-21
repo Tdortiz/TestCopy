@@ -16,6 +16,76 @@ public class MessageList {
 	}
 	
 	/**
+	 * Adds a packet to the list in ascending order
+	 * @param packetToAdd the packet to add to the list.
+	 */
+	public void add(Message packetToAdd) {
+		if (head == null) {
+			head = new MessageNode(packetToAdd, null);
+		} else if (packetToAdd.getMessageNum() == head.data.getMessageNum()) {
+			head = new MessageNode(packetToAdd, head.next);
+		} else {
+			this.addHelper(packetToAdd);
+		}
+	}	
+	
+	/**
+	 * Adds a packet to the rest of the list
+	 * PRE: the front of the list is not null
+	 * @param packetToAdd the packet to add to the list
+	 */
+	public void addHelper(Message packetToAdd) {
+		if (packetToAdd.getMessageNum() < head.data.getMessageNum()) {
+			head = new MessageNode(packetToAdd, head);
+		} else {
+			this.addToRest(packetToAdd);
+		}
+	}
+	
+	/**
+	 * Adds a packet to the rest of the list
+	 * PRE: Packet does not need to enter the front of the list
+	 * @param packetToAdd the packet to add to the list
+	 */
+	public void addToRest(Message packetToAdd) {
+		MessageNode current = head;
+		MessageNode previous = head;
+		
+		while (current != null) {
+			System.out.println("AM I THE PROB?");
+			int currentNum = current.data.getMessageNum();
+			int toAddNum = packetToAdd.getMessageNum();
+			if (toAddNum >= currentNum) {
+				if (current.next == null){
+					current.next = new MessageNode(packetToAdd, null);
+					break;
+				} else {
+					previous = current;
+					current = current.next;
+				}
+			} else {
+				System.out.println("CurrNum is " + currentNum);
+				System.out.println("toAddNum is " + toAddNum);
+				previous.next = new MessageNode(packetToAdd, current);
+				break;
+				
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
 	 * This should check if Param A is already in the message list and if it is
 	 * add the new packet to the already existing message in the list.
 	 * 
@@ -23,7 +93,7 @@ public class MessageList {
 	 * 
 	 * @param a
 	 */
-	public void add(Message a) {
+	/**public void add(Message a) {
 		if (head == null) {
 			head = new MessageNode(a);
 			return;
@@ -38,19 +108,19 @@ public class MessageList {
 		}
 		
 		recursiveAdd(head, a, null);
-	}
+	} */
 	/**
 	 * Slightly broken.
 	 * @param currNode
 	 * @param messageToAdd
 	 * @param prev
 	 */
-	private void recursiveAdd(MessageNode currNode, Message messageToAdd, MessageNode prev) {
-		if(currNode.data.getMessageNum() > messageToAdd.getMessageNum()) {
+	/**private void recursiveAdd(MessageNode currNode, Message messageToAdd, MessageNode prev) {
+		if(currNode.data.getMessageNum() > messageToAdd.getMessageNum()) { */
 			/*if(currNode.next == null){
 				currNode.next = new MessageNode(messageToAdd, null);
 			}*/
-			recursiveAdd(currNode.next, messageToAdd, currNode);
+			/**recursiveAdd(currNode.next, messageToAdd, currNode);
 			return;
 		}
 		if(currNode.data.getMessageNum() == messageToAdd.getMessageNum()) {
@@ -59,7 +129,7 @@ public class MessageList {
 		}
 		MessageNode nodeToAdd = new MessageNode(messageToAdd, currNode.next);
 		currNode.next = nodeToAdd;
-	}
+	} */
 
 	public MessageNode getHead() {
 		return head;
