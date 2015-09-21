@@ -40,16 +40,20 @@ public class MessageList {
 		recursiveAdd(head, a, null);
 	}
 	
-	private void recursiveAdd(MessageNode currNode, Message MessageToAdd, MessageNode prev) {
-		if(currNode.data.getMessageNum() < MessageToAdd.getMessageNum()) {
-			recursiveAdd(currNode.next, MessageToAdd, currNode);
+	private void recursiveAdd(MessageNode currNode, Message messageToAdd, MessageNode prev) {
+		if(currNode.data.getMessageNum() < messageToAdd.getMessageNum()) {
+			if(currNode.next == null){
+				currNode.next = new MessageNode(messageToAdd, null);
+				return;
+			}
+			recursiveAdd(currNode.next, messageToAdd, currNode);
 			return;
 		}
-		if(currNode.data.getMessageNum() == MessageToAdd.getMessageNum()) {
-			prev.next= new MessageNode(MessageToAdd, currNode.next);
+		if(currNode.data.getMessageNum() == messageToAdd.getMessageNum()) {
+			prev.next= new MessageNode(messageToAdd, currNode.next);
 			return;
 		}
-		MessageNode nodeToAdd = new MessageNode(MessageToAdd, currNode.next);
+		MessageNode nodeToAdd = new MessageNode(messageToAdd, currNode.next);
 		currNode.next = nodeToAdd;
 	}
 
