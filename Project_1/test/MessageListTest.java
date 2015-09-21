@@ -22,7 +22,7 @@ public class MessageListTest {
 		mes0.add(goPack.getPackNum(), goPack.getMessage());
 		messyList.add(mes0);
 		
-		//assertEquals("1", messyList.toString());
+		assertEquals("1", messyList.head.data.toString());
 	}
 
 }
