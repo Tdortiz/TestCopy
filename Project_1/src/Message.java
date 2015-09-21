@@ -61,7 +61,7 @@ public class Message {
 		s+= "\n";
 		s+= sixPack.toString(messNum);
 		s+= "\n";
-		s+= "--- End Message " + messNum;
+		s+= "--- End Message " + messNum + "\n\n";
 		
 		return s;
 	}
