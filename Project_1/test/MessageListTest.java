@@ -26,7 +26,7 @@ public class MessageListTest {
 		messyList.add(mes1);
 		
 		
-		//assertEquals("1", messyList.head.data.toString());
+		assertEquals("1", messyList.head.data.toString());
 	}
 
 }
