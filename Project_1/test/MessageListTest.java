@@ -25,10 +25,9 @@ public class MessageListTest {
         	  s += "testing\n";
         	  s += "--- End Message 1\n\n"; 
         	  
-        System.out.println(s);
-        System.out.println("---------------------------");
-        System.out.println(messyList.toString());
-        System.out.println("---------------------------");
+        //System.out.println(s);
+        //System.out.println(messyList.toString());
+        //System.out.println("---------------------------");
         assertEquals(s, messyList.toString());
         
     }
@@ -44,6 +43,7 @@ public class MessageListTest {
         PacketList packetList = new PacketList();
         Packet a = new Packet(1,"testing");
         Packet b = new Packet(2, "test2");
+        System.out.println(packetList.toString(1));
         
         packetList.add(a);
         packetList.add(b);
