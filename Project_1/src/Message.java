@@ -57,11 +57,10 @@ public class Message {
 	 */
 	public String toString(){
 		String s = "";
-		s = "--- Message " + messNum;
-		s+= "\n";
+		
+		s = "--- Message " + messNum + "\n";
 		s+= sixPack.toString(messNum);
-		s+= "\n";
-		s+= "--- End Message " + messNum;
+		s+= "--- End Message " + messNum + "\n\n";
 		
 		return s;
 	}
@@ -72,6 +71,10 @@ public class Message {
 	 */
 	public PacketList getPacketList() {
 		return sixPack;
+	}
+	
+	public void setPacketList(PacketList newPacketList){
+		this.sixPack = newPacketList;
 	}
 
 	

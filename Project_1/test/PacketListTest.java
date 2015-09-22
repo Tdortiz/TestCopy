@@ -56,22 +56,6 @@ public class PacketListTest {
 	}
 
 	/**
-	 * Test method for {@link PacketList#PacketList()}.
-	 */
-	@Test
-	public void testPacketList() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link PacketList#PacketList(Packet)}.
-	 */
-	@Test
-	public void testPacketListPacket() {
-		fail("Not yet implemented");
-	}
-
-	/**
 	 * Test method for {@link PacketList#add(Packet)}.
 	 */
 	@Test
@@ -83,22 +67,6 @@ public class PacketListTest {
 		assertEquals(testString, sixPack.toString(3));
 		
 		
-	}
-
-	/**
-	 * Test method for {@link PacketList#addHelper(Packet)}.
-	 */
-	@Test
-	public void testAddHelper() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link PacketList#addToRest(Packet)}.
-	 */
-	@Test
-	public void testAddToRest() {
-		fail("Not yet implemented");
 	}
 
 	/**
@@ -328,8 +296,4 @@ public class PacketListTest {
 		System.out.println(sixPack.toStringNodes());
 		assertEquals(testString, sixPack.toStringNodes());
 	}
-	
-	
-	
-
 }
