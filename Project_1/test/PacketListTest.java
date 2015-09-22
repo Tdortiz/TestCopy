@@ -296,8 +296,4 @@ public class PacketListTest {
 		System.out.println(sixPack.toStringNodes());
 		assertEquals(testString, sixPack.toStringNodes());
 	}
-	
-	
-	
-
 }
