@@ -158,7 +158,7 @@ public class MessageList {
 		String s = "";
 		MessageNode current = head;
 		while(current != null){
-			s += current.data.toString() + "\n\n";
+			s += current.data.toString();
 			current = current.next;
 		}
 		return s;
