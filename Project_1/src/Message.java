@@ -66,6 +66,16 @@ public class Message {
 	}
 	
 	/**
+	 * Simple toString to check order of message without packets.
+	 * @return toString of message.
+	 */
+	public String toStringNodes(){
+		String s = "";
+		s += messNum + " ";
+		return s;
+	}
+	
+	/**
 	 * returns the packet list
 	 * @return sixpack the packet list
 	 */

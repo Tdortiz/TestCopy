@@ -164,6 +164,22 @@ public class MessageList {
 		return s;
 	}
 	
+	/** 
+	 * Simple toString to check order of nodes.
+	 * @return string of only node messages.
+	 */
+	public String toStringNodes(){
+		String s = "";
+		MessageNode current = head;
+		while(current != null){
+			s += current.data.toStringNodes();
+			current = current.next;
+		}
+		return s;
+		
+	}
+	
+	
 	public Message contains (int messToFind) {
 		return recContains(messToFind, head);
 	}

@@ -33,6 +33,54 @@ public class MessageListTest {
     }
     
     @Test
+    public void testAddTwo() {
+    	mes1 = new Message(1, 1, "testing");
+        mes2 = new Message(2, 1, "test2");
+        Message mes3 = new Message(3, 1, "three");
+    	
+    	
+        messyList.add(mes1);
+        messyList.add(mes2);
+        messyList.add(mes3);
+        
+        String s = "1 2 3 ";
+        //System.out.println(messyList.toStringNodes());  
+        assertEquals(s, messyList.toStringNodes());
+    }
+    
+    @Test
+    public void testAddThree() {
+    	MessageList list = new MessageList();
+    	mes1 = new Message(1, 1, "testing");
+        mes2 = new Message(2, 1, "test2");
+    	
+        list.add(mes2);
+        list.add(mes1);
+        
+        String s = "1 2 ";
+        //System.out.println(list.toStringNodes());  
+        assertEquals(s, list.toStringNodes());
+    }
+    
+    @Test
+    public void testAddFour() {
+    	MessageList list = new MessageList();
+    	mes1 = new Message(3, 1, "testing");
+        mes2 = new Message(10, 1, "test2");
+        Message mes3 = new Message(17, 1, "three");
+    	
+        list.add(mes1);
+        list.add(mes3);
+        list.add(mes2);
+        
+        String s = "3 10 17 ";
+        //System.out.println(list.toStringNodes());  
+        assertEquals(s, list.toStringNodes());
+    }
+    
+    
+    
+    @Test
     public void testToString(){
     	MessageList list = new MessageList();
     	String s = "--- Message 1\n";
