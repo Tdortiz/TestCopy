@@ -71,8 +71,7 @@ public class MessageListTest {
     	MessageList list = new MessageList();
     	mes1 = new Message(3, 1, "testing");
         mes2 = new Message(10, 1, "test2");
-        Message mes3 = new Message(17, 1, "three");
-        
+        Message mes3 = new Message(17, 1, "three"); 
     	
         list.add(mes1);
         list.add(mes3);
