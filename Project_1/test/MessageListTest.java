@@ -13,8 +13,9 @@ public class MessageListTest {
     @Before
     public void setUp() throws Exception {
         messyList = new MessageList();
-        mes1 = new Message(1, 1, "testing");
-        mes2 = new Message(1, 2, "test2");
+        mes1 = new Message(10);
+        mes2 = new Message(3);
+        mes3 = new Message(17);
         goPack = new Packet(1, "123");
     }
 
@@ -22,6 +23,8 @@ public class MessageListTest {
     public void testAdd() {
        
         messyList.add(mes1);
+        messyList.add(mes2);
+        messyList.add(mes3);
         String s = "--- Message 1\n";
         	  s += "testing\n";
         	  s += "--- End Message 1\n\n"; 
