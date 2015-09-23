@@ -31,6 +31,11 @@ public class Message {
 		sixPack.add(packet);
 	}
 	
+	public Message(int messNum) {
+		this.messNum = messNum;
+		sixPack = new PacketList(); 
+	}
+	
 	/**
 	 * getter for the message number
 	 * @return the current message number
