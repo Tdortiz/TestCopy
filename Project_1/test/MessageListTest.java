@@ -7,6 +7,7 @@ public class MessageListTest {
     MessageList messyList;
     Message mes1;
     Message mes2;
+    Message mes3;
     Packet goPack;
     
     @Before
