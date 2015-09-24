@@ -21,17 +21,18 @@ public class MessageListTest {
 
     @Test
     public void testAdd() {
-       
         messyList.add(mes1);
         messyList.add(mes2);
         messyList.add(mes3);
-        String s = "--- Message 1\n";
-        	  s += "testing\n";
-        	  s += "--- End Message 1\n\n"; 
+        String s = "--- Message 3\n";
+        	  s += "--- End Message 3\n\n"; 
+        	  s += "--- Message 10\n";
+        	  s += "--- End Message 10\n\n"; 
+        	  s += "--- Message 17\n";
+        	  s += "--- End Message 17\n\n"; 
         	  
         //System.out.println(s);
         //System.out.println(messyList.toString());
-        //System.out.println("---------------------------");
         assertEquals(s, messyList.toString());
         
     }
@@ -82,20 +83,20 @@ public class MessageListTest {
         assertEquals(s, list.toStringNodes());
     }
     
-    
-    
     @Test
     public void testToString(){
     	MessageList list = new MessageList();
-    	String s = "--- Message 1\n";
-  	  	s += "testing\n";
-  	    s += "test2\n";
-  	  	s += "--- End Message 1\n\n"; 
-  	  	
-        PacketList packetList = new PacketList();
+    	PacketList packetList = new PacketList();
+    	
+    	mes1 = new Message(1,1,"testing");
+        
         Packet a = new Packet(1,"testing");
         Packet b = new Packet(2, "test2");
-        System.out.println(packetList.toString(1));
+        
+        String s = "--- Message 1\n";
+	  		s += "testing\n";
+	  		s += "test2\n";
+	  		s += "--- End Message 1\n\n"; 
         
         packetList.add(a);
         packetList.add(b);
