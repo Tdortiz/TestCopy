@@ -16,7 +16,8 @@ public class PacketList {
 	public PacketList () {
 		front = null;
 	}
-	/** extended constructor for PacketList.
+	/** 
+	 * Extended constructor for PacketList.
 	 * @param packetToStart the packet to start off the list
 	 */
 	public PacketList (Packet packetToStart) {
@@ -60,7 +61,6 @@ public class PacketList {
 		Node previous = front;
 		
 		while (current != null) {
-			//System.out.println("AM I THE PROB?");
 			int currentNum = current.packet.getPackNum();
 			int toAddNum = packetToAdd.getPackNum();
 			if (toAddNum >= currentNum) {
@@ -75,8 +75,6 @@ public class PacketList {
 					current = current.next;
 				}
 			} else {
-				//System.out.println("CurrNum is " + currentNum);
-				//System.out.println("toAddNum is " + toAddNum);
 				previous.next = new Node(packetToAdd, current);
 				break;
 				
@@ -102,7 +100,6 @@ public class PacketList {
 				listString += current.packet.getMessage() + "\n";
 			} else {
 				while (nextNum != current.packet.getPackNum()) {
-					//System.out.println("nextNum:" + nextNum + " CurrentNum:" + current.packet.getPackNum());
 					listString += "WARNING: packet " + nextNum + " of message ";
 					listString += messageNum + " is missing\n";
 					nextNum++;
@@ -117,6 +114,10 @@ public class PacketList {
 		return listString;
 	}
 	
+	/**
+	 * Simple toString message to check if Packets are sorted.
+	 * @return String representation of PacketList.
+	 */
 	public String toStringNodes(){
 		String s = "";
 		Node currentNode = front;
