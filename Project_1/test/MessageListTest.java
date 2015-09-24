@@ -31,7 +31,6 @@ public class MessageListTest {
         	  s += "--- Message 17\n";
         	  s += "--- End Message 17\n\n"; 
         	  
-        //System.out.println(s);
         //System.out.println(messyList.toString());
         assertEquals(s, messyList.toString());
         
