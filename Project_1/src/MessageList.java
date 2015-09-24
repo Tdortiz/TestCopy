@@ -68,8 +68,6 @@ public class MessageList {
 					current = current.next;
 				}
 			} else {
-				System.out.println("CurrNum is " + currentNum);
-				System.out.println("toAddNum is " + toAddNum);
 				previous.next = new MessageNode(messageToAdd, current);
 				break;
 				
