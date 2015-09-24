@@ -9,17 +9,17 @@
 public class Message {
 	
 	/**
-	 * the number for the message
+	 * The number for the message
 	 */
 	private int messNum;
 	
 	/**
-	 * the packet to get returned
+	 * The packet to get returned
 	 */
 	private PacketList sixPack;
 	
 	/**
-	 * constructor for the message
+	 * Constructor for the message
 	 * @param messNum the message number
 	 * @param packNum the packet number
 	 * @param message the message to be printed
@@ -31,13 +31,17 @@ public class Message {
 		sixPack.add(packet);
 	}
 	
+	/**
+	 * Constructor for message.
+	 * @param messNum the message number.
+	 */
 	public Message(int messNum) {
 		this.messNum = messNum;
 		sixPack = new PacketList(); 
 	}
 	
 	/**
-	 * getter for the message number
+	 * Getter for the message number
 	 * @return the current message number
 	 */
 	public int getMessageNum(){
@@ -81,13 +85,17 @@ public class Message {
 	}
 	
 	/**
-	 * returns the packet list
+	 * Returns the packet list
 	 * @return sixpack the packet list
 	 */
 	public PacketList getPacketList() {
 		return sixPack;
 	}
 	
+	/**
+	 * Sets a message's packet list to the new one.
+	 * @param newPacketList new packetlist
+	 */
 	public void setPacketList(PacketList newPacketList){
 		this.sixPack = newPacketList;
 	}

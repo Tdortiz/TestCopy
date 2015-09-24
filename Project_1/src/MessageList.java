@@ -7,9 +7,14 @@
 
 public class MessageList {
 
+	/** The front of the list. */
 	public MessageNode head;
+	/** The current Message. */
 	public MessageNode current;
 	
+	/**
+	 * Constructor for MessageList.
+	 */
 	public MessageList(){
 		head = null;
 		current = null;
@@ -52,7 +57,6 @@ public class MessageList {
 		MessageNode previous = head;
 		
 		while (current != null) {
-			//System.out.println("AM I THE PROB?");
 			int currentNum = current.data.getMessageNum();
 			int toAddNum = messageToAdd.getMessageNum();
 			if (toAddNum >= currentNum) {
@@ -73,87 +77,17 @@ public class MessageList {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/**
-	 * This should check if Param A is already in the message list and if it is
-	 * add the new packet to the already existing message in the list.
-	 * 
-	 * If the Param A isn't in the message list add A to the MessageList
-	 * 
-	 * @param a
+	 * Returns the front of the list.
+	 * @return message at front of list.
 	 */
-	/**public void add(Message a) {
-		if (head == null) {
-			head = new MessageNode(a);
-			return;
-		}
-		if (head.next == null && head.data.getMessageNum() < a.getMessageNum()) {
-			MessageNode nextNode = new MessageNode(a, null);
-			head.next = nextNode;
-			return;
-		} else {
-			MessageNode nextNode = head;
-			head = new MessageNode(a, nextNode);
-		}
-		
-		recursiveAdd(head, a, null);
-	} */
-	/**
-	 * Slightly broken.
-	 * @param currNode
-	 * @param messageToAdd
-	 * @param prev
-	 */
-	/**private void recursiveAdd(MessageNode currNode, Message messageToAdd, MessageNode prev) {
-		if(currNode.data.getMessageNum() > messageToAdd.getMessageNum()) { */
-			/*if(currNode.next == null){
-				currNode.next = new MessageNode(messageToAdd, null);
-			}*/
-			/**recursiveAdd(currNode.next, messageToAdd, currNode);
-			return;
-		}
-		if(currNode.data.getMessageNum() == messageToAdd.getMessageNum()) {
-			prev.next= new MessageNode(messageToAdd, currNode.next);
-			return;
-		}
-		MessageNode nodeToAdd = new MessageNode(messageToAdd, currNode.next);
-		currNode.next = nodeToAdd;
-	} */
-
 	public MessageNode getHead() {
 		return head;
 	}
 
 	/**
-	 * Sends message to a string
+	 * Converts the MessageList to a to string.
 	 */
-	/**public String toString() {
-		//String s = "";
-		if(head == null){
-			return null;
-		}
-		return toStringRec(head.data.toString(), head);
-	}
-	
-	private String toStringRec(String s, MessageNode here ) {
-		if(here == null || here.next == null) {
-			return s;
-		}
-		s += here.data.toString() + "\n\n";
-		return toStringRec(s, here.next);
-	} */
-	
 	public String toString(){
 		String s = "";
 		MessageNode current = head;
@@ -179,11 +113,21 @@ public class MessageList {
 		
 	}
 	
-	
+	/**
+	 * Checks if Message is already in the list.
+	 * @param messToFind message to search for.
+	 * @return null if not found, message if found.
+	 */
 	public Message contains (int messToFind) {
 		return recContains(messToFind, head);
 	}
 	
+	/**
+	 * Checks if Message is already in the list.
+	 * @param messToFind message to search for.
+	 * @param curr current MessageNode
+	 * @return null if not found, message if found.
+	 */
 	private Message recContains(int messToFind, MessageNode curr) {
 		if(curr == null) {
 			return null;
@@ -207,14 +151,24 @@ public class MessageList {
 	 *
 	 */
 	public class MessageNode {
-
+		/** A message. */
 		public Message data;
+		/** The next MessageNode */
 		public MessageNode next;
 
+		/**
+		 * Constructor for MessageNode.
+		 * @param data message for node.
+		 */
 		public MessageNode(Message data) {
 			this(data, null);
 		}
 
+		/**
+		 * Constructor for MessageNode.
+		 * @param data Message for node
+		 * @param next the next MessageNode
+		 */
 		public MessageNode(Message data, MessageNode next) {
 			this.data = data;
 			this.next = next;
