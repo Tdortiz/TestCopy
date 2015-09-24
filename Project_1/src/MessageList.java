@@ -188,13 +188,16 @@ public class MessageList {
 		if(curr == null) {
 			return null;
 		}
-		if(curr.next == null && messToFind != curr.data.getMessageNum()) {
-			return null;
-		}
-		if(messToFind < curr.data.getMessageNum()) {
+		if(messToFind > curr.data.getMessageNum()) {
 			return recContains(messToFind, curr.next);
 		}
-		return curr.data;
+		/*if(curr.next == null && messToFind != curr.data.getMessageNum()) {
+			return null;
+		}*/
+		if(curr.data.getMessageNum() == messToFind){
+			return curr.data;
+		}
+		return null;
 	}
 
 	/**
