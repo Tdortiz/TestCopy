@@ -28,7 +28,6 @@ public class Receiver {
 			in = new Scanner(input);
 		} catch(FileNotFoundException FNFE){
 			FNFE.getMessage();
-			System.out.println("You done goofed!");
 		}
 		
 		Scanner readLine = null; // Read individual tokens in a line.
