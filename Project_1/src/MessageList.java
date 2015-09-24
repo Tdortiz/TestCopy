@@ -52,7 +52,7 @@ public class MessageList {
 		MessageNode previous = head;
 		
 		while (current != null) {
-			System.out.println("AM I THE PROB?");
+			//System.out.println("AM I THE PROB?");
 			int currentNum = current.data.getMessageNum();
 			int toAddNum = messageToAdd.getMessageNum();
 			if (toAddNum >= currentNum) {
