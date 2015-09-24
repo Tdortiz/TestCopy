@@ -72,7 +72,7 @@ public class Receiver {
 			System.out.println("You done goofed");
 		}
 		
-		out.println(messageList.toString());
+		out.print(messageList.toString());
 
 		out.close();
 	}
