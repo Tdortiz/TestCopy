@@ -1,7 +1,8 @@
 /**
  * Class to represent the packet objects
- * contains a constructor as well as a toString method and an
- * error message
+ * contains the number of the packet as well as
+ * the String for the pacekt
+ * 
  * @author Thomas Ortiz
  * @author Michael Mackrell
  * @author Jacob Stone

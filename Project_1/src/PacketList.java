@@ -1,5 +1,6 @@
 
 /**
+ * A linked list of package objects
  * @author Thomas Ortiz
  * @author Michael Mackrell
  * @author Jacob Stone

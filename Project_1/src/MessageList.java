@@ -1,10 +1,10 @@
 /**
+ * A linked list of Message Objects
  * @author Thomas Ortiz
  * @author Michael Mackrell
  * @author Jacob Stone
  * @author Curtis Moore
  */
-
 public class MessageList {
 
 	/** The front of the list. */

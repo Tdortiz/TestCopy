@@ -1,6 +1,7 @@
 /**
  * Message class of the project.
- * Has a getter to make the message number public access
+ * Contains the number of the message and
+ * the packets for the message.
  * @author Thomas Ortiz
  * @author Michael Mackrell
  * @author Jacob Stone
