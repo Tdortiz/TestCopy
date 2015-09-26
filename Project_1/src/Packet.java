@@ -10,11 +10,11 @@
  */
 public class Packet {
 	/**
-	 * packet number
+	 * Packet number
 	 */
 	public int packNum;
 	/**
-	 * message
+	 * Message
 	 */
 	public String message;
 	
