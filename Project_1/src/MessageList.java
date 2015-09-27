@@ -8,16 +8,13 @@
 public class MessageList {
 
 	/** The front of the list. */
-	public MessageNode head;
-	/** The current Message. */
-	public MessageNode current;
+	private MessageNode head;
 	
 	/**
 	 * Constructor for MessageList.
 	 */
 	public MessageList(){
 		head = null;
-		current = null;
 	}
 	
 	/**
@@ -133,9 +130,6 @@ public class MessageList {
 		if(messToFind > curr.data.getMessageNum()) {
 			return recContains(messToFind, curr.next);
 		}
-		/*if(curr.next == null && messToFind != curr.data.getMessageNum()) {
-			return null;
-		}*/
 		if(curr.data.getMessageNum() == messToFind){
 			return curr.data;
 		}

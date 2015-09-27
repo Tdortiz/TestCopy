@@ -101,7 +101,7 @@ public class MessageListTest {
         packetList.add(b);
         
         list.add(mes1);
-        list.head.data.setPacketList(packetList);
+        list.getHead().data.setPacketList(packetList);
         
         assertEquals(s, list.toString());
     }
