@@ -1,6 +1,6 @@
 /**
  * This is just a code fragment to illustrate a way to print a binary search
- * tree.
+ * tree. 
  */
 
   /**

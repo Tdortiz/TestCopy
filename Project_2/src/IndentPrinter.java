@@ -1,5 +1,5 @@
 /**
- * Allows printing with indentation. Especially handy for tracing recursive
+ * Allows printing with indentation. Especially handy for tracing recursive 
  * programs or printing recursively defined structures.
  * @author Matt Stallmann, 2008/08/01
  * @version $Id: IndentPrinter.java 7 2009-08-03 17:49:07Z mfms $
