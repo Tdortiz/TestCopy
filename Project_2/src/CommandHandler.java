@@ -9,12 +9,11 @@ public class CommandHandler {
 
 	private Tree tree;
 	
-	public CommandHandler(){
-		
+	public CommandHandler(Tree tree){
+		this.tree = tree;
 	}
 	
 	public void insert(){
-		
 	}
 	
 	public void remove(){
