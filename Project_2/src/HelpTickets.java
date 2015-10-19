@@ -1,8 +1,11 @@
 /**
  * main program will be in HelpTickets.java, but you are strongly encouraged to
  * encapsulate and separately test whatever you can in other classes.
+ * 
  * @author Thomas Ortiz
- *
+ * @author Michael Mackrell
+ * @author Jacob Stone
+ * @author Curtis Moore
  */
 public class HelpTickets {
 	

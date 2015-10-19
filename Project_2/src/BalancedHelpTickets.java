@@ -5,6 +5,9 @@
  * in the form of additional source files to implement the balanced tree.
  * 
  * @author Thomas Ortiz
+ * @author Michael Mackrell
+ * @author Jacob Stone
+ * @author Curtis Moore
  */
 public class BalancedHelpTickets {
 
