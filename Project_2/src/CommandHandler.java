@@ -7,4 +7,25 @@
  */
 public class CommandHandler {
 
+	private Tree tree;
+	
+	public CommandHandler(){
+		
+	}
+	
+	public void insert(){
+		
+	}
+	
+	public void remove(){
+		
+	}
+	
+	public void removeHighest(){
+		
+	}
+	
+	public void query(){
+		
+	}
 }
