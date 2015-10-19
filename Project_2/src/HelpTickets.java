@@ -30,6 +30,14 @@ public class HelpTickets {
 			line = new Scanner(input.nextLine());
 			
 			// TODO Handle warnings 
+			/**
+			 * String s = "Warning: a ticket with priority p is already in the queue";
+			 * s = "Warning: there is no ticket with id = i + in the queue"; 
+			 * s = "Warning: removal attempted when queue is empty";
+			 * s = "Warning: invalid command command; 
+			 * s = "Warning: id id is not an integer";
+			 * s = "Warning: priority p is not an integer";
+			 */
 			command = line.next();
 			num = line.nextInt();
 
