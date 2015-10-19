@@ -17,16 +17,36 @@ public class Tree {
 	public Tree(){}
 	
 	/**
-	 * Adds a given value to the BST. 
+	 * Inserts a call with a given priority
 	 */
-	public void add(){
+	public void insert(Node a){
+		// Any attempt to insert a ticket with the same priority as one already in the queue should generate a warning.
+		// Add based off of a ticket's priority 
 	}
 	
 	/**
-	 * Removes a given value from the BST.
+	 *  Remove a call (using help ticket id)
 	 */
-	public void remove(){
+	public void remove(String helpTicketID){
+		// A similar warning should be generated if there is an attempt to remove a ticket that is not in the queue
 		
+	}
+	
+	/**
+	 * Identify and remove highest priority call.
+	 */
+	public void removeHighest(){
+		// possibly return the highest priority node?
+		// Finally, there should be a warning if the queue is empty when a * command is issued. These warnings should read
+	}
+	
+	/** 
+	 * Query about position in the queue (using help ticket id) 
+	 * @param helpTicketID
+	 * @return
+	 */
+	public int query(String helpTicketID){
+		return 0;
 	}
 	
 	/** 

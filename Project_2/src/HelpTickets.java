@@ -10,6 +10,10 @@
 public class HelpTickets {
 	
 	public static void main(String[] args){
-		// TODO Auto-generated method stub7
+		// TODO Auto-generated method stub
+		/**  The main program should only parse commands, call methods corresponding to each command
+		 *  — methods of the wrapper class — and catch exceptions, passing these to the Warning class.
+		 */
+
 	}
 }
