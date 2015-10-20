@@ -16,9 +16,7 @@ public class HelpTickets {
 	 *  — methods of the wrapper class — and catch exceptions, passing these to the Warning class.
 	 */
 	public static void main(String[] args){
-		Tree tree = new Tree();
-		CommandHandler handler = new CommandHandler(tree);
-		Warning warning = new Warning();
+		CommandHandler handler = new CommandHandler();
 		
 		Scanner input = new Scanner(System.in);
 		Scanner line = null;

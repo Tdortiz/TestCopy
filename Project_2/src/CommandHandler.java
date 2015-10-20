@@ -9,8 +9,8 @@ public class CommandHandler {
 
 	private Tree tree;
 	
-	public CommandHandler(Tree tree){
-		this.tree = tree;
+	public CommandHandler(){
+		this.tree = new Tree();
 	}
 	
 	public void insert(){
