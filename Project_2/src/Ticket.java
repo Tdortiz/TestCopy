@@ -18,4 +18,12 @@ public class Ticket {
 		
 	}
 	
+	public int getId(){
+		return id;
+	}
+	
+	public int getPriority(){
+		return priority;
+	}
+	
 }
