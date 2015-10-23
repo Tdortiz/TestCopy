@@ -9,19 +9,29 @@ import java.io.PrintStream;
  */
 public class Tree {
 
-	private Node root; // null for an empty tree
+	private Node overallRoot; // null for an empty tree
 	
 	/**
 	 * Base constructor for Tree.
 	 */
-	public Tree(){}
+	public Tree(){
+		overallRoot = null;
+	}
 	
 	/**
 	 * Inserts a call with a given priority
 	 */
-	public void insert(Node a){
+	public void insert(Ticket ticketToAdd){
 		// Any attempt to insert a ticket with the same priority as one already in the queue should generate a warning.
 		// Add based off of a ticket's priority 
+		overallRoot = add(overallRoot, ticketToAdd);
+	}
+	
+	public Node add(Node root, Ticket ticketToAdd) {
+		if (root == null){
+			root = new Node(ticketToAdd);
+		} else if (ticketToAdd);
+		return root;
 	}
 	
 	/**
