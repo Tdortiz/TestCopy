@@ -22,7 +22,7 @@ public class HelpTickets {
 		Scanner line = null;
 		
 		String command = null;
-		int num = 0;
+		int magicNum = 0;
 		
 		while( input.hasNextLine() ){
 			line = new Scanner(input.nextLine());
@@ -37,7 +37,7 @@ public class HelpTickets {
 			 * s = "Warning: priority p is not an integer";
 			 */
 			command = line.next();
-			num = line.nextInt();
+			magicNum = line.nextInt(); 
 
 			if(command.equals("+")){
 				// TODO Call wrapper methods for add
