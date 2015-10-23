@@ -26,10 +26,10 @@ public class Ticket {
 	 * @param id the id of the ticket 
 	 * @param decendants the number of decendants of the ticket
 	 */
-	public Ticket(int priority, int id, int decendants){
+	public Ticket(int priority, int id){
 		this.priority=priority;
 		this.id = id;
-		this.descendants = decendants;
+		
 		
 	}
 	
