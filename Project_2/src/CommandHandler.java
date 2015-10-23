@@ -23,7 +23,7 @@ public class CommandHandler {
 		Ticket t = new Ticket(priority, idCounter);//prioirty id descendants
 		map.put(idCounter, priority); // id is key, priority is value
 		idCounter++;
-		tree.insert(t);
+		tree.insert(t); 
 	}
 	
 	public void remove(int id){
