@@ -7,8 +7,8 @@
  */
 public class Ticket {
 
-	private String helpTicket;
 	private int priority;
-	private int descendants; // count in the pdf
+	private int id;
+	private int descendants; // count 
 	
 }
