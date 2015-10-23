@@ -11,4 +11,11 @@ public class Ticket {
 	private int id;
 	private int descendants; // count 
 	
+	public Ticket(int priority, int id, int decendants){
+		this.priority=priority;
+		this.id = id;
+		this.descendants = decendants;
+		
+	}
+	
 }
