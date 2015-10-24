@@ -30,16 +30,27 @@ public class Tree {
 	public Node add(Node root, Ticket ticketToAdd) {
 		if (root == null){
 			root = new Node(ticketToAdd);
-		} else if (ticketToAdd);
+		} else if (ticketToAdd.getPriority() < root.data.getPriority()) {
+			root.left = add(root.left, ticketToAdd);
+		} else {
+			root.right = add(root.right, ticketToAdd);
+		}
 		return root;
+	}
+	
+	public void remove(int priortyToRemove){
+		remove(priortyToRemove, overallRoot);
 	}
 	
 	/**
 	 *  Remove a call (using help ticket id)
 	 */
-	public void remove(String helpTicketID){
+	public void remove(int priortyToRemove, Node root){
 		// A similar warning should be generated if there is an attempt to remove a ticket that is not in the queue
-		
+		if (priortyToRemove == root.data.getPriority()){
+			Node temp = root.left;
+			
+		}
 	}
 	
 	/**
