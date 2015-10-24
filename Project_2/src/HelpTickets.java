@@ -41,11 +41,11 @@ public class HelpTickets {
 
 			if(command.equals("+")){
 				// TODO Call wrapper methods for add
-				handler.insert();
+				handler.insert(magicNum);
 				
 			} else if(command.equals("-")){
 				// TODO Call wrapper methods for remove
-				handler.remove();
+				handler.remove(magicNum);
 				
 			} else if(command.equals("*")){
 				// TODO Call wrapper methods for remove highest priority
@@ -53,7 +53,7 @@ public class HelpTickets {
 				
 			} else if(command.equals("?")){
 				// TODO Call wrapper methods for current position in queue of the ticket with given id
-				handler.query();
+				handler.query(magicNum);
 			}
 		}
 		

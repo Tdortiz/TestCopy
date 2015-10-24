@@ -27,14 +27,19 @@ public class CommandHandler {
 	}
 	
 	public void remove(int id){
-		
+		int priority = map.get(id);
+		map.remove(priority);
+		tree.remove(priority);
 	}
 	
 	public void removeHighest(){
-		
+		int highest = map.lastKey();
+		tree.remove(highest);;
+		map.remove(highest);
 	}
 	
-	public void query(int id){
-		
+	public int query(int id){
+		int priority = map.get(id);
+		return tree.query(priority);
 	}
 }
