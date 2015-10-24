@@ -20,16 +20,21 @@ public class CommandHandler {
 	}
 	
 	public void insert(int priority){
+		System.out.println("+ " + priority);
 		Ticket t = new Ticket(priority, idCounter);//prioirty id descendants
 		map.put(idCounter, priority); // id is key, priority is value
-		idCounter++;
 		tree.insert(t); 
+		System.out.println("    id = " + idCounter);
+		
+		idCounter++;
 	}
 	
 	public void remove(int id){
+		System.out.println("- " + id);
 		int priority = map.get(id);
 		map.remove(priority);
 		tree.remove(priority);
+		System.out.println(priority + ", pos = "; // + position in queue based off of descendants
 	}
 	
 	public void removeHighest(){
@@ -38,8 +43,8 @@ public class CommandHandler {
 		map.remove(highest);
 	}
 	
-	public int query(int id){
+	public void query(int id){
 		int priority = map.get(id);
-		return tree.query(priority);
+		tree.query(priority);
 	}
 }
