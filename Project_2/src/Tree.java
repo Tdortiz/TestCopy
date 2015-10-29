@@ -63,10 +63,10 @@ public class Tree {
 	
 	/** 
 	 * Query about position in the queue (using help ticket id) 
-	 * @param helpTicketID
+	 * @param priority
 	 * @return
 	 */
-	public int query(String helpTicketID){
+	public int query(int priority){
 		return 0;
 	}
 	
