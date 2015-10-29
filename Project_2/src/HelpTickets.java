@@ -26,7 +26,7 @@ public class HelpTickets {
 		Scanner lineParser = null; // Parses through a line
 		String command = null; // Command from user.
 
-		while (input.hasNextLine()) {
+		while (input.hasNextLine()) { // Runs until there is no more input
 			lineParser = new Scanner(input.nextLine());
 
 			// TODO Handle warnings
@@ -40,17 +40,24 @@ public class HelpTickets {
 			 */
 			command = lineParser.next(); // gets the commands +, -, *, ?
 
-			if (command.equals("+")) {
-				handler.insert(lineParser.nextInt());
+			try {
+				if (command.equals("+")) {
+					handler.insert(lineParser.nextInt());
 
-			} else if (command.equals("-")) {
-				handler.remove(lineParser.nextInt());
+				} else if (command.equals("-")) {
+					handler.remove(lineParser.nextInt());
 
-			} else if (command.equals("*")) {
-				handler.removeHighest();
+				} else if (command.equals("*")) {
+					handler.removeHighest();
 
-			} else if (command.equals("?")) {
-				handler.query(lineParser.nextInt());
+				} else if (command.equals("?")) {
+					handler.query(lineParser.nextInt());
+				} else {
+					lineParser.close();
+					throw new Warning("Invalid command: " + command);
+				}
+			} catch (Warning invalidCommand) {
+				System.out.println(invalidCommand.getMessage());
 			}
 		}
 
