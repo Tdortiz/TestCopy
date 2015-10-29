@@ -16,16 +16,19 @@ public class HelpTickets {
 	 *  — methods of the wrapper class — and catch exceptions, passing these to the Warning class.
 	 */
 	public static void main(String[] args){
-		CommandHandler handler = new CommandHandler();
-		
 		Scanner input = new Scanner(System.in);
-		Scanner line = null;
+		input(input);
 		
-		String command = null;
-		int magicNum = 0;
+
+	}
+	
+	public static void input(Scanner input){
+		CommandHandler handler = new CommandHandler(); // Handles all commands
+		Scanner lineParser = null; // Parses through a line
+		String command = null; // Command from user.
 		
 		while( input.hasNextLine() ){
-			line = new Scanner(input.nextLine());
+			lineParser = new Scanner(input.nextLine());
 			
 			// TODO Handle warnings 
 			/**
@@ -36,29 +39,23 @@ public class HelpTickets {
 			 * s = "Warning: id id is not an integer";
 			 * s = "Warning: priority p is not an integer";
 			 */
-			command = line.next();
-			magicNum = line.nextInt(); 
-
+			command = lineParser.next();  // gets the commands +, -, *, ? 
+			
 			if(command.equals("+")){
-				// TODO Call wrapper methods for add
-				handler.insert(magicNum);
+				handler.insert(lineParser.nextInt());
 				
 			} else if(command.equals("-")){
-				// TODO Call wrapper methods for remove
-				handler.remove(magicNum);
+				handler.remove(lineParser.nextInt());
 				
 			} else if(command.equals("*")){
-				// TODO Call wrapper methods for remove highest priority
 				handler.removeHighest();
 				
 			} else if(command.equals("?")){
-				// TODO Call wrapper methods for current position in queue of the ticket with given id
-				handler.query(magicNum);
+				handler.query(lineParser.nextInt());
 			}
 		}
 		
-		line.close();
+		lineParser.close();
 		input.close();
-
 	}
 }
