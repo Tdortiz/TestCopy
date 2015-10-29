@@ -39,20 +39,58 @@ public class Tree {
 		return root;
 	}
 
-	public void remove(int priortyToRemove) {
-		remove(priortyToRemove, overallRoot);
+	public Ticket remove(int priortyToRemove) {
+		Node old = remove(priortyToRemove, overallRoot);
+		return old.data;
 	}
 
 	/**
 	 * Remove a call (using help ticket id)
 	 */
-	public void remove(int priortyToRemove, Node root) {
+	public Node remove(int priortyToRemove, Node root) {
 		// A similar warning should be generated if there is an attempt to
 		// remove a ticket that is not in the queue
 		if (priortyToRemove == root.data.getPriority()) {
-			Node temp = root.left;
-
+			return removeByCase(root);
+		} else if ( priortyToRemove < root.data.getPriority() ) {
+			return remove (priortyToRemove, root.left);
+		} else {
+			return remove (priortyToRemove, root.right);
 		}
+	}
+	
+	private Node removeByCase(Node root) {
+		Node old = new Node(root.data);
+		if ( isInternal( root.left ) && isInternal( root.right ) ){
+			Node followingNode = nextInOrder(root);
+			set(root, followingNode);
+			removeByCase(followingNode);
+			return old;
+		} else if (root.left == null) {
+			root = root.right;
+			
+		} else if (root.right == null) {
+			root = root.left;
+		} else {
+			root = null;
+		}
+		return old;
+	}
+	
+	private boolean isInternal (Node root) {
+		return (root.left != null || root.right != null);
+	}
+	
+	private void set(Node dest, Node source) {
+		dest.data.setPriority(source.data.getPriority());
+		dest.data.setId(source.data.getId());
+	}
+	
+	private Node nextInOrder(Node root) {
+		if (root.right != null)
+			return nextInOrder(root.right);
+		return root;
+			
 	}
 
 	/**

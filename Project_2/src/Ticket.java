@@ -41,12 +41,20 @@ public class Ticket {
 		return id;
 	}
 	
+	public void setId(int newId ) {
+		id = newId;
+	}
+	
 	/**
 	 * returns the priority of the ticket
 	 * @return priority the priority of the ticket
 	 */
 	public int getPriority(){
 		return priority;
+	}
+	
+	public void setPriority( int newPriority ) {
+		priority = newPriority;
 	}
 	
 }
