@@ -18,41 +18,47 @@ public class Ticket {
 	/**
 	 * count of decendants of the ticket
 	 */
-	private int descendants; // count 
-	
+	private int descendants; // count
+
 	/**
 	 * constructor for the ticket
-	 * @param priority the priority of the ticket
-	 * @param id the id of the ticket 
-	 * @param decendants the number of decendants of the ticket
+	 * 
+	 * @param priority
+	 *            the priority of the ticket
+	 * @param id
+	 *            the id of the ticket
+	 * @param decendants
+	 *            the number of decendants of the ticket
 	 */
-	public Ticket(int priority, int id){
-		this.priority=priority;
+	public Ticket(int priority, int id) {
+		this.priority = priority;
 		this.id = id;
 	}
-	
+
 	/**
 	 * returns the ID of the ticket
+	 * 
 	 * @return id the id of the ticket
 	 */
-	public int getId(){
+	public int getId() {
 		return id;
 	}
-	
-	public void setId(int newId ) {
+
+	public void setId(int newId) {
 		id = newId;
 	}
-	
+
 	/**
 	 * returns the priority of the ticket
+	 * 
 	 * @return priority the priority of the ticket
 	 */
-	public int getPriority(){
+	public int getPriority() {
 		return priority;
 	}
-	
-	public void setPriority( int newPriority ) {
+
+	public void setPriority(int newPriority) {
 		priority = newPriority;
 	}
-	
+
 }
