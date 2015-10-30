@@ -36,6 +36,7 @@ public class CommandHandler {
 
 		int priority = map.get(id);
 		map.remove(priority);
+		
 		tree.remove(priority);
 		System.out.println("    " + priority + ", pos = "); // + position in queue based off of descendants
 		// TODO FIX THIS POSTION THING

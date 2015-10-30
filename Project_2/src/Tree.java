@@ -41,6 +41,8 @@ public class Tree {
 
 	public Ticket remove(int priortyToRemove) {
 		Node old = remove(priortyToRemove, overallRoot);
+		System.out.println("Overall Root: " + this.overallRoot.data.getPriority());
+		System.out.println("Old Root: " + old.data.getPriority());
 		return old.data;
 	}
 
@@ -61,13 +63,14 @@ public class Tree {
 	
 	private Node removeByCase(Node root) {
 		Node old = new Node(root.data);
-		if ( isInternal( root.left ) && isInternal( root.right ) ){
-			Node followingNode = nextInOrder(root);
+		if (  hasTwoChildren(root) ){
+			Node followingNode = removeNextInOrder(root.right);
 			set(root, followingNode);
-			removeByCase(followingNode);
+			remove(followingNode.data.getPriority(), followingNode);
 			return old;
 		} else if (root.left == null) {
 			root = root.right;
+			System.out.println(root.data.getPriority());
 			
 		} else if (root.right == null) {
 			root = root.left;
@@ -81,15 +84,24 @@ public class Tree {
 		return (root.left != null || root.right != null);
 	}
 	
+	private boolean hasTwoChildren(Node root){
+		return (root.left != null && root.right != null);
+	}
+	
 	private void set(Node dest, Node source) {
 		dest.data.setPriority(source.data.getPriority());
 		dest.data.setId(source.data.getId());
 	}
 	
-	private Node nextInOrder(Node root) {
-		if (root.right != null)
-			return nextInOrder(root.right);
-		return root;
+	private Node removeNextInOrder(Node root) { // L H R
+		if (root.left != null){
+			return removeNextInOrder(root.left);
+		} else {
+			Node temp = new Node(root.data);
+			removeByCase(root);
+			return temp;
+		}
+		//return root;
 			
 	}
 
@@ -139,6 +151,14 @@ public class Tree {
 	public void setRoot(Node root) {
 		this.overallRoot = root;
 	}
+	
+	public void printInorder(Node root){
+		if( root != null){
+			printInorder(root.left);
+			System.out.print(" " + root.data.getPriority());
+			printInorder(root.right);
+		}
+	}
 
 /** ------------------------------------THIS IS CODE GIVEN TO US ------------------------------------------*/
 	
@@ -146,7 +166,7 @@ public class Tree {
 	 * This is just a code fragment to illustrate a way to print a binary search
 	 * tree. prints the subtree rooted at v using the given indenting printer
 	 */
-	protected void recursiveInOrderPrint(BTPosition v, IndentPrinter printer) {
+	/**protected void recursiveInOrderPrint(BTPosition v, IndentPrinter printer) {
 		checkPosition(v);
 		if (hasRight(v)) {
 			printer.increaseIndent();
@@ -161,7 +181,7 @@ public class Tree {
 			recursiveInOrderPrint(lv, printer);
 			printer.decreaseIndent();
 		}
-	}
+	} */
 
 	/**
 	 * prints the tree using inorder indenting subtree below each node; uses
@@ -173,14 +193,14 @@ public class Tree {
 	 * @param indentString
 	 *            what to print for each indentation level
 	 */
-	public void inOrderPrint(PrintStream ps, String indentString) {
+	/**public void inOrderPrint(PrintStream ps, String indentString) {
 		if (root == null) {
 			ps.println("EMPTY TREE");
 			return;
 		}
 		IndentPrinter printer = new IndentPrinter(ps, indentString);
 		recursiveInOrderPrint(root, printer);
-	}
+	} */
 
 	/**
 	 * Node Class for Tree.
