@@ -60,5 +60,8 @@ public class Ticket {
 	public void setPriority(int newPriority) {
 		priority = newPriority;
 	}
-
+	
+	public int getDescendants(){
+		return this.descendants;
+	}
 }
