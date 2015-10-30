@@ -70,8 +70,6 @@ public class Tree {
 			return old;
 		} else if (root.left == null) {
 			root = root.right;
-			System.out.println(root.data.getPriority());
-			
 		} else if (root.right == null) {
 			root = root.left;
 		} else {
@@ -121,9 +119,20 @@ public class Tree {
 	 * @return
 	 */
 	public int query(int priority) {
-		return 0;
+		int descendants = (search(overallRoot, priority).data.getDescendants());
+		return ( (overallRoot.data.getDescendants()) - descendants);
 	}
 
+	public Node search(Node current, int priority){
+		if(current.data.getPriority() == priority){
+			return current;
+		} else if(current.data.getPriority() > priority){
+			return search(current.left, priority);
+		} else { // if(current.data.getPriority() < priority)
+			return search(current.right, priority);
+		}
+	}
+	
 	/**
 	 * Checks if the tree contains a node.
 	 * 
