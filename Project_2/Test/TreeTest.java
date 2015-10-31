@@ -25,13 +25,14 @@ public class TreeTest {
 		
 		tree.printInorder(tree.getRoot());
 		System.out.println();
-		tree.remove(3);
-		tree.printInorder(tree.getRoot());
+		//tree.remove(3);
+		System.out.println(tree.query(1));
+		//tree.printInorder(tree.getRoot());
 		System.out.println();
 		
 		
-		tree.remove(1);
-		tree.printInorder(tree.getRoot());
+		//tree.remove(1);
+		//tree.printInorder(tree.getRoot());
 		System.out.println();
 	}
 	

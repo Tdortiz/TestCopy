@@ -163,6 +163,10 @@ public class Tree {
 		return false; //you dun goofed
 		
 	}
+	
+	boolean isEmpty(){
+		return (overallRoot == null);
+	}
 
 	/**
 	 * Returns the current root of the tree.
