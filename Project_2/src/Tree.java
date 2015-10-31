@@ -91,7 +91,10 @@ public class Tree {
 	} */
 	
 	public void remove(int p) {
+		int temp = overallRoot.data.getPriority();
 		overallRoot = remove(overallRoot, p);
+		if (overallRoot.data.getPriority() != temp);
+			overallRoot.data.changeDescendants(1);
 	}
 	
 	private Node remove (Node root, int p) {
@@ -122,7 +125,6 @@ public class Tree {
 			}
 		}
 		
-		// Need to take into account the case where the overallroot is the one that was removed.
 		if (root != null) {
 			root.data.changeDescendants(-1);
 		}
