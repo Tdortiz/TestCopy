@@ -163,7 +163,10 @@ public class Tree {
 		return false; //you dun goofed
 		
 	}
-	
+	/**
+	 * returns whether or not a tree is empty
+	 * @return true or false depending on the condition of the tree
+	 */
 	boolean isEmpty(){
 		return (overallRoot == null);
 	}
