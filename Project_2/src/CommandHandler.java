@@ -9,9 +9,7 @@ import java.util.*;
  * @author Curtis Moore
  */
 public class CommandHandler {
-    /**
-     * tree map for use
-     */
+    /** tree map for use */
 	private TreeMap<Integer, Integer> map; 
 	/**
 	 * tree object
@@ -36,7 +34,7 @@ public class CommandHandler {
 	 * @param priority the priority of the node to be inserted
 	 */
 	public void insert(int priority) {
-		if(map.containsValue(priority)){
+		if(!map.containsValue(priority)){
 			System.out.println("+ " + priority);
 			Ticket t = new Ticket(priority, idCounter);// prioirty id descendants
 			map.put(idCounter, priority); // id is key, priority is value

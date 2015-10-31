@@ -31,7 +31,6 @@ public class HelpTickets {
 
 			// TODO Handle warnings
 			/**
-			 * String s =
 			 * "Warning: a ticket with priority p is already in the queue"; s =
 			 * "Warning: there is no ticket with id = i + in the queue"; s =
 			 * "Warning: removal attempted when queue is empty"; s = "Warning:
@@ -41,17 +40,33 @@ public class HelpTickets {
 			command = lineParser.next(); // gets the commands +, -, *, ?
 
 			try {
-				if (command.equals("+")) {
-					handler.insert(lineParser.nextInt());
-
-				} else if (command.equals("-")) {
-					handler.remove(lineParser.nextInt());
-
-				} else if (command.equals("*")) {
+				if (command.equals("+")) { // ADD
+					String str = lineParser.next().trim();
+					try {
+						handler.insert( Integer.parseInt(str) );
+					} catch (NumberFormatException NFE) {
+						lineParser.close();
+						throw new Warning("Warning: priority " + str + " is not an integer");
+					}
+				} else if (command.equals("-")) { // REMOVE
+					String str = lineParser.next().trim();
+					try {
+						handler.remove( Integer.parseInt(str) );
+					} catch (NumberFormatException NFE) {
+						lineParser.close();
+						throw new Warning("Warning: id " + str + " is not an integer");
+					}
+				} else if (command.equals("*")) { // REMOVE HIGHEST
 					handler.removeHighest();
 
-				} else if (command.equals("?")) {
-					handler.query(lineParser.nextInt());
+				} else if (command.equals("?")) { // QUERY 
+					String str = lineParser.next().trim();
+					try {
+						handler.query( Integer.parseInt(str) );
+					} catch (NumberFormatException NFE) {
+						lineParser.close();
+						throw new Warning("Warning: id " + str + " is not an integer");
+					}
 				} else {
 					lineParser.close();
 					throw new Warning("Invalid command: " + command);
