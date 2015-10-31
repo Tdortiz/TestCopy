@@ -64,4 +64,8 @@ public class Ticket {
 	public int getDescendants(){
 		return this.descendants;
 	}
+	
+	public void changeDescendants(int change) {
+		this.descendants += change;
+	}
 }
