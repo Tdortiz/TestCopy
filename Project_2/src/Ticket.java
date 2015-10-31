@@ -33,6 +33,7 @@ public class Ticket {
 	public Ticket(int priority, int id) {
 		this.priority = priority;
 		this.id = id;
+		this.descendants = 0;
 	}
 
 	/**

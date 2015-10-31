@@ -36,6 +36,7 @@ public class Tree {
 		} else {
 			root.right = add(root.right, ticketToAdd);
 		}
+		root.data.changeDescendants(1);
 		return root;
 	}
 
@@ -100,7 +101,7 @@ public class Tree {
 			//value could be in the right subtree, lets go in.
 			root.right = remove(root.right, p);
 		} else if (root.data.getPriority() > p) {
-			// value could be in the left subtree, lets go on.
+			// value could be in the left subtree, lets go in.
 			root.left = remove(root.left, p);
 		} else {
 			// root.data.getPriority() == p, this is the node to remove.
@@ -108,7 +109,7 @@ public class Tree {
 				//Case 1: leaf, replace with null
 				root = null;
 			} else if (root.right == null ) {
-				//Case 2: left child only, replace with a left child
+				//Case 2: left child only; replace with a left child
 				root = root.left;
 			} else if (root.left == null) {
 				//Case 3: right child only; replace with right child
@@ -121,6 +122,10 @@ public class Tree {
 			}
 		}
 		
+		// Need to take into account the case where the overallroot is the one that was removed.
+		if (root != null) {
+			root.data.changeDescendants(-1);
+		}
 		return root;
 	}
 	
@@ -216,7 +221,7 @@ public class Tree {
 	public void printInorder(Node root){
 		if( root != null){
 			printInorder(root.left);
-			System.out.print(" " + root.data.getPriority());
+			System.out.print(" " + root.data.getPriority() + "[" + root.data.getDescendants() + "]");
 			printInorder(root.right);
 		}
 	}

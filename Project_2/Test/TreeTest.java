@@ -25,6 +25,11 @@ public class TreeTest {
 		
 		tree.printInorder(tree.getRoot());
 		System.out.println();
+		tree.remove(3);
+		tree.printInorder(tree.getRoot());
+		System.out.println();
+		
+		
 		tree.remove(1);
 		tree.printInorder(tree.getRoot());
 		System.out.println();
