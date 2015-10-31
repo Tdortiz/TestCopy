@@ -41,55 +41,6 @@ public class Tree {
 	}
 
 	
-	
-	
-	
-	/**public boolean remove (int p) {
-		if (overallRoot == null || !contains(p)) //if the tree is null or the priority is not in the tree.
-			return false;
-		if (overallRoot.data.getPriority() == p) {
-			Node temp = new Node(null);
-			temp.left = overallRoot;
-			remove(p, temp);
-			overallRoot = temp.left;
-			return true;
-		} else {
-			remove(p, overallRoot);
-			return true;
-		}
-	}
-	
-	private void remove (int p, Node root) {
-		if (p == root.data.getPriority())
-			removeByCase(root);
-		else if (p < root.data.getPriority())
-			remove(p, root.left);
-		else // p > root.data.getPriority()
-			remove(p, root.right);
-	}
-	
-	
-	
-	private void removeByCase(Node root) {
-		if (hasTwoChildren(root)) {
-			Node followingNode = removeNextInOrder(root.right);
-			set(root, followingNode);
-			remove(followingNode.data.getPriority(), root.right);
-		} else if ( root.right == null) {
-			System.out.println( "I made it to the point where I will remove 2" );
-			root = root.left;
-			if (root == null)
-				System.out.println( "The place where was is now null"  );
-			printInorder(overallRoot);
-			System.out.println();
-			
-		}
-		else if (root.left == null)
-			root = root.right;
-		else
-			root = null;
-	} */
-	
 	public void remove(int p) {
 		int temp = overallRoot.data.getPriority();
 		overallRoot = remove(overallRoot, p);
@@ -132,16 +83,6 @@ public class Tree {
 	}
 	
 	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
 	private boolean isInternal (Node root) {
 		return (root.left != null || root.right != null);
 	}
@@ -165,10 +106,12 @@ public class Tree {
 	/**
 	 * Identify and remove highest priority call.
 	 */
-	public void removeHighest() {
+	public Ticket removeHighest() {
 		// possibly return the highest priority node?
 		// Finally, there should be a warning if the queue is empty when a *
 		// command is issued. These warnings should read
+		
+		
 	}
 
 	/**
@@ -194,11 +137,38 @@ public class Tree {
 	
 	/**
 	 * Checks if the tree contains a node.
-	 * 
+	 * @param p the priority of the node to find
 	 * @return true if tree does contain, false if not.
 	 */
 	public boolean contains( int p) {
-		return true;
+		return recContains(overallRoot, p);
+	}
+	
+	/**
+	 * recursivly finds the requested node in the tree
+	 * @param current node used for going through the tree
+	 * @param p the priority of the node we are looking for
+	 * @return true or false depending on if the node is found
+	 */
+	private boolean recContains(Node current, int p) {
+		if(current.data.getPriority() == p) {
+			return true;
+		}
+		if(current.data.getPriority() > p && current.left == null) {
+			return false;
+		}
+		if(current.data.getPriority() < p && current.right == null) {
+			return false;
+		}
+		
+		if(current.data.getPriority() > p && current.left != null) {
+			return recContains(current.left, p);
+		}
+		if(current.data.getPriority() < p && current.right != null) {
+			return recContains(current.right, p);
+		}	
+		return false; //you dun goofed
+		
 	}
 
 	/**
