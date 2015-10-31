@@ -83,14 +83,6 @@ public class Tree {
 	}
 	
 	
-	private boolean isInternal (Node root) {
-		return (root.left != null || root.right != null);
-	}
-	
-	private boolean hasTwoChildren(Node root){
-		return (root.left != null && root.right != null);
-	}
-	
 	private void set(Node dest, Node source) {
 		dest.data.setPriority(source.data.getPriority());
 		dest.data.setId(source.data.getId());
@@ -106,13 +98,14 @@ public class Tree {
 	/**
 	 * Identify and remove highest priority call.
 	 */
-	public Ticket removeHighest() {
+	//public Ticket removeHighest() {
 		// possibly return the highest priority node?
 		// Finally, there should be a warning if the queue is empty when a *
 		// command is issued. These warnings should read
-		
-		
-	}
+		//return removeHighest(overallRoot);
+	//}
+	
+
 
 	/**
 	 * Query about position in the queue (using help ticket id)
