@@ -39,44 +39,101 @@ public class Tree {
 		return root;
 	}
 
-	public Ticket remove(int priortyToRemove) {
-		Node old = remove(priortyToRemove, overallRoot);
-		System.out.println("Overall Root: " + this.overallRoot.data.getPriority());
-		System.out.println("Old Root: " + old.data.getPriority());
-		return old.data;
-	}
-
-	/**
-	 * Remove a call (using help ticket id)
-	 */
-	public Node remove(int priortyToRemove, Node root) {
-		// A similar warning should be generated if there is an attempt to
-		// remove a ticket that is not in the queue
-		if (priortyToRemove == root.data.getPriority()) {
-			return removeByCase(root);
-		} else if ( priortyToRemove < root.data.getPriority() ) {
-			return remove (priortyToRemove, root.left);
+	
+	
+	
+	
+	/**public boolean remove (int p) {
+		if (overallRoot == null || !contains(p)) //if the tree is null or the priority is not in the tree.
+			return false;
+		if (overallRoot.data.getPriority() == p) {
+			Node temp = new Node(null);
+			temp.left = overallRoot;
+			remove(p, temp);
+			overallRoot = temp.left;
+			return true;
 		} else {
-			return remove (priortyToRemove, root.right);
+			remove(p, overallRoot);
+			return true;
 		}
 	}
 	
-	private Node removeByCase(Node root) {
-		Node old = new Node(root.data);
-		if (  hasTwoChildren(root) ){
+	private void remove (int p, Node root) {
+		if (p == root.data.getPriority())
+			removeByCase(root);
+		else if (p < root.data.getPriority())
+			remove(p, root.left);
+		else // p > root.data.getPriority()
+			remove(p, root.right);
+	}
+	
+	
+	
+	private void removeByCase(Node root) {
+		if (hasTwoChildren(root)) {
 			Node followingNode = removeNextInOrder(root.right);
 			set(root, followingNode);
-			remove(followingNode.data.getPriority(), followingNode);
-			return old;
-		} else if (root.left == null) {
-			root = root.right;
-		} else if (root.right == null) {
+			remove(followingNode.data.getPriority(), root.right);
+		} else if ( root.right == null) {
+			System.out.println( "I made it to the point where I will remove 2" );
 			root = root.left;
-		} else {
-			root = null;
+			if (root == null)
+				System.out.println( "The place where was is now null"  );
+			printInorder(overallRoot);
+			System.out.println();
+			
 		}
-		return old;
+		else if (root.left == null)
+			root = root.right;
+		else
+			root = null;
+	} */
+	
+	public void remove(int p) {
+		overallRoot = remove(overallRoot, p);
 	}
+	
+	private Node remove (Node root, int p) {
+		if (root == null) {
+			//empty tree or value not found, so there is nothing to do.
+		} else if (root.data.getPriority() < p) {
+			//value could be in the right subtree, lets go in.
+			root.right = remove(root.right, p);
+		} else if (root.data.getPriority() > p) {
+			// value could be in the left subtree, lets go on.
+			root.left = remove(root.left, p);
+		} else {
+			// root.data.getPriority() == p, this is the node to remove.
+			if (root.left == null && root.right == null) {
+				//Case 1: leaf, replace with null
+				root = null;
+			} else if (root.right == null ) {
+				//Case 2: left child only, replace with a left child
+				root = root.left;
+			} else if (root.left == null) {
+				//Case 3: right child only; replace with right child
+				root = root.right;
+			} else {
+				//Case 4: both children, replace with next in-order from right subtree
+				Node followingNode = removeNextInOrder(root.right);
+				set(root, followingNode);
+				root.right = remove(root.right, followingNode.data.getPriority());
+			}
+		}
+		
+		return root;
+	}
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
 	
 	private boolean isInternal (Node root) {
 		return (root.left != null || root.right != null);
@@ -92,15 +149,10 @@ public class Tree {
 	}
 	
 	private Node removeNextInOrder(Node root) { // L H R
-		if (root.left != null){
+		if (root.left != null)
 			return removeNextInOrder(root.left);
-		} else {
-			Node temp = new Node(root.data);
-			removeByCase(root);
-			return temp;
-		}
-		//return root;
-			
+		else
+			return root;
 	}
 
 	/**
@@ -138,8 +190,8 @@ public class Tree {
 	 * 
 	 * @return true if tree does contain, false if not.
 	 */
-	public boolean contains() {
-		return false;
+	public boolean contains( int p) {
+		return true;
 	}
 
 	/**

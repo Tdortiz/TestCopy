@@ -27,6 +27,7 @@ public class TreeTest {
 		System.out.println();
 		tree.remove(1);
 		tree.printInorder(tree.getRoot());
+		System.out.println();
 	}
 	
 }
