@@ -105,20 +105,20 @@ public class Tree {
 		//return removeHighest(overallRoot);
 	//}
 	
-
+	
 
 	/**
 	 * Query about position in the queue (using help ticket id)
 	 * 
 	 * @param priority
 	 * @return
-	 */
+	 *
 	public int query(int priority) {
 		int descendants = (search(overallRoot, priority).data.getDescendants());
 		return ( (overallRoot.data.getDescendants()) - descendants);
-	}
+	}*/
 
-	public Node search(Node current, int priority){
+	/**public Node search(Node current, int priority){
 		if(current.data.getPriority() == priority){
 			return current;
 		} else if(current.data.getPriority() > priority){
@@ -126,6 +126,19 @@ public class Tree {
 		} else { // if(current.data.getPriority() < priority)
 			return search(current.right, priority);
 		}
+	}*/
+	
+	public int query( int p ) {
+		return query(overallRoot, p) - overallRoot.data.getDescendants();
+	}
+	
+	private int query( Node root, int p ) {
+		if ( root.data.getPriority() == p)
+			return root.right.data.getDescendants();
+		if ( root.data.getPriority() > p)
+		    return query(root.left, p) + 1 + root.right.data.getDescendants();
+		else // ( root.data.getPriority() < p)
+		    return query(root.right, p);
 	}
 	
 	/**
