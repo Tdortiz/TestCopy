@@ -43,7 +43,7 @@ public class CommandHandler {
 	
 			idCounter++;
 		} else {  
-			// TODO say Warning: a ticket with priority p is already in the queue
+			throw new Warning("Warning: a ticket with priority p is already in the queue");
 		}
 	}
 
@@ -52,7 +52,10 @@ public class CommandHandler {
 	 * @param id the id of the node to be removed
 	 */
 	public void remove(int id) {
-		// make isEmpty
+		if(tree.isEmpty()){
+			throw new Warning("Warning: removal attempted when queue is empty");
+		}
+		
 		if( map.containsKey(id) ){
 			System.out.println("- " + id);
 	
@@ -63,8 +66,7 @@ public class CommandHandler {
 			System.out.println("    " + priority + ", pos = "); // + position in queue based off of descendants
 			// TODO FIX THIS POSTION THING
 		} else {
-			// Warning: there is no ticket with id = i in the queue 
-			// Warning: removal attempted when queue is empty
+			throw new Warning("Warning: there is no ticket with id = i in the queue");
 		}
 	}
 
@@ -74,7 +76,10 @@ public class CommandHandler {
 	 * until it finds the bottom right node (the highest one)
 	 */
 	public void removeHighest() {
-		// if !isempty() {
+		if(tree.isEmpty()){
+			throw new Warning("Warning: removal attempted when queue is empty");
+		}
+		
 		System.out.println("*");
 
 		int highest = map.lastKey();
@@ -82,7 +87,6 @@ public class CommandHandler {
 		map.remove(highest);
 		// } else { 
 		// Warning: there is no ticket with id = i in the queue 
-		// Warning: removal attempted when queue is empty
 	}
 
 	/**
@@ -96,7 +100,7 @@ public class CommandHandler {
 			int priority = map.get(id);
 			tree.query(priority);
 		} else {
-			// Warning: there is no ticket with id = i in the queue
+			throw new Warning("Warning: there is no ticket with id = i in the queue");
 		}
 	}
 }
