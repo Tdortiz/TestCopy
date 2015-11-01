@@ -92,6 +92,10 @@ public class CommandHandler {
 	 * @param id the id of the node
 	 */
 	public void query(int id) {
+		if(tree.isEmpty()){
+			throw new Warning("Warning: removal attempted when queue is empty");
+		}
+		
 		if( map.containsKey(id) ){ 
 			System.out.println("? " + id);
 	
