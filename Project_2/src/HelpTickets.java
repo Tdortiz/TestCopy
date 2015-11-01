@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
 /**
- * main program will be in HelpTickets.java, but you are strongly encouraged to
- * encapsulate and separately test whatever you can in other classes.
+ * The main program, reads in input from standard input, or in our case, a file, and 
+ * parses through each command passing them to the CommandHandler class. HelpTickets 
+ * also handles all exceptions.
  * 
  * @author Thomas Ortiz
  * @author Michael Mackrell
@@ -20,6 +21,7 @@ public class HelpTickets {
 		Scanner input = new Scanner(System.in);
 		input(input);
 	}
+	
     /**
      * Handles all input from the user/file.
      * @param input the input scanner passed from main

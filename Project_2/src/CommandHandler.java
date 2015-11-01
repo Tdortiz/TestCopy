@@ -21,7 +21,7 @@ public class CommandHandler {
 	private int idCounter; 
 
 	/**
-	 * constructor for the command handler class
+	 * Constructor for the command handler class
 	 */
 	public CommandHandler() {
 		this.tree = new Tree();
@@ -30,7 +30,7 @@ public class CommandHandler {
 	}
 
 	/**
-	 * method to insert into a list
+	 * Wrapper Method to insert into a list.
 	 * @param priority the priority of the node to be inserted
 	 */
 	public void insert(int priority) {
@@ -48,7 +48,7 @@ public class CommandHandler {
 	}
 
 	/**
-	 * method to remove any node given the id of that node
+	 * Wrapper method to remove any node given the id of that node
 	 * @param id the id of the node to be removed
 	 */
 	public void remove(int id) {
@@ -69,9 +69,7 @@ public class CommandHandler {
 	}
 
 	/**
-	 * method to remove the node with the highest key
-	 * Iterates down the right hand side of the tree
-	 * until it finds the bottom right node (the highest one)
+	 * Wrapper method to remove the node with the highest key.
 	 */
 	public void removeHighest() {
 		System.out.println("*");
@@ -93,7 +91,8 @@ public class CommandHandler {
 	}
 
 	/**
-	 * given an id, give the position of the node in the tree
+	 * Wrapper method to query about a given an id. This method
+	 * gives the position of the node in the tree
 	 * @param id the id of the node
 	 */
 	public void query(int id) {
