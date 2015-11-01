@@ -114,8 +114,6 @@ public class Tree {
 		
 		return root.data;
 	}
-	
-	
 
 	/**
 	 * Query about position in the queue (using help ticket id)
@@ -154,7 +152,7 @@ public class Tree {
 	}
 	
 	/**
-	 * recursivly finds the requested node in the tree
+	 * Recursivly finds the requested node in the tree
 	 * @param current node used for going through the tree
 	 * @param p the priority of the node we are looking for
 	 * @return true or false depending on if the node is found
@@ -179,8 +177,9 @@ public class Tree {
 		return false; //you dun goofed
 		
 	}
+	
 	/**
-	 * returns whether or not a tree is empty
+	 * Returns whether or not a tree is empty
 	 * @return true or false depending on the condition of the tree
 	 */
 	boolean isEmpty(){
@@ -217,7 +216,6 @@ public class Tree {
 			printInorder(root.right);
 		}
 	}
-
 
 	/**
 	 * Node Class for Tree.
