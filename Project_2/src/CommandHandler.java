@@ -34,8 +34,8 @@ public class CommandHandler {
 	 * @param priority the priority of the node to be inserted
 	 */
 	public void insert(int priority) {
+		System.out.println("+ " + priority);
 		if(!map.containsValue(priority)){
-			System.out.println("+ " + priority);
 			Ticket t = new Ticket(priority, idCounter);// prioirty id descendants
 			map.put(idCounter, priority); // id is key, priority is value
 			tree.insert(t);
@@ -52,21 +52,19 @@ public class CommandHandler {
 	 * @param id the id of the node to be removed
 	 */
 	public void remove(int id) {
+		System.out.println("- " + id);
 		if(tree.isEmpty()){
-			throw new Warning("Warning: removal attempted when queue is empty");
+			throw new Warning("    Warning: removal attempted when queue is empty");
 		}
 		
 		if( map.containsKey(id) ){
-			System.out.println("- " + id);
-	
 			int priority = map.get(id);
 			map.remove(priority);
 			
-			System.out.println("    " + priority + ", pos = " + tree.query(priority)); // + position in queue based off of descendants
+			System.out.println("    " + priority + ", pos = " + tree.query(priority)); 
 			tree.remove(priority);
-			// TODO FIX THIS POSTION THING
 		} else {
-			throw new Warning("Warning: there is no ticket with id = i in the queue");
+			throw new Warning("Warning: there is no ticket with id = " + id + "in the queue");
 		}
 	}
 
@@ -76,11 +74,12 @@ public class CommandHandler {
 	 * until it finds the bottom right node (the highest one)
 	 */
 	public void removeHighest() {
+		System.out.println("*");
 		if(tree.isEmpty()){
 			throw new Warning("Warning: removal attempted when queue is empty");
 		}
 		
-		System.out.println("*");
+		
 		//int highest = map.lastKey();
 		//System.out.println("    id = " + highest + ", " + map.get(highest) );
 		//tree.remove(highest);
@@ -98,12 +97,13 @@ public class CommandHandler {
 	 * @param id the id of the node
 	 */
 	public void query(int id) {
+		System.out.println("? " + id);
 		if(tree.isEmpty()){
 			throw new Warning("Warning: removal attempted when queue is empty");
 		}
 		
 		if( map.containsKey(id) ){ 
-			System.out.println("? " + id);
+			
 	
 			int priority = map.get(id);
 			//tree.printInorder();
