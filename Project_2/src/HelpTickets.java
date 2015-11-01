@@ -20,7 +20,10 @@ public class HelpTickets {
 		Scanner input = new Scanner(System.in);
 		input(input);
 	}
-
+    /**
+     * method to scan in input from the user
+     * @param input the input scanner passed from main
+     */
 	public static void input(Scanner input) {
 		CommandHandler handler = new CommandHandler(); // Handles all commands
 		Scanner lineParser = null; // Parses through a line
