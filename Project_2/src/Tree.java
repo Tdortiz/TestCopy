@@ -44,8 +44,10 @@ public class Tree {
 	public void remove(int p) {
 		int temp = overallRoot.data.getPriority();
 		overallRoot = remove(overallRoot, p);
-		if (overallRoot.data.getPriority() != temp);
-			overallRoot.data.changeDescendants(1);
+		if (overallRoot != null) {
+			if (overallRoot.data.getPriority() != temp);
+				overallRoot.data.changeDescendants(1);
+		}
 	}
 	
 	private Node remove (Node root, int p) {
@@ -102,12 +104,16 @@ public class Tree {
 	/**
 	 * Identify and remove highest priority call.
 	 */
-	//public Ticket removeHighest() {
-		// possibly return the highest priority node?
-		// Finally, there should be a warning if the queue is empty when a *
-		// command is issued. These warnings should read
-		//return removeHighest(overallRoot);
-	//}
+	public Ticket getHighest() {
+		return getHighest(overallRoot);
+	}
+	
+	private Ticket getHighest(Node root) {
+		if (root.right != null)
+			return getHighest(root.right);
+		
+		return root.data;
+	}
 	
 	
 
@@ -116,22 +122,7 @@ public class Tree {
 	 * 
 	 * @param priority
 	 * @return
-	 *
-	public int query(int priority) {
-		int descendants = (search(overallRoot, priority).data.getDescendants());
-		return ( (overallRoot.data.getDescendants()) - descendants);
-	}*/
-
-	/**public Node search(Node current, int priority){
-		if(current.data.getPriority() == priority){
-			return current;
-		} else if(current.data.getPriority() > priority){
-			return search(current.left, priority);
-		} else { // if(current.data.getPriority() < priority)
-			return search(current.right, priority);
-		}
-	}*/
-	
+	 * */
 	public int query( int p ) {
 		return  query(overallRoot, p);
 	}

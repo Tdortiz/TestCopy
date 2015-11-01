@@ -81,10 +81,16 @@ public class CommandHandler {
 		}
 		
 		System.out.println("*");
-		int highest = map.lastKey();
-		System.out.println("    id = " + highest + ", " + map.get(highest) );
-		tree.remove(highest);
-		map.remove(highest);
+		//int highest = map.lastKey();
+		//System.out.println("    id = " + highest + ", " + map.get(highest) );
+		//tree.remove(highest);
+		//map.remove(highest);
+		
+		Ticket highest = tree.getHighest();
+		System.out.println("    id = " + highest.getId() + ", " + highest.getPriority() );
+		map.remove(highest.getId());
+		tree.remove(highest.getPriority());
+		
 	}
 
 	/**
@@ -100,7 +106,7 @@ public class CommandHandler {
 			System.out.println("? " + id);
 	
 			int priority = map.get(id);
-			tree.printInorder();
+			//tree.printInorder();
 			
 			System.out.println("    pos = " + tree.query(priority));
 		} else {
