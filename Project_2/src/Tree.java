@@ -129,7 +129,7 @@ public class Tree {
 	}*/
 	
 	public int query( int p ) {
-		return  overallRoot.data.getDescendants() - query(overallRoot, p);
+		return  query(overallRoot, p);
 	}
 	
 	private int query( Node root, int p ) {
