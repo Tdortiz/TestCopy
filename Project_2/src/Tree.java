@@ -36,7 +36,7 @@ public class Tree {
 		} else {
 			root.right = add(root.right, ticketToAdd);
 		}
-		root.data.changeDescendants(1);
+		(root.descendants)++;
 		return root;
 	}
 
@@ -46,7 +46,7 @@ public class Tree {
 		overallRoot = remove(overallRoot, p);
 		if (overallRoot != null) {
 			if (overallRoot.data.getPriority() != temp);
-				overallRoot.data.changeDescendants(1);
+				(overallRoot.descendants)++; //overallRoot.data.changeDescendants(1);
 		}
 	}
 	
@@ -83,7 +83,7 @@ public class Tree {
 		}
 		
 		if (root != null) {
-			root.data.changeDescendants(-1);
+			(root.descendants)--; //data.changeDescendants(-1);
 		}
 		return root;
 	}
@@ -138,7 +138,7 @@ public class Tree {
 	
 	private int getNodeDescendants(Node root) {
 		if (root != null)
-			return root.data.getDescendants();
+			return root.descendants;
 		return 0;
 	}
 	
@@ -212,7 +212,7 @@ public class Tree {
 	public void printInorder(Node root){
 		if( root != null){
 			printInorder(root.left);
-			System.out.print(" " + root.data.getPriority() + "[" + root.data.getDescendants() + "]");
+			System.out.print(" " + root.data.getPriority() + "[" + root.descendants + "]");
 			printInorder(root.right);
 		}
 	}
@@ -229,6 +229,7 @@ public class Tree {
 		public Ticket data; // data stored at this node
 		public Node left; // reference to left subtree
 		public Node right; // reference to right subtree
+		public int descendants; // amount of descendants
 
 		/**
 		 * Constructs a leaf node with the given data.
@@ -250,6 +251,7 @@ public class Tree {
 			this.data = data;
 			this.left = left;
 			this.right = right;
+			this.descendants = 0;
 		}
 	}
 }
