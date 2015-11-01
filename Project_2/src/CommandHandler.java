@@ -11,20 +11,17 @@ import java.util.*;
 public class CommandHandler {
     /** tree map for use */
 	private TreeMap<Integer, Integer> map; 
-	/**
-	 * tree object
-	 */
+	/** tree object */
 	private Tree tree; 
-	/**
-	 * incrementer for the id
-	 */
+	/** incrementer for the id*/
 	private int idCounter; 
 
 	/**
-	 * Constructor for the command handler class
+	 * Constructor for the command handler class.
+	 * @param tree to use as data structure.
 	 */
-	public CommandHandler() {
-		this.tree = new Tree();
+	public CommandHandler(Tree tree) {
+		this.tree = tree;
 		map = new TreeMap<Integer, Integer>();
 		idCounter = 1;
 	}
