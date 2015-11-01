@@ -136,11 +136,17 @@ public class Tree {
 		if (root == null)
 			return 0;
 		if ( root.data.getPriority() == p)
-			return root.right.data.getDescendants();
-		if ( root.data.getPriority() > p )
-		    return query(root.left, p) + 1 + root.right.data.getDescendants();
+			return getNodeDescendants(root.right);
+		if ( root.data.getPriority() > p)
+		    return query(root.left, p) + 1 + getNodeDescendants(root.right);
 		else // ( root.data.getPriority() < p)
 		    return query(root.right, p);
+	}
+	
+	private int getNodeDescendants(Node root) {
+		if (root != null)
+			return root.data.getDescendants();
+		return 0;
 	}
 	
 	/**
