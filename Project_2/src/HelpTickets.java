@@ -12,16 +12,16 @@ import java.util.Scanner;
 public class HelpTickets {
 
 	/**
-	 * The main program should only parse commands, call methods corresponding
-	 * to each command — methods of the wrapper class — and catch exceptions,
-	 * passing these to the Warning class.
+	 * The main program parses commands from a file, and then calls methods corresponding
+	 * to each command — methods of the wrapper class — and also catches exceptions.
+	 * @param args command line arguments
 	 */
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		input(input);
 	}
     /**
-     * method to scan in input from the user
+     * Handles all input from the user/file.
      * @param input the input scanner passed from main
      */
 	public static void input(Scanner input) {
@@ -31,15 +31,6 @@ public class HelpTickets {
 
 		while (input.hasNextLine()) { // Runs until there is no more input
 			lineParser = new Scanner(input.nextLine());
-
-			// TODO Handle warnings
-			/**
-			 * "Warning: a ticket with priority p is already in the queue"; s =
-			 * "Warning: there is no ticket with id = i + in the queue"; s =
-			 * "Warning: removal attempted when queue is empty"; s = "Warning:
-			 * invalid command command; s = "Warning: id id is not an integer";
-			 * s = "Warning: priority p is not an integer";
-			 */
 			command = lineParser.next(); // gets the commands +, -, *, ?
 
 			try {
