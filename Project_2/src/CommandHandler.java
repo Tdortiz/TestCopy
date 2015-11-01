@@ -40,7 +40,7 @@ public class CommandHandler {
 	
 			idCounter++;
 		} else {  
-			throw new Warning("Warning: a ticket with priority p is already in the queue");
+			throw new Warning("Warning: a ticket with priority " + priority + " is already in the queue");
 		}
 	}
 
@@ -61,7 +61,7 @@ public class CommandHandler {
 			System.out.println("    " + priority + ", pos = " + tree.query(priority)); 
 			tree.remove(priority);
 		} else {
-			throw new Warning("Warning: there is no ticket with id = " + id + "in the queue");
+			throw new Warning("Warning: there is no ticket with id = " + id + " in the queue");
 		}
 	}
 
@@ -74,17 +74,10 @@ public class CommandHandler {
 			throw new Warning("Warning: removal attempted when queue is empty");
 		}
 		
-		
-		//int highest = map.lastKey();
-		//System.out.println("    id = " + highest + ", " + map.get(highest) );
-		//tree.remove(highest);
-		//map.remove(highest);
-		
 		Ticket highest = tree.getHighest();
 		System.out.println("    id = " + highest.getId() + ", " + highest.getPriority() );
 		map.remove(highest.getId());
-		tree.remove(highest.getPriority());
-		
+		tree.remove(highest.getPriority());	
 	}
 
 	/**
@@ -99,11 +92,7 @@ public class CommandHandler {
 		}
 		
 		if( map.containsKey(id) ){ 
-			
-	
 			int priority = map.get(id);
-			//tree.printInorder();
-			
 			System.out.println("    pos = " + tree.query(priority));
 		} else {
 			throw new Warning("Warning: there is no ticket with id = i in the queue");
