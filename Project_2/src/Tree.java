@@ -20,7 +20,8 @@ public class Tree {
 	}
 
 	/**
-	 * Inserts a call with a given priority
+	 * Inserts a call with a given priority.
+	 * @param ticketToAdd to the tree.
 	 */
 	public void insert(Ticket ticketToAdd) {
 		// Add based off of a ticket's priority
@@ -32,6 +33,7 @@ public class Tree {
 	 * @param root the root of the node we are adding
 	 * @param ticketToAdd the ticket object added to the list
 	 * @return the new root of the added node
+	 * @author Building Java Programs Third Edition - Marty Stepp & Stuart Reges
 	 */
 	public Node add(Node root, Ticket ticketToAdd) {
 		if (root == null) {
@@ -45,25 +47,28 @@ public class Tree {
 		return root;
 	}
 
-
 	/**
 	 * Method to remove a node given a priority p
 	 * @param p the priority of the node we are removing
+	 * @author Marty Stepp courses.cs.washington.edu
+	 * @author Building Java Programs Third Edition - Marty Stepp & Stuart Reges
 	 */
 	public void remove(int p) {
 		int temp = overallRoot.data.getPriority();
 		overallRoot = remove(overallRoot, p);
 		if (overallRoot != null) {
 			if (overallRoot.data.getPriority() != temp);
-				(overallRoot.descendants)++; //overallRoot.data.changeDescendants(1);
+				(overallRoot.descendants)++; 
 		}
 	}
 	
 	/**
-	 * Other remove method
+	 * Recursive remove method
 	 * @param root the root of the tree
 	 * @param p the priority of the node to remove
 	 * @return root the root of the tree
+	 * @author Marty Stepp courses.cs.washington.edu
+	 * @author Building Java Programs Third Edition - Marty Stepp & Stuart Reges
 	 */
 	private Node remove (Node root, int p) {
 		if (root == null) {
@@ -98,7 +103,7 @@ public class Tree {
 		}
 		
 		if (root != null) {
-			(root.descendants)--; //data.changeDescendants(-1);
+			(root.descendants)--; 
 		}
 		return root;
 	}
