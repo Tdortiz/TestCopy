@@ -28,6 +28,12 @@ public class Tree {
 		overallRoot = add(overallRoot, ticketToAdd);
 	}
 
+	/**
+	 * add method that puts a node in the tree
+	 * @param root the root of the node we are adding
+	 * @param ticketToAdd the ticket object added to the list
+	 * @return the new root of the added node
+	 */
 	public Node add(Node root, Ticket ticketToAdd) {
 		if (root == null) {
 			root = new Node(ticketToAdd);
@@ -40,7 +46,11 @@ public class Tree {
 		return root;
 	}
 
-	
+
+	/**
+	 * method to remove a node given a priority p
+	 * @param p the priority of the node we are removing
+	 */
 	public void remove(int p) {
 		int temp = overallRoot.data.getPriority();
 		overallRoot = remove(overallRoot, p);
@@ -50,6 +60,12 @@ public class Tree {
 		}
 	}
 	
+	/**
+	 * other remove method
+	 * @param root the root of the tree
+	 * @param p the priority of the node to remove
+	 * @return root the root of the tree
+	 */
 	private Node remove (Node root, int p) {
 		if (root == null) {
 			//empty tree or value not found, so there is nothing to do.
@@ -88,12 +104,21 @@ public class Tree {
 		return root;
 	}
 	
-	
+	/**
+	 * method to copy data from one node to another
+	 * @param dest the node that data is copied to
+	 * @param source the node that data is copied from
+	 */
 	private void set(Node dest, Node source) {
 		dest.data.setPriority(source.data.getPriority());
 		dest.data.setId(source.data.getId());
 	}
 	
+	/**
+	 * removes the next node in the tree order
+	 * @param root the root of the tree
+	 * @return the root of the tree
+	 */
 	private Node removeNextInOrder(Node root) { // L H R
 		if (root.left != null)
 			return removeNextInOrder(root.left);
@@ -108,6 +133,11 @@ public class Tree {
 		return getHighest(overallRoot);
 	}
 	
+	/**
+	 * returns the highest priority node in the tree
+	 * @param root the root of the tree
+	 * @return the data of the highest priority node
+	 */
 	private Ticket getHighest(Node root) {
 		if (root.right != null)
 			return getHighest(root.right);
@@ -125,6 +155,12 @@ public class Tree {
 		return  query(overallRoot, p);
 	}
 	
+	/**
+	 * method to find the priority of a given node
+	 * @param root the root of the tree
+	 * @param p the priority of the node 
+	 * @return the key of the node we find
+	 */
 	private int query( Node root, int p ) {
 		if (root == null)
 			return 0;
@@ -136,6 +172,11 @@ public class Tree {
 		    return query(root.right, p);
 	}
 	
+	/**
+	 * method to get the descendants of a node
+	 * @param root the root of the tree
+	 * @return the descendants or 0 if there are none
+	 */
 	private int getNodeDescendants(Node root) {
 		if (root != null)
 			return root.descendants;
@@ -205,10 +246,16 @@ public class Tree {
 		this.overallRoot = root;
 	}
 	
+	/**
+	 * prints the tree in order
+	 */
 	public void printInorder() {
 		printInorder(overallRoot);
 	}
-	
+	/**
+	 * prints the tree in order given a specific root
+	 * @param root the root of the tree to print
+	 */
 	public void printInorder(Node root){
 		if( root != null){
 			printInorder(root.left);
