@@ -1,6 +1,6 @@
-import java.io.PrintStream;
-
 /**
+ * Tree represents an unbalanced binary 
+ * search tree for help ticket priorities.
  * 
  * @author Thomas Ortiz
  * @author Michael Mackrell
@@ -9,6 +9,7 @@ import java.io.PrintStream;
  */
 public class Tree {
 
+	/** The overall root of the tree */
 	private Node overallRoot; // null for an empty tree
 
 	/**
@@ -22,14 +23,12 @@ public class Tree {
 	 * Inserts a call with a given priority
 	 */
 	public void insert(Ticket ticketToAdd) {
-		// Any attempt to insert a ticket with the same priority as one already
-		// in the queue should generate a warning.
 		// Add based off of a ticket's priority
 		overallRoot = add(overallRoot, ticketToAdd);
 	}
 
 	/**
-	 * add method that puts a node in the tree
+	 * Add method that puts a node in the tree
 	 * @param root the root of the node we are adding
 	 * @param ticketToAdd the ticket object added to the list
 	 * @return the new root of the added node
@@ -48,7 +47,7 @@ public class Tree {
 
 
 	/**
-	 * method to remove a node given a priority p
+	 * Method to remove a node given a priority p
 	 * @param p the priority of the node we are removing
 	 */
 	public void remove(int p) {
@@ -61,7 +60,7 @@ public class Tree {
 	}
 	
 	/**
-	 * other remove method
+	 * Other remove method
 	 * @param root the root of the tree
 	 * @param p the priority of the node to remove
 	 * @return root the root of the tree
@@ -105,7 +104,7 @@ public class Tree {
 	}
 	
 	/**
-	 * method to copy data from one node to another
+	 * Method to copy data from one node to another
 	 * @param dest the node that data is copied to
 	 * @param source the node that data is copied from
 	 */
@@ -115,7 +114,7 @@ public class Tree {
 	}
 	
 	/**
-	 * removes the next node in the tree order
+	 * Removes the next node in the tree order
 	 * @param root the root of the tree
 	 * @return the root of the tree
 	 */
@@ -134,7 +133,7 @@ public class Tree {
 	}
 	
 	/**
-	 * returns the highest priority node in the tree
+	 * Returns the highest priority node in the tree
 	 * @param root the root of the tree
 	 * @return the data of the highest priority node
 	 */
@@ -156,7 +155,7 @@ public class Tree {
 	}
 	
 	/**
-	 * method to find the priority of a given node
+	 * Method to find the priority of a given node
 	 * @param root the root of the tree
 	 * @param p the priority of the node 
 	 * @return the key of the node we find
@@ -173,7 +172,7 @@ public class Tree {
 	}
 	
 	/**
-	 * method to get the descendants of a node
+	 * Method to get the descendants of a node
 	 * @param root the root of the tree
 	 * @return the descendants or 0 if there are none
 	 */
@@ -215,7 +214,7 @@ public class Tree {
 		if(current.data.getPriority() < p && current.right != null) {
 			return recContains(current.right, p);
 		}	
-		return false; //you dun goofed
+		return false;
 		
 	}
 	
@@ -244,24 +243,6 @@ public class Tree {
 	 */
 	public void setRoot(Node root) {
 		this.overallRoot = root;
-	}
-	
-	/**
-	 * prints the tree in order
-	 */
-	public void printInorder() {
-		printInorder(overallRoot);
-	}
-	/**
-	 * prints the tree in order given a specific root
-	 * @param root the root of the tree to print
-	 */
-	public void printInorder(Node root){
-		if( root != null){
-			printInorder(root.left);
-			System.out.print(" " + root.data.getPriority() + "[" + root.descendants + "]");
-			printInorder(root.right);
-		}
 	}
 
 	/**
