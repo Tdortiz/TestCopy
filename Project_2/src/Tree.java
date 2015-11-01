@@ -62,17 +62,21 @@ public class Tree {
 			if (root.left == null && root.right == null) {
 				//Case 1: leaf, replace with null
 				root = null;
+				return root;
 			} else if (root.right == null ) {
 				//Case 2: left child only; replace with a left child
 				root = root.left;
+				return root;
 			} else if (root.left == null) {
 				//Case 3: right child only; replace with right child
 				root = root.right;
+				return root;
 			} else {
 				//Case 4: both children, replace with next in-order from right subtree
 				Node followingNode = removeNextInOrder(root.right);
 				set(root, followingNode);
 				root.right = remove(root.right, followingNode.data.getPriority());
+				return root;
 			}
 		}
 		
@@ -136,7 +140,7 @@ public class Tree {
 		if (root == null)
 			return 0;
 		if ( root.data.getPriority() == p)
-			return getNodeDescendants(root.right);
+			return 1 + getNodeDescendants(root.right);
 		if ( root.data.getPriority() > p)
 		    return query(root.left, p) + 1 + getNodeDescendants(root.right);
 		else // ( root.data.getPriority() < p)
@@ -209,6 +213,10 @@ public class Tree {
 	 */
 	public void setRoot(Node root) {
 		this.overallRoot = root;
+	}
+	
+	public void printInorder() {
+		printInorder(overallRoot);
 	}
 	
 	public void printInorder(Node root){

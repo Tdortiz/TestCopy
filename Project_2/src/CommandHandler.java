@@ -100,6 +100,7 @@ public class CommandHandler {
 			System.out.println("? " + id);
 	
 			int priority = map.get(id);
+			tree.printInorder();
 			
 			System.out.println("    pos = " + tree.query(priority));
 		} else {
