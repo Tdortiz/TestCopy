@@ -39,11 +39,8 @@ public class TreeTest {
 		tree2.insert(ticket8);
 		tree2.insert(ticket9);
 		tree2.insert(ticket10);
-		
-		tree2.printInorder(tree2.getRoot());
 		System.out.println();
 		tree2.remove(100);
-		tree2.printInorder(tree2.getRoot());
 		System.out.println();
 		
 		
