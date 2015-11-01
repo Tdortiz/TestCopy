@@ -27,7 +27,8 @@ public class HelpTickets {
      * @param input the input scanner passed from main
      */
 	public static void input(Scanner input) {
-		CommandHandler handler = new CommandHandler(); // Handles all commands
+		Tree tree = new Tree(); // Simple binary search tree
+		CommandHandler handler = new CommandHandler(tree); // Handles all commands
 		Scanner lineParser = null; // Parses through a line
 		String command = null; // Command from user.
 
