@@ -1,5 +1,5 @@
 /**
- * Tree represents an unbalanced binary 
+ * Tree represents an balanced AVL 
  * search tree for help ticket priorities.
  * 
  * @author Thomas Ortiz
@@ -46,7 +46,6 @@ public class BalancedTree {
 		(root.descendants)++;
 		return root;
 	}
-
 
 	/**
 	 * Method to remove a node given a priority p
