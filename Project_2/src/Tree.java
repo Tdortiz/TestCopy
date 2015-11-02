@@ -7,7 +7,7 @@
  * @author Jacob Stone
  * @author Curtis Moore
  */
-public class Tree {
+public class Tree extends AbstractTree {
 
 	/** The overall root of the tree */
 	private Node overallRoot; // null for an empty tree
@@ -227,7 +227,7 @@ public class Tree {
 	 * Returns whether or not a tree is empty
 	 * @return true or false depending on the condition of the tree
 	 */
-	boolean isEmpty(){
+	public boolean isEmpty(){
 		return (overallRoot == null);
 	}
 
@@ -258,7 +258,7 @@ public class Tree {
 	 * @author Jacob Stone
 	 * @author Curtis Moore
 	 */
-	public class Node {
+	private class Node {
 		public Ticket data; // data stored at this node
 		public Node left; // reference to left subtree
 		public Node right; // reference to right subtree

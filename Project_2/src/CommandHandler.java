@@ -12,7 +12,7 @@ public class CommandHandler {
     /** tree map for use */
 	private TreeMap<Integer, Integer> map; 
 	/** tree object */
-	private Tree tree; 
+	private AbstractTree tree; 
 	/** incrementer for the id*/
 	private int idCounter; 
 
@@ -20,7 +20,7 @@ public class CommandHandler {
 	 * Constructor for the command handler class.
 	 * @param tree to use as data structure.
 	 */
-	public CommandHandler(Tree tree) {
+	public CommandHandler(AbstractTree tree) {
 		this.tree = tree;
 		map = new TreeMap<Integer, Integer>();
 		idCounter = 1;

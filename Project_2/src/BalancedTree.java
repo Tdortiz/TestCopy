@@ -7,8 +7,7 @@
  * @author Jacob Stone
  * @author Curtis Moore
  */
-public class BalancedTree {
-
+public class BalancedTree extends AbstractTree {
 	/** The overall root of the tree */
 	private Node overallRoot; // null for an empty tree
 
@@ -223,7 +222,7 @@ public class BalancedTree {
 	 * Returns whether or not a tree is empty
 	 * @return true or false depending on the condition of the tree
 	 */
-	boolean isEmpty(){
+	public boolean isEmpty(){
 		return (overallRoot == null);
 	}
 
@@ -252,6 +251,7 @@ public class BalancedTree {
 	public void printInorder() {
 		printInorder(overallRoot);
 	}
+	
 	/**
 	 * Prints the tree in order given a specific root
 	 * @param root the root of the tree to print
@@ -272,7 +272,7 @@ public class BalancedTree {
 	 * @author Jacob Stone
 	 * @author Curtis Moore
 	 */
-	public class Node {
+	private class Node {
 		public Ticket data; // data stored at this node
 		public Node left; // reference to left subtree
 		public Node right; // reference to right subtree

@@ -27,8 +27,8 @@ public class BalancedHelpTickets {
      * @param input the input scanner passed from main
      */
 	public static void input(Scanner input) {
-		BalancedTree tree = new BalancedTree(); // Simple binary search tree
-		BalancedCommandHandler handler = new BalancedCommandHandler(tree); // Handles all commands
+		AbstractTree tree = new BalancedTree(); // Simple binary search tree
+		CommandHandler handler = new CommandHandler(tree); // Handles all commands
 		Scanner lineParser = null; // Parses through a line
 		String command = null; // Command from user.
 
