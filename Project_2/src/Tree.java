@@ -9,14 +9,11 @@
  */
 public class Tree extends AbstractTree {
 
-	/** The overall root of the tree */
-	private Node overallRoot; // null for an empty tree
-
 	/**
 	 * Base constructor for Tree.
 	 */
 	public Tree() {
-		overallRoot = null;
+		super();
 	}
 
 	/**
@@ -250,41 +247,5 @@ public class Tree extends AbstractTree {
 		this.overallRoot = root;
 	}
 
-	/**
-	 * Node Class for Tree.
-	 * 
-	 * @author Thomas Ortiz
-	 * @author Michael Mackrell
-	 * @author Jacob Stone
-	 * @author Curtis Moore
-	 */
-	private class Node {
-		public Ticket data; // data stored at this node
-		public Node left; // reference to left subtree
-		public Node right; // reference to right subtree
-		public int descendants; // amount of descendants
-
-		/**
-		 * Constructs a leaf node with the given data.
-		 * 
-		 * @param data ticket
-		 */
-		public Node(Ticket data) {
-			this(data, null, null);
-		}
-
-		/**
-		 * Constructs a branch node with the given data and links.
-		 * 
-		 * @param data ticket
-		 * @param left node
-		 * @param right node
-		 */
-		public Node(Ticket data, Node left, Node right) {
-			this.data = data;
-			this.left = left;
-			this.right = right;
-			this.descendants = 0;
-		}
-	}
+	
 }

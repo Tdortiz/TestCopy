@@ -1,3 +1,4 @@
+
 /**
  * AbstractTree represents an abstract binary 
  * search tree for help ticket priorities.
@@ -9,10 +10,15 @@
  */
 public abstract class AbstractTree {
 	
+	/** The overall root of the tree */
+	protected Node overallRoot; // null for an empty tree
+	
 	/**
 	 * Simple constructor for AbstractTree.
 	 */
-	public AbstractTree() {	}
+	public AbstractTree() {	
+		this.overallRoot = null;
+	}
 	
 	/**
 	 * Inserts a call with a given priority.
@@ -51,4 +57,42 @@ public abstract class AbstractTree {
 	 * Identify and remove highest priority call.
 	 */
 	public abstract Ticket getHighest();
+	
+	/**
+	 * Node Class for Tree.
+	 * 
+	 * @author Thomas Ortiz
+	 * @author Michael Mackrell
+	 * @author Jacob Stone
+	 * @author Curtis Moore
+	 */
+	protected class Node {
+		public Ticket data; // data stored at this node
+		public Node left; // reference to left subtree
+		public Node right; // reference to right subtree
+		public int descendants; // amount of descendants
+
+		/**
+		 * Constructs a leaf node with the given data.
+		 * 
+		 * @param data ticket
+		 */
+		public Node(Ticket data) {
+			this(data, null, null);
+		}
+
+		/**
+		 * Constructs a branch node with the given data and links.
+		 * 
+		 * @param data ticket
+		 * @param left node
+		 * @param right node
+		 */
+		public Node(Ticket data, Node left, Node right) {
+			this.data = data;
+			this.left = left;
+			this.right = right;
+			this.descendants = 0;
+		}
+	}
 }
