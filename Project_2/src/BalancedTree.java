@@ -18,6 +18,11 @@ public class BalancedTree extends AbstractTree {
 		overallRoot = null;
 	}
 
+	 /* Function to get height of node */
+    private int height(Node t ){
+        return t == null ? -1 : t.height;
+    }
+	
 	/**
 	 * Inserts a call with a given priority
 	 */
@@ -25,27 +30,37 @@ public class BalancedTree extends AbstractTree {
 		// Any attempt to insert a ticket with the same priority as one already
 		// in the queue should generate a warning.
 		// Add based off of a ticket's priority
-		overallRoot = add(overallRoot, ticketToAdd);
+		printInorder();
+		System.out.println();
+		overallRoot = addAVL(ticketToAdd, overallRoot);
+		printInorder();
+		System.out.println();
 	}
-
-	/**
-	 * Add method that puts a node in the tree
-	 * @param root the root of the node we are adding
-	 * @param ticketToAdd the ticket object added to the list
-	 * @return the new root of the added node
-	 */
-	public Node add(Node root, Ticket ticketToAdd) {
-		if (root == null) {
-			root = new Node(ticketToAdd);
-		} else if (ticketToAdd.getPriority() < root.data.getPriority()) {
-			root.left = add(root.left, ticketToAdd);
-		} else {
-			root.right = add(root.right, ticketToAdd);
-		}
-		(root.descendants)++;
-		return root;
+	
+	private Node addAVL(Ticket ticketToAdd, Node t){
+		if (t == null)
+            t = new Node(ticketToAdd);
+        else if (ticketToAdd.getPriority() < t.data.getPriority())
+        {
+            t.left = addAVL( ticketToAdd, t.left );
+            if( height( t.left ) - height( t.right ) == 2 )
+                if( ticketToAdd.getPriority() < t.left.data.getPriority() )
+                    t = rotateWithLeftChild( t );
+                else
+                    t = doubleWithLeftChild( t );
+        }else if( ticketToAdd.getPriority() > t.data.getPriority() ){
+            t.right = addAVL( ticketToAdd, t.right );
+            if( height( t.right ) - height( t.left ) == 2 )
+                if( ticketToAdd.getPriority() > t.right.data.getPriority())
+                    t = rotateWithRightChild( t );
+                else
+                    t = doubleWithRightChild( t );
+        }else
+          ;  // Duplicate; do nothing
+        t.height = max( height( t.left ), height( t.right ) ) + 1;
+        return t;
 	}
-
+	  
 	/**
 	 * Method to remove a node given a priority p
 	 * @param p the priority of the node we are removing
@@ -60,10 +75,23 @@ public class BalancedTree extends AbstractTree {
 	}
 	
 	/**
-	 * Other remove method
+	 * This (recursive) helper method deletes the node corresponding to a given key from a given tree.
+	 * @param n		the root of the tree
+	 * @param key	the key of the node to be deleted
+	 * @return		the root of the new tree
+	 */
+	private Node deleteAVL(Node n, int key) {
+		return null;
+	}
+	
+	
+	/**
+	 * Recursive remove method
 	 * @param root the root of the tree
 	 * @param p the priority of the node to remove
 	 * @return root the root of the tree
+	 * @author Marty Stepp courses.cs.washington.edu
+	 * @author Building Java Programs Third Edition - Marty Stepp & Stuart Reges
 	 */
 	private Node remove (Node root, int p) {
 		if (root == null) {
@@ -98,7 +126,7 @@ public class BalancedTree extends AbstractTree {
 		}
 		
 		if (root != null) {
-			(root.descendants)--; //data.changeDescendants(-1);
+			(root.descendants)--; 
 		}
 		return root;
 	}
@@ -245,6 +273,47 @@ public class BalancedTree extends AbstractTree {
 		this.overallRoot = root;
 	}
 	
+	 /* Function to max of left/right node */
+    private int max(int lhs, int rhs){
+        return lhs > rhs ? lhs : rhs;
+    }
+	
+	/* Rotate binary tree node with left child */     
+    private Node rotateWithLeftChild(Node k2){
+        Node k1 = k2.left;
+        k2.left = k1.right;
+        k1.right = k2;
+        k2.height = max( height( k2.left ), height( k2.right ) ) + 1;
+        k1.height = max( height( k1.left ), k2.height ) + 1;
+        return k1;
+    }
+    
+    /* Rotate binary tree node with right child */
+    private Node rotateWithRightChild(Node k1){
+        Node k2 = k1.right;
+        k1.right = k2.left;
+        k2.left = k1;
+        k1.height = max( height( k1.left ), height( k1.right ) ) + 1;
+        k2.height = max( height( k2.right ), k1.height ) + 1;
+        return k2;
+    }
+    
+    /**
+     * Double rotate binary tree node: first left child
+     * with its right child; then node k3 with new left child */
+    private Node doubleWithLeftChild(Node k3){
+        k3.left = rotateWithRightChild( k3.left );
+        return rotateWithLeftChild( k3 );
+    }
+    
+    /**
+     * Double rotate binary tree node: first right child
+     * with its left child; then node k1 with new right child */      
+    private Node doubleWithRightChild(Node k1){
+        k1.right = rotateWithLeftChild( k1.right );
+        return rotateWithRightChild( k1 );
+    }  
+	
 	/**
 	 * Prints the tree in order
 	 */
@@ -277,6 +346,7 @@ public class BalancedTree extends AbstractTree {
 		public Node left; // reference to left subtree
 		public Node right; // reference to right subtree
 		public int descendants; // amount of descendants
+		int height; // the height of the node
 
 		/**
 		 * Constructs a leaf node with the given data.
@@ -284,7 +354,7 @@ public class BalancedTree extends AbstractTree {
 		 * @param data ticket
 		 */
 		public Node(Ticket data) {
-			this(data, null, null);
+			this(data, null, null, 0);
 		}
 
 		/**
@@ -294,11 +364,12 @@ public class BalancedTree extends AbstractTree {
 		 * @param left node
 		 * @param right node
 		 */
-		public Node(Ticket data, Node left, Node right) {
+		public Node(Ticket data, Node left, Node right, int height) {
 			this.data = data;
 			this.left = left;
 			this.right = right;
 			this.descendants = 0;
+			this.height = 0;
 		}
 	}
 }
