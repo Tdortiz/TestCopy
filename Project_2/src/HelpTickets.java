@@ -34,42 +34,44 @@ public class HelpTickets {
 
 		while (input.hasNextLine()) { // Runs until there is no more input
 			lineParser = new Scanner(input.nextLine());
-			command = lineParser.next(); // gets the commands +, -, *, ?
-
-			try {
-				if (command.equals("+")) { // ADD
-					String str = lineParser.next().trim();
-					try {
-						handler.insert( Integer.parseInt(str) );
-					} catch (NumberFormatException NFE) {
+			while(lineParser.hasNext() ){
+				command = lineParser.next(); // gets the commands +, -, *, ?
+	
+				try {
+					if (command.equals("+")) { // ADD
+						String str = lineParser.next().trim();
+						try {
+							handler.insert( Integer.parseInt(str) );
+						} catch (NumberFormatException NFE) {
+							lineParser.close();
+							throw new Warning("Warning: priority " + str + " is not an integer");
+						}
+					} else if (command.equals("-")) { // REMOVE
+						String str = lineParser.next().trim();
+						try {
+							handler.remove( Integer.parseInt(str) );
+						} catch (NumberFormatException NFE) {
+							lineParser.close();
+							throw new Warning("Warning: id " + str + " is not an integer");
+						}
+					} else if (command.equals("*")) { // REMOVE HIGHEST
+						handler.removeHighest();
+	
+					} else if (command.equals("?")) { // QUERY 
+						String str = lineParser.next().trim();
+						try {
+							handler.query( Integer.parseInt(str) );
+						} catch (NumberFormatException NFE) {
+							lineParser.close();
+							throw new Warning("Warning: id " + str + " is not an integer");
+						}
+					} else {
 						lineParser.close();
-						throw new Warning("Warning: priority " + str + " is not an integer");
+						throw new Warning("Invalid command: " + command);
 					}
-				} else if (command.equals("-")) { // REMOVE
-					String str = lineParser.next().trim();
-					try {
-						handler.remove( Integer.parseInt(str) );
-					} catch (NumberFormatException NFE) {
-						lineParser.close();
-						throw new Warning("Warning: id " + str + " is not an integer");
-					}
-				} else if (command.equals("*")) { // REMOVE HIGHEST
-					handler.removeHighest();
-
-				} else if (command.equals("?")) { // QUERY 
-					String str = lineParser.next().trim();
-					try {
-						handler.query( Integer.parseInt(str) );
-					} catch (NumberFormatException NFE) {
-						lineParser.close();
-						throw new Warning("Warning: id " + str + " is not an integer");
-					}
-				} else {
-					lineParser.close();
-					throw new Warning("Invalid command: " + command);
+				} catch (Warning invalidCommand) {
+					System.out.println(invalidCommand.getMessage());
 				}
-			} catch (Warning invalidCommand) {
-				System.out.println(invalidCommand.getMessage());
 			}
 		}
 
