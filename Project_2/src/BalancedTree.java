@@ -84,7 +84,6 @@ public class BalancedTree extends AbstractTree {
 		return null;
 	}
 	
-	
 	/**
 	 * Recursive remove method
 	 * @param root the root of the tree
@@ -314,25 +313,6 @@ public class BalancedTree extends AbstractTree {
         return rotateWithRightChild( k1 );
     }  
 	
-	/**
-	 * Prints the tree in order
-	 */
-	public void printInorder() {
-		printInorder(overallRoot);
-	}
-	
-	/**
-	 * Prints the tree in order given a specific root
-	 * @param root the root of the tree to print
-	 */
-	public void printInorder(Node root){
-		if( root != null){
-			printInorder(root.left);
-			System.out.print(" " + root.data.getPriority() + "[" + root.descendants + "]");
-			printInorder(root.right);
-		}
-	}
-
 	/**
 	 * Node Class for Tree.
 	 * 
