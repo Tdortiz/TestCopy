@@ -22,6 +22,11 @@ public class Tree extends AbstractTree {
 	 */
 	public void insert(Ticket ticketToAdd) {
 		// Add based off of a ticket's priority
+		if(this.overallRoot == null){
+			this.overallRoot = new Node(ticketToAdd);
+			this.overallRoot.descendants = 1;
+			return; 
+		}
 		overallRoot = add(overallRoot, ticketToAdd);
 	}
 
