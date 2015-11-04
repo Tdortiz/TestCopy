@@ -1,4 +1,3 @@
-
 /**
  * AbstractTree represents an abstract binary 
  * search tree for help ticket priorities.
@@ -57,6 +56,25 @@ public abstract class AbstractTree {
 	 * Identify and remove highest priority call.
 	 */
 	public abstract Ticket getHighest();
+	
+	/**
+	 * Prints the tree in order
+	 */
+	public void printInorder() {
+		printInorder(overallRoot);
+	}
+	
+	/**
+	 * Prints the tree in order given a specific root
+	 * @param root the root of the tree to print
+	 */
+	public void printInorder(Node root){
+		if( root != null){
+			printInorder(root.left);
+			System.out.print(" " + root.data.getPriority() + "[" + root.descendants + "]");
+			printInorder(root.right);
+		}
+	}
 	
 	/**
 	 * Node Class for Tree.
