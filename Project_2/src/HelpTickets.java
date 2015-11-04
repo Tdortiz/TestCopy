@@ -74,6 +74,7 @@ public class HelpTickets {
 				}
 			}
 		}
+		tree.printInorder();
 
 		lineParser.close();
 		input.close();
