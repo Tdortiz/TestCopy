@@ -112,5 +112,6 @@ public abstract class AbstractTree {
 			this.right = right;
 			this.descendants = 0;
 		}
+	
 	}
 }
