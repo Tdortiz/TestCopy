@@ -95,7 +95,7 @@ public class CommandHandler {
 			int priority = map.get(id);
 			System.out.println("    pos = " + tree.query(priority));
 		} else {
-			throw new Warning("Warning: there is no ticket with id = i in the queue");
+			throw new Warning("Warning: there is no ticket with id = " + id + " in the queue");
 		}
 	}
 }
