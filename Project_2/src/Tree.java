@@ -8,12 +8,15 @@
  * @author Curtis Moore
  */
 public class Tree extends AbstractTree {
-
+	
+	protected Ticket highestTicket;
+	
 	/**
 	 * Base constructor for Tree.
 	 */
 	public Tree() {
 		super();
+		this.highestTicket = new Ticket(0, 0);
 	}
 
 	/**
@@ -21,7 +24,9 @@ public class Tree extends AbstractTree {
 	 * @param ticketToAdd to the tree.
 	 */
 	public void insert(Ticket ticketToAdd) {
-		// Add based off of a ticket's priority
+		
+		
+		
 		if(this.overallRoot == null){
 			this.overallRoot = new Node(ticketToAdd);
 			this.overallRoot.descendants = 1;
@@ -58,14 +63,6 @@ public class Tree extends AbstractTree {
 	public void remove(int p) {
 		int temp = overallRoot.data.getPriority();
 		overallRoot = remove(overallRoot, p);
-		if (overallRoot != null) {
-			if (overallRoot.data.getPriority() != temp) {
-				System.out.println( "overall root's priority is: " + overallRoot.data.getPriority());
-				System.out.println("temp is: " + temp);
-				(overallRoot.descendants)++; 
-			}
-	
-		}
 	}
 	
 	/**
@@ -110,7 +107,6 @@ public class Tree extends AbstractTree {
 		}
 		
 		if (root != null)
-			System.out.println("My priority is: " + root.data.getPriority());
 			(root.descendants)--; 
 		
 		return root;
@@ -142,8 +138,8 @@ public class Tree extends AbstractTree {
 	/**
 	 * Identify and remove highest priority call.
 	 */
-	public Ticket getHighest() {
-		return getHighest(overallRoot);
+	public void getHighest() {
+		overallRoot = getHighest(overallRoot);
 	}
 	
 	/**
@@ -151,11 +147,28 @@ public class Tree extends AbstractTree {
 	 * @param root the root of the tree
 	 * @return the data of the highest priority node
 	 */
-	private Ticket getHighest(Node root) {
-		if (root.right != null)
-			return getHighest(root.right);
+	private Node getHighest(Node root) {
+		if (root == null) {
+			// do nothing
+		} else if (root.right != null) {
+			//System.out.println(" right now, root is: " + root.data.getPriority());
+			root.right =  getHighest(root.right);
+		} else {
 		
-		return root.data;
+			highestTicket.setPriority(root.data.getPriority());
+			highestTicket.setId(root.data.getId());
+			
+			//System.out.println(" root was: " + root.data.getPriority());
+			root = root.left;
+			//System.out.println(" root is now: " + root.data.getPriority());
+			return root;
+		}
+		
+		if (root != null)
+			(root.descendants)--; 
+		
+		//System.out.println(" root we are returning is: " + root.data.getPriority());
+		return root;
 	}
 
 	/**

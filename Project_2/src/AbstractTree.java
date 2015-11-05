@@ -12,6 +12,7 @@ public abstract class AbstractTree {
 	/** The overall root of the tree */
 	protected Node overallRoot; // null for an empty tree
 	
+	
 	/**
 	 * Simple constructor for AbstractTree.
 	 */
@@ -55,7 +56,7 @@ public abstract class AbstractTree {
 	/**
 	 * Identify and remove highest priority call.
 	 */
-	public abstract Ticket getHighest();
+	public abstract void getHighest();
 	
 	/**
 	 * Prints the tree in order

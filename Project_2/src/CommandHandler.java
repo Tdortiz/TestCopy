@@ -12,7 +12,7 @@ public class CommandHandler {
     /** tree map for use */
 	private TreeMap<Integer, Integer> map; 
 	/** tree object */
-	private AbstractTree tree; 
+	private Tree tree; 
 	/** incrementer for the id*/
 	private int idCounter; 
 
@@ -20,7 +20,7 @@ public class CommandHandler {
 	 * Constructor for the command handler class.
 	 * @param tree to use as data structure.
 	 */
-	public CommandHandler(AbstractTree tree) {
+	public CommandHandler(Tree tree) {
 		this.tree = tree;
 		map = new TreeMap<Integer, Integer>();
 		idCounter = 1;
@@ -74,10 +74,13 @@ public class CommandHandler {
 			throw new Warning("Warning: removal attempted when queue is empty");
 		}
 		
-		Ticket highest = tree.getHighest();
+		tree.getHighest();
+		
+		Ticket highest = tree.highestTicket;
+		map.remove(highest.getPriority());
 		System.out.println("    id = " + highest.getId() + ", " + highest.getPriority() );
-		map.remove(highest.getId());
-		tree.remove(highest.getPriority());	
+		//map.remove(highest.getId());
+		//tree.remove(highest.getPriority());	
 	}
 
 	/**

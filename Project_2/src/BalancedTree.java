@@ -155,8 +155,8 @@ public class BalancedTree extends AbstractTree {
 	/**
 	 * Identify and remove highest priority call.
 	 */
-	public Ticket getHighest() {
-		return getHighest(overallRoot);
+	public void getHighest() {
+		//return getHighest(overallRoot);
 	}
 	
 	/**
