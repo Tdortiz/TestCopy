@@ -99,14 +99,15 @@ public class Tree extends AbstractTree {
 				//Case 4: both children, replace with next in-order from right subtree
 				Node followingNode = removeNextInOrder(root.right);
 				set(root, followingNode);
+				
 				root.right = remove(root.right, followingNode.data.getPriority());
 				return root;
 			}
 		}
 		
-		if (root != null) {
+		if (root != null)
 			(root.descendants)--; 
-		}
+		
 		return root;
 	}
 	
@@ -118,6 +119,7 @@ public class Tree extends AbstractTree {
 	private void set(Node dest, Node source) {
 		dest.data.setPriority(source.data.getPriority());
 		dest.data.setId(source.data.getId());
+		dest.descendants--;
 	}
 	
 	/**
