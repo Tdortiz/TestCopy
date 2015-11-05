@@ -107,8 +107,7 @@ public class HelpTickets {
 	    // check for blank line
 	    if ( ! lineScanner.hasNext() ) throw new Warning("blank line");
 
-	    // command is the first token of the line; look at it and decide what to
-	    // do next
+	    // command is the first token of the line; look at it and decide what to do next
 	    String command = lineScanner.next();
 	    if ( command.equals( "+" ) ) handleAdd(handler, lineScanner);
 	    else if ( command.equals( "-" ) ) handleRemove(handler,lineScanner);
@@ -117,13 +116,12 @@ public class HelpTickets {
 	    else throw new Warning("invalid command " + command);
 	    
 	    if ( lineScanner.hasNext() )
-	      throw new Warning("Extra stuff on command line, starting with "
-	                        + lineScanner.next());
+	      throw new Warning("Extra stuff on command line, starting with " + lineScanner.next());
+	   
 	    return true;
 	}
 	
-	 private static void handleAdd(CommandHandler handler, Scanner lineScanner) throws Warning
-	  {
+	 private static void handleAdd(CommandHandler handler, Scanner lineScanner) throws Warning {
 	    if ( ! lineScanner.hasNext() ) throw new Warning( "missing priority for +" );
 	    
 	    int priority;
@@ -140,8 +138,7 @@ public class HelpTickets {
 	    handler.insert(priority);
 	  }
 
-	  private static void handleRemove(CommandHandler handler, Scanner lineScanner) throws Warning
-	  {
+	  private static void handleRemove(CommandHandler handler, Scanner lineScanner) throws Warning {
 	    if ( ! lineScanner.hasNext() ) throw new Warning( "missing id for -" );
 	    
 	    int id;
@@ -157,8 +154,7 @@ public class HelpTickets {
 	    handler.remove( id );
 	  }
 
-	  private static void handleQuery(CommandHandler handler, Scanner lineScanner) throws Warning
-	  {
+	  private static void handleQuery(CommandHandler handler, Scanner lineScanner) throws Warning {
 	    if ( ! lineScanner.hasNext() ) throw new Warning( "missing id for ?" );
 	    
 	    int id;
@@ -175,8 +171,7 @@ public class HelpTickets {
 	    handler.query(id);
 	  }
 
-	  private static void handleRemoveHighest(CommandHandler handler) throws Warning
-	  {
+	  private static void handleRemoveHighest(CommandHandler handler) throws Warning {
 	    handler.removeHighest();
 	  }
 }
