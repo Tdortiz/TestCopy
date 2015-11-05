@@ -11,15 +11,16 @@
 public class Tree {
 	
 	/** The overall root of the tree */
-	protected Node overallRoot; // null for an empty tree
+	private Node overallRoot; // null for an empty tree
 	
-	protected Ticket highestTicket;
+	/** The highest ticket in the tree */
+	private Ticket highestTicket;
 	
 	/**
 	 * Base constructor for Tree.
 	 */
 	public Tree() {
-		super();
+		overallRoot = null;
 		this.highestTicket = new Ticket(0, 0);
 	}
 
@@ -28,9 +29,6 @@ public class Tree {
 	 * @param ticketToAdd to the tree.
 	 */
 	public void insert(Ticket ticketToAdd) {
-		
-		
-		
 		if(this.overallRoot == null){
 			this.overallRoot = new Node(ticketToAdd);
 			this.overallRoot.descendants = 1;
@@ -154,23 +152,18 @@ public class Tree {
 		if (root == null) {
 			// do nothing
 		} else if (root.right != null) {
-			//System.out.println(" right now, root is: " + root.data.getPriority());
 			root.right =  getHighest(root.right);
 		} else {
-		
 			highestTicket.setPriority(root.data.getPriority());
 			highestTicket.setId(root.data.getId());
-			
-			//System.out.println(" root was: " + root.data.getPriority());
+
 			root = root.left;
-			//System.out.println(" root is now: " + root.data.getPriority());
 			return root;
 		}
 		
 		if (root != null)
 			(root.descendants)--; 
-		
-		//System.out.println(" root we are returning is: " + root.data.getPriority());
+	
 		return root;
 	}
 
@@ -245,7 +238,6 @@ public class Tree {
 			return recContains(current.right, p);
 		}	
 		return false;
-		
 	}
 	
 	/**
@@ -264,6 +256,14 @@ public class Tree {
 	public Node getRoot() {
 		return this.overallRoot;
 	}
+	
+	/**
+	 * Returns the highest ticket in the tree.
+	 * @return highest ticket in the tree.
+	 */
+	public Ticket getHighestTicket(){
+		return this.highestTicket;
+	}
 
 	/**
 	 * Sets method for root field.
@@ -275,7 +275,6 @@ public class Tree {
 		this.overallRoot = root;
 	}
 	
-
 	/**
 	 * Prints the tree in order
 	 */
@@ -287,7 +286,7 @@ public class Tree {
 	 * Prints the tree in order given a specific root
 	 * @param root the root of the tree to print
 	 */
-	public void printInorder(Node root){
+	private void printInorder(Node root){
 		if( root != null){
 			printInorder(root.left);
 			System.out.print(" " + root.data.getPriority() + "[" + root.descendants + "]");

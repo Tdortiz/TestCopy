@@ -76,7 +76,7 @@ public class CommandHandler {
 		
 		tree.getHighest();
 		
-		Ticket highest = tree.highestTicket;
+		Ticket highest = tree.getHighestTicket();
 		map.remove(highest.getId());
 		System.out.println("    id = " + highest.getId() + ", " + highest.getPriority() );
 		//map.remove(highest.getId());
