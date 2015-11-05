@@ -56,7 +56,7 @@ public class CommandHandler {
 		
 		if( map.containsKey(id) ){
 			int priority = map.get(id);
-			map.remove(priority);
+			map.remove(id);
 			
 			System.out.println("    " + priority + ", pos = " + tree.query(priority)); 
 			tree.remove(priority);
