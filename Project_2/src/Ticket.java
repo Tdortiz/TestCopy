@@ -20,8 +20,6 @@ public class Ticket {
 	 *            the priority of the ticket
 	 * @param id
 	 *            the id of the ticket
-	 * @param decendants
-	 *            the number of decendants of the ticket
 	 */
 	public Ticket(int priority, int id) {
 		this.priority = priority;
