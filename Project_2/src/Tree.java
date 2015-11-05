@@ -1,4 +1,3 @@
-
 /**
  * Tree represents an unbalanced binary 
  * search tree for help ticket priorities.
