@@ -59,8 +59,12 @@ public class Tree extends AbstractTree {
 		int temp = overallRoot.data.getPriority();
 		overallRoot = remove(overallRoot, p);
 		if (overallRoot != null) {
-			if (overallRoot.data.getPriority() != temp);
+			if (overallRoot.data.getPriority() != temp) {
+				System.out.println( "overall root's priority is: " + overallRoot.data.getPriority());
+				System.out.println("temp is: " + temp);
 				(overallRoot.descendants)++; 
+			}
+	
 		}
 	}
 	
@@ -106,6 +110,7 @@ public class Tree extends AbstractTree {
 		}
 		
 		if (root != null)
+			System.out.println("My priority is: " + root.data.getPriority());
 			(root.descendants)--; 
 		
 		return root;
