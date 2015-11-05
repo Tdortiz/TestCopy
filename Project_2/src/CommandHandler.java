@@ -33,7 +33,7 @@ public class CommandHandler {
 	public void insert(int priority) {
 		System.out.println("+ " + priority);
 		if(!map.containsValue(priority)){
-			Ticket t = new Ticket(priority, idCounter);// prioirty id descendants
+			Ticket t = new Ticket(priority, idCounter);// priority id descendants
 			map.put(idCounter, priority); // id is key, priority is value
 			tree.insert(t);
 			System.out.println("    id = " + idCounter);
