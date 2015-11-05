@@ -46,24 +46,24 @@ public class TreeTest {
 		
 		
 		//
-		tree.printInorder(tree.getRoot());
+		tree.printInorder();
 		System.out.println();
 		
 		tree.remove(8);
 		
-		tree.printInorder(tree.getRoot());
+		tree.printInorder();
 		System.out.println();
 		
 		System.out.println( tree.query(2));
 		
-		tree.printInorder(tree.getRoot());
+		tree.printInorder();
 		System.out.println();
 		
 		tree.getHighest();
 		
-		System.out.println( "The heighest is: " + tree.highestTicket.getPriority());
+		System.out.println( "The heighest is: " + tree.getHighestTicket().getPriority());
 		
-		tree.printInorder(tree.getRoot());
+		tree.printInorder();
 		System.out.println();
 		
 		
