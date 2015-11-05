@@ -1,3 +1,4 @@
+
 /**
  * Tree represents an unbalanced binary 
  * search tree for help ticket priorities.
@@ -7,7 +8,10 @@
  * @author Jacob Stone
  * @author Curtis Moore
  */
-public class Tree extends AbstractTree {
+public class Tree {
+	
+	/** The overall root of the tree */
+	protected Node overallRoot; // null for an empty tree
 	
 	protected Ticket highestTicket;
 	
@@ -61,7 +65,6 @@ public class Tree extends AbstractTree {
 	 * @author Building Java Programs Third Edition - Marty Stepp & Stuart Reges
 	 */
 	public void remove(int p) {
-		int temp = overallRoot.data.getPriority();
 		overallRoot = remove(overallRoot, p);
 	}
 	
@@ -271,6 +274,64 @@ public class Tree extends AbstractTree {
 	public void setRoot(Node root) {
 		this.overallRoot = root;
 	}
+	
 
+	/**
+	 * Prints the tree in order
+	 */
+	public void printInorder() {
+		printInorder(overallRoot);
+	}
+	
+	/**
+	 * Prints the tree in order given a specific root
+	 * @param root the root of the tree to print
+	 */
+	public void printInorder(Node root){
+		if( root != null){
+			printInorder(root.left);
+			System.out.print(" " + root.data.getPriority() + "[" + root.descendants + "]");
+			printInorder(root.right);
+		}
+	}
+
+	/**
+	 * Node Class for Tree.
+	 * 
+	 * @author Thomas Ortiz
+	 * @author Michael Mackrell
+	 * @author Jacob Stone
+	 * @author Curtis Moore
+	 */
+	private class Node {
+		public Ticket data; // data stored at this node
+		public Node left; // reference to left subtree
+		public Node right; // reference to right subtree
+		public int descendants; // amount of descendants
+
+		/**
+		 * Constructs a leaf node with the given data.
+		 * 
+		 * @param data ticket
+		 */
+		public Node(Ticket data) {
+			this(data, null, null);
+		}
+
+		/**
+		 * Constructs a branch node with the given data and links.
+		 * 
+		 * @param data ticket
+		 * @param left node
+		 * @param right node
+		 */
+		public Node(Ticket data, Node left, Node right) {
+			this.data = data;
+			this.left = left;
+			this.right = right;
+			this.descendants = 0;
+		}
+	
+	}
 	
 }
