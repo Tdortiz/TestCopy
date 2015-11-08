@@ -3,7 +3,8 @@ import java.util.Scanner;
 /**
  * The main program, reads in input from standard input, or in our case, a file,
  * and parses through each command passing them to the CommandHandler class.
- * HelpTickets also handles all exceptions.
+ * HelpTickets also handles all exceptions. Note, some code was adapted and used
+ * from Dr. Stallmann's dummy solution.
  * 
  * @author Thomas Ortiz
  * @author Michael Mackrell
@@ -21,8 +22,6 @@ public class HelpTickets {
 	 *            command line arguments
 	 */
 	public static void main(String[] args) {
-		//Scanner input = new Scanner(System.in);
-		//input(input);
 		
 		Tree tree = new Tree(); // Simple binary search tree
 		CommandHandler handler = new CommandHandler(tree);
@@ -37,67 +36,13 @@ public class HelpTickets {
 	        }
 	    }
 	}
-
+	
 	/**
-	 * Handles all input from the user/file.
-	 * 
-	 * @param input
-	 *            the input scanner passed from main
+	 * Determines the next command to handle
+	 * @param handler the CommandHandler object for the program
+	 * @param input the input from the user
+	 * @return true if the command was successful, false otherwise
 	 */
-	public static void input(Scanner input) {
-		Tree tree = new Tree(); // Simple binary search tree
-		CommandHandler handler = new CommandHandler(tree); // Handles all
-															// commands
-		Scanner lineParser = null; // Parses through a line
-		String command = null; // Command from user.
-
-		while (input.hasNextLine()) { // Runs until there is no more input
-			lineParser = new Scanner(input.nextLine());
-			while (lineParser.hasNext()) {
-				command = lineParser.next(); // gets the commands +, -, *, ?
-
-				try {
-					if (command.equals("+")) { // ADD
-						String str = lineParser.next().trim();
-						try {
-							handler.insert(Integer.parseInt(str));
-						} catch (NumberFormatException NFE) {
-							lineParser.close();
-							throw new Warning("Warning: priority " + str + " is not an integer");
-						}
-					} else if (command.equals("-")) { // REMOVE
-						String str = lineParser.next().trim();
-						try {
-							handler.remove(Integer.parseInt(str));
-						} catch (NumberFormatException NFE) {
-							lineParser.close();
-							throw new Warning("Warning: id " + str + " is not an integer");
-						}
-					} else if (command.equals("*")) { // REMOVE HIGHEST
-						handler.removeHighest();
-
-					} else if (command.equals("?")) { // QUERY
-						String str = lineParser.next().trim();
-						try {
-							handler.query(Integer.parseInt(str));
-						} catch (NumberFormatException NFE) {
-							lineParser.close();
-							throw new Warning("Warning: id " + str + " is not an integer");
-						}
-					} else {
-						lineParser.close();
-						throw new Warning("Invalid command: " + command);
-					}
-				} catch (Warning invalidCommand) {
-					System.out.println(invalidCommand.getMessage());
-				}
-			}
-		}
-
-		lineParser.close();
-		input.close();
-	}
-
 	public static boolean nextCommand(CommandHandler handler, Scanner input){
 		if ( ! input.hasNextLine() ) return false;
 		
@@ -121,6 +66,12 @@ public class HelpTickets {
 	    return true;
 	}
 	
+	/**
+	 * Sets up the add command
+	 * @param handler the CommandHandler object for the program
+	 * @param lineScanner Scanner for the current user input
+	 * @throws Warning if the input is incorrect for this command
+	 */
 	 private static void handleAdd(CommandHandler handler, Scanner lineScanner) throws Warning {
 	    if ( ! lineScanner.hasNext() ) throw new Warning( "missing priority for +" );
 	    
@@ -137,8 +88,14 @@ public class HelpTickets {
 	    
 	    handler.insert(priority);
 	  }
-
-	  private static void handleRemove(CommandHandler handler, Scanner lineScanner) throws Warning {
+	 
+	 /**
+	  * Sets up the remove command
+	  * @param handler the CommandHandler object for the program
+	  * @param lineScanner Scanner for the current user input
+	  * @throws Warning if the input is incorrect for this command
+	  */
+	 private static void handleRemove(CommandHandler handler, Scanner lineScanner) throws Warning {
 	    if ( ! lineScanner.hasNext() ) throw new Warning( "missing id for -" );
 	    
 	    int id;
@@ -154,7 +111,13 @@ public class HelpTickets {
 	    handler.remove( id );
 	  }
 
-	  private static void handleQuery(CommandHandler handler, Scanner lineScanner) throws Warning {
+	 /**
+	  * Sets up the query command
+	  * @param handler the CommandHandler object for the program
+	  * @param lineScanner Scanner for the current user input
+	  * @throws Warning if the input is incorrect for this command
+	  */
+	 private static void handleQuery(CommandHandler handler, Scanner lineScanner) throws Warning {
 	    if ( ! lineScanner.hasNext() ) throw new Warning( "missing id for ?" );
 	    
 	    int id;
@@ -171,7 +134,12 @@ public class HelpTickets {
 	    handler.query(id);
 	  }
 
-	  private static void handleRemoveHighest(CommandHandler handler) throws Warning {
-	    handler.removeHighest();
-	  }
+	 /**
+	  * Sets up the remove highest command
+	  * @param handler the CommandHandler object for the program
+	  * @throws Warning if the input is incorrect for this command
+	  */
+	 private static void handleRemoveHighest(CommandHandler handler) throws Warning {
+		 handler.removeHighest();
+	 }
 }

@@ -18,7 +18,7 @@ public class CommandHandler {
 
 	/**
 	 * Constructor for the command handler class.
-	 * @param tree to use as data structure.
+	 * @param tree the tree use as the data structure.
 	 */
 	public CommandHandler(Tree tree) {
 		this.tree = tree;
@@ -86,7 +86,7 @@ public class CommandHandler {
 	/**
 	 * Wrapper method to query about a given an id. This method
 	 * gives the position of the node in the tree
-	 * @param id the id of the node
+	 * @param id the id of the node to query about
 	 */
 	public void query(int id) {
 		System.out.println("? " + id);

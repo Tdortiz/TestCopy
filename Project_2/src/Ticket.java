@@ -10,6 +10,7 @@ public class Ticket {
 
 	/** priority of the ticket */
 	private int priority;
+	
 	/** id of the ticket */
 	private int id;
 

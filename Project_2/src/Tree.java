@@ -56,22 +56,32 @@ public class Tree {
 	}
 
 	/**
-	 * Method to remove a node given a priority p
+	 * Method to remove a node given a priority p.
+	 * Note, some of the code for this method came from
+	 * Martty Stepp, author of Building Java Programs
+	 * 3rd Edition and instructor from the University of
+	 * Washington.
+	 * @author Marty Stepp https://courses.cs.washington.edu/
+	 * courses/cse143/11wi/lectures/02-25/programs/SearchTree.java
+	 * @author Marty Stepp & Stuart Reges - Building Java Programs Third Edition
 	 * @param p the priority of the node we are removing
-	 * @author Marty Stepp courses.cs.washington.edu
-	 * @author Building Java Programs Third Edition - Marty Stepp & Stuart Reges
 	 */
 	public void remove(int p) {
 		overallRoot = remove(overallRoot, p);
 	}
 	
 	/**
-	 * Recursive remove method
+	 * Recursive remove method remove a node given a priority p.
+	 * Note, some of the code for this method came from
+	 * Martty Stepp, author of Building Java Programs
+	 * 3rd Edition and instructor from the University of
+	 * Washington.
+	 * @author Marty Stepp https://courses.cs.washington.edu/
+	 * courses/cse143/11wi/lectures/02-25/programs/SearchTree.java
+	 * @author Marty Stepp & Stuart Reges - Building Java Programs Third Edition
 	 * @param root the root of the tree
 	 * @param p the priority of the node to remove
-	 * @return root the root of the tree
-	 * @author Marty Stepp courses.cs.washington.edu
-	 * @author Building Java Programs Third Edition - Marty Stepp & Stuart Reges
+	 * @return root the root of the current tree
 	 */
 	private Node remove (Node root, int p) {
 		if (root == null) {
@@ -83,7 +93,7 @@ public class Tree {
 			// value could be in the left subtree, lets go in.
 			root.left = remove(root.left, p);
 		} else {
-			// root.data.getPriority() == p, this is the node to remove.
+			// this is the node to remove.
 			if (root.left == null && root.right == null) {
 				//Case 1: leaf, replace with null
 				root = null;
@@ -98,7 +108,7 @@ public class Tree {
 				return root;
 			} else {
 				//Case 4: both children, replace with next in-order from right subtree
-				Node followingNode = removeNextInOrder(root.right);
+				Node followingNode = nextInOrder(root.right);
 				set(root, followingNode);
 				
 				root.right = remove(root.right, followingNode.data.getPriority());
@@ -126,11 +136,11 @@ public class Tree {
 	/**
 	 * Removes the next node in the tree order
 	 * @param root the root of the tree
-	 * @return the root of the tree
+	 * @return the root of the current tree
 	 */
-	private Node removeNextInOrder(Node root) { // L H R
+	private Node nextInOrder(Node root) { // L H R
 		if (root.left != null)
-			return removeNextInOrder(root.left);
+			return nextInOrder(root.left);
 		else
 			return root;
 	}
@@ -144,7 +154,7 @@ public class Tree {
 	
 	/**
 	 * Returns the highest priority node in the tree
-	 * @param root the root of the tree
+	 * @param root the root of the current tree
 	 * @return the data of the highest priority node
 	 */
 	private Node getHighest(Node root) {
@@ -167,10 +177,10 @@ public class Tree {
 	}
 
 	/**
-	 * Query about position in the queue (using help ticket id)
+	 * Query about position of the priority in the queue
 	 * 
-	 * @param priority
-	 * @return
+	 * @param priority the priority to query about
+	 * @return the position of the priority in the queue
 	 * */
 	public int query( int p ) {
 		return  query(overallRoot, p);
@@ -178,8 +188,8 @@ public class Tree {
 	
 	/**
 	 * Method to find the priority of a given node
-	 * @param root the root of the tree
-	 * @param p the priority of the node 
+	 * @param root the root of the current tree
+	 * @param p the priority of the node the query 
 	 * @return the key of the node we find
 	 */
 	private int query( Node root, int p ) {
@@ -202,41 +212,6 @@ public class Tree {
 		if (root != null)
 			return root.descendants;
 		return 0;
-	}
-	
-	/**
-	 * Checks if the tree contains a node.
-	 * @param p the priority of the node to find
-	 * @return true if tree does contain, false if not.
-	 */
-	public boolean contains( int p) {
-		return recContains(overallRoot, p);
-	}
-	
-	/**
-	 * Recursivly finds the requested node in the tree
-	 * @param current node used for going through the tree
-	 * @param p the priority of the node we are looking for
-	 * @return true or false depending on if the node is found
-	 */
-	private boolean recContains(Node current, int p) {
-		if(current.data.getPriority() == p) {
-			return true;
-		}
-		if(current.data.getPriority() > p && current.left == null) {
-			return false;
-		}
-		if(current.data.getPriority() < p && current.right == null) {
-			return false;
-		}
-		
-		if(current.data.getPriority() > p && current.left != null) {
-			return recContains(current.left, p);
-		}
-		if(current.data.getPriority() < p && current.right != null) {
-			return recContains(current.right, p);
-		}	
-		return false;
 	}
 	
 	/**
@@ -265,35 +240,6 @@ public class Tree {
 	}
 
 	/**
-	 * Sets method for root field.
-	 * 
-	 * @param root
-	 *            to set this.root to.
-	 */
-	public void setRoot(Node root) {
-		this.overallRoot = root;
-	}
-	
-	/**
-	 * Prints the tree in order
-	 */
-	public void printInorder() {
-		printInorder(overallRoot);
-	}
-	
-	/**
-	 * Prints the tree in order given a specific root
-	 * @param root the root of the tree to print
-	 */
-	private void printInorder(Node root){
-		if( root != null){
-			printInorder(root.left);
-			System.out.print(" " + root.data.getPriority() + "[" + root.descendants + "]");
-			printInorder(root.right);
-		}
-	}
-
-	/**
 	 * Node Class for Tree.
 	 * 
 	 * @author Thomas Ortiz
@@ -302,10 +248,18 @@ public class Tree {
 	 * @author Curtis Moore
 	 */
 	private class Node {
-		public Ticket data; // data stored at this node
-		public Node left; // reference to left subtree
-		public Node right; // reference to right subtree
-		public int descendants; // amount of descendants
+		
+		/** Ticket stored at this node */
+		public Ticket data;
+		
+		/** reference to left subtree */
+		public Node left;
+		
+		/** reference to right subtree */
+		public Node right;
+		
+		/** amount of descendants */
+		public int descendants;
 
 		/**
 		 * Constructs a leaf node with the given data.
@@ -319,9 +273,9 @@ public class Tree {
 		/**
 		 * Constructs a branch node with the given data and links.
 		 * 
-		 * @param data ticket
-		 * @param left node
-		 * @param right node
+		 * @param data the help ticket for the tree
+		 * @param left reference to the left node
+		 * @param right reference to the right node
 		 */
 		public Node(Ticket data, Node left, Node right) {
 			this.data = data;
