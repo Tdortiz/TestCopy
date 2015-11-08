@@ -22,7 +22,6 @@ public class HelpTickets {
 	 *            command line arguments
 	 */
 	public static void main(String[] args) {
-		
 		Tree tree = new Tree(); // Simple binary search tree
 		CommandHandler handler = new CommandHandler(tree);
 	    Scanner scanInput = new Scanner( System.in );
