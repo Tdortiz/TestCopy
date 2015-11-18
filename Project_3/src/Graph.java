@@ -77,9 +77,9 @@ public class Graph {
 	 *
 	 * @return node with given ID or null if absent.
 	 */
-	public Node getNode(int nodeID) {
+	public Node getNode(String nodeID) {
 		for (int i = 0; i < nodes.size(); i++) {
-			if (nodes.get(i).getid() == nodeID) {
+			if (nodes.get(i).getid().equals(nodeID) ) {
 				return nodes.get(i);
 			}
 		}
