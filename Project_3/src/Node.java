@@ -10,7 +10,7 @@ public class Node {
 	/** Array containing all the edges of the node */
 	private ArrayList<Edge> edges;
 	/** ID of the node, an integer */
-	private int id;
+	private String id;
 
 	/**
 	 * Contructs the node with the given ID.
@@ -18,7 +18,7 @@ public class Node {
 	 * @param id
 	 *            of node to be created.
 	 */
-	public Node(int id) {
+	public Node(String id) {
 		this.id = id;
 	}
 
@@ -30,7 +30,7 @@ public class Node {
 	 * @param node2
 	 *            node that this will be linked to.
 	 */
-	public Node(int id, Node node2) {
+	public Node(String id, Node node2) {
 		this(id);
 		edges.add(new Edge(this, node2));
 	}
@@ -40,7 +40,7 @@ public class Node {
 	 *
 	 * @return id of this node.
 	 */
-	public int getid() {
+	public String getid() {
 		return this.id;
 	}
 
