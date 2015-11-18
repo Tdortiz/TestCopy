@@ -65,9 +65,11 @@ public class SocialNetwork {
 	public static void nextCommand(CommandHandler handler, String line){
 		Scanner scanLine = new Scanner(line);
 		String command = null;
+		
 		try {
 			command = scanLine.next().toLowerCase();
 		} catch (NoSuchElementException e){
+			scanLine.close();
 			throw new Warning("Invalid Input");
 		}
 		
