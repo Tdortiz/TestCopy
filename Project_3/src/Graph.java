@@ -117,5 +117,20 @@ public class Graph {
 		Node max;
 		return null;
 	}
-
+	
+	/**
+	 * Determines if person1 is a friend of person2
+	 * @param person1
+	 * @param person2
+	 * @return
+	 */
+	public boolean isFriend( Node person1, Node person2 ) {
+		return person1.isAttached(person2);
+	}
+	
+	
+	public void mutual (Node person1, Node person2 ) {
+		
+		
+	}
 }

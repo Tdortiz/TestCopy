@@ -122,7 +122,7 @@ public class GraphList<E> {
  }
 
  // post: returns an iterator for this list
- public Iterator<E> iterator() {
+ public GraphIterator<E> iterator() {
      return new LinkedIterator();
  }
 
@@ -172,7 +172,7 @@ public class GraphList<E> {
      }
  }
 
- private class LinkedIterator implements Iterator<E> {
+ private class LinkedIterator implements GraphIterator<E> {
      private ListNode<E> current;  // location of next value to return
      private boolean removeOK;  // whether it's okay to remove now
 

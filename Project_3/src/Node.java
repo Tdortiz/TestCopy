@@ -9,7 +9,7 @@ public class Node {
 
 	/** Array containing all the edges of the node */
 	private GraphList<Edge> edges;
-	/** ID of the node, an integer */
+	/** ID of the node, an String*/
 	private String id;
 
 	/**
@@ -20,6 +20,7 @@ public class Node {
 	 */
 	public Node(String id) {
 		this.id = id;
+		edges = new GraphList<Edge>();
 	}
 
 	/**
