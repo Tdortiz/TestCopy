@@ -4,11 +4,19 @@ import java.io.*;
 
 public class SocialNetwork {
 
-	public static void main(String[] args) {	
-		Scanner scanFile = getInput( args[0] ); // File input
+	public static void main(String[] args) {
+		Scanner scanFile = null;
+		try {
+			 scanFile = getInput( args[0] ); // File input
+		} catch (ArrayIndexOutOfBoundsException aioob){
+			System.out.println("Error, expected: java SocialNetwork input_file.txt");
+			System.exit(1);
+		}
 		Scanner scanInput = new Scanner(System.in);
 		CommandHandler handler = new CommandHandler();
-		createGraph(scanFile);
+		
+		GraphList<Node> graphList = new GraphList<Node>();
+		createGraph(graphList, scanFile);
 	
 		while(scanInput.hasNextLine()){
 			try{
@@ -32,7 +40,7 @@ public class SocialNetwork {
 		return in;
 	}
 
-	public static void createGraph(Scanner scanFile){
+	public static GraphList<Node> createGraph(GraphList<Node> graphList, Scanner scanFile){
 	    String name = null;
 	    Node person = null;
 		// Part where we create the nodes
@@ -45,15 +53,31 @@ public class SocialNetwork {
 	    		break;
 	    	}
 	    	
-	        person = new Node(name);
+	    	person = new Node(name);
+	        graphList.add(person);
+	        System.out.println(graphList);
 	    }
 	    
-		// Part where we create the edges
+		// Part where we create the edges/adjacency list?
+	    Scanner scanNameRelations = null;
 	    while( scanFile.hasNextLine() ){
-	    	System.out.println(scanFile.nextLine());
+	    	scanNameRelations = new Scanner(scanFile.nextLine());
+	    	String name1 = null;
+	    	String name2 = null;
+	    	try{
+	    		name1 = scanNameRelations.next();
+	    		name2 = scanNameRelations.next();
+	    	} catch(NoSuchElementException e){
+	    		scanNameRelations.close();
+				throw new Warning("command name1 name2");
+			}
+	    	System.out.println(name1 + " " + name2);
+	    	//System.out.println(scanFile.nextLine());
 	    	// TODO this part for creating edges
 	    }
+	    scanNameRelations.close();
 	    
+	    return graphList;
 	}
 	
 	/**
