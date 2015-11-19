@@ -217,5 +217,4 @@ public class SocialNetwork {
 		System.out.println("popular");
 		handler.popular();
 	}
-
 }
