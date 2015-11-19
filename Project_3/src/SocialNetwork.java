@@ -2,16 +2,33 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.io.*;
 
+/**
+ * The main program, reads in a graph from an input file. SocialNetwork will then
+ * parse through commands given by the user from standard input and will pass them 
+ * to the CommandHandler class.
+ * SocialNetwork also handles all exceptions. 
+ * 
+ * @author Thomas Ortiz
+ * @author Michael Mackrell
+ * @author Jacob Stone
+ * @author Curtis Moore
+ */
 public class SocialNetwork {
 
+	/**
+	 * Initiates the program and retrieves all input from the file and user. 
+	 * @param args command line arguments
+	 */
 	public static void main(String[] args) {
 		Scanner scanFile = null;
+		
 		try {
 			 scanFile = getInput( args[0] ); // File input
 		} catch (ArrayIndexOutOfBoundsException aioob){
 			System.out.println("Error, expected: java SocialNetwork input_file.txt");
 			System.exit(1);
 		}
+		
 		Scanner scanInput = new Scanner(System.in);
 		CommandHandler handler = new CommandHandler();
 		
@@ -30,6 +47,11 @@ public class SocialNetwork {
 		scanInput.close();
 	}
 
+	/**
+	 * Method to retrieve the scanner for the file.
+	 * @param filename to retrieve input from
+	 * @return a scanner for the input file
+	 */
 	public static Scanner getInput(String filename){
 		Scanner in = null;
 		try{
@@ -40,13 +62,19 @@ public class SocialNetwork {
 		return in;
 	}
 
+	/**
+	 * Creates a graph based off of the input file.
+	 * @param graphList object that holds our verticies
+	 * @param scanFile Scanner that parses through the file
+	 * @return a graph representation of the file
+	 */
 	public static GraphList<Node> createGraph(GraphList<Node> graphList, Scanner scanFile){
 	    String name = null;
 	    Node person = null;
 		// Part where we create the nodes
 	    while ( scanFile.hasNext() ){
 	    	name = scanFile.next();
-	    	System.out.println(name);
+	    	//System.out.println(name);
 	    	
 	    	if(name.equals("$")){
 	    		scanFile.nextLine(); // gets rid of all of space after names
@@ -64,6 +92,7 @@ public class SocialNetwork {
 	    	scanNameRelations = new Scanner(scanFile.nextLine());
 	    	String name1 = null;
 	    	String name2 = null;
+	    	
 	    	try{
 	    		name1 = scanNameRelations.next();
 	    		name2 = scanNameRelations.next();
@@ -71,8 +100,8 @@ public class SocialNetwork {
 	    		scanNameRelations.close();
 				throw new Warning("command name1 name2");
 			}
+	    	
 	    	System.out.println(name1 + " " + name2);
-	    	//System.out.println(scanFile.nextLine());
 	    	// TODO this part for creating edges
 	    }
 	    scanNameRelations.close();
@@ -106,9 +135,9 @@ public class SocialNetwork {
 		} else if( command.equals("relation") ){
 			handleRelation(handler, scanLine);
 		} else if( command.equals("notconnected") ){
-			handleNotConnected(handler, scanLine);
+			handleNotConnected(handler);
 		} else if( command.equals("popular") ){
-			handlePopular(handler, scanLine);
+			handlePopular(handler);
 		} else {
 			scanLine.close();
 			throw new Warning("Invalid Command");
@@ -121,6 +150,11 @@ public class SocialNetwork {
 		System.out.println("$"); // Prints a $ after every command is done
 	}
 	
+	/**
+	 * Handles the command isfriend from the user by passing it to the commandhandler class.
+	 * @param handler that we pass the command to
+	 * @param scanLine line to scan through for names 
+	 */
 	public static void handleIsFriend(CommandHandler handler, Scanner scanLine){
 		try{
 			String name1 = scanLine.next();
@@ -132,6 +166,11 @@ public class SocialNetwork {
 		}
 	}
 	
+	/**
+	 * Handles the command mutual from the user by passing it to the commandhandler class.
+	 * @param handler that we pass the command to
+	 * @param scanLine line to scan through for names 
+	 */
 	public static void handleMutual(CommandHandler handler, Scanner scanLine){
 		try{
 			String name1 = scanLine.next();
@@ -143,6 +182,11 @@ public class SocialNetwork {
 		}
 	}
 	
+	/**
+	 * Handles the command relation from the user by passing it to the commandhandler class.
+	 * @param handler that we pass the command to
+	 * @param scanLine line to scan through for names 
+	 */
 	public static void handleRelation(CommandHandler handler, Scanner scanLine){
 		try{
 			String name1 = scanLine.next();
@@ -154,12 +198,22 @@ public class SocialNetwork {
 		}
 	}
 	
-	public static void handleNotConnected(CommandHandler handler, Scanner scanLine){
+	/**
+	 * Handles the command notconnected from the user by passing it to the commandhandler class.
+	 * @param handler that we pass the command to
+	 * @param scanLine line to scan through for names 
+	 */
+	public static void handleNotConnected(CommandHandler handler){
 		System.out.println("notconnected");
 		handler.notConnected();
 	}
 	
-	public static void handlePopular(CommandHandler handler, Scanner scanLine){
+	/**
+	 * Handles the command popular from the user by passing it to the commandhandler class.
+	 * @param handler that we pass the command to
+	 * @param scanLine line to scan through for names 
+	 */
+	public static void handlePopular(CommandHandler handler){
 		System.out.println("popular");
 		handler.popular();
 	}
