@@ -32,7 +32,7 @@ public class SocialNetwork {
 		Scanner scanInput = new Scanner(System.in);
 		CommandHandler handler = new CommandHandler();
 		
-		GraphList<Node> graphList = new GraphList<Node>();
+		GenericList<Node> graphList = new GenericList<Node>();
 		createGraph(graphList, scanFile);
 	
 		while(scanInput.hasNextLine()){
@@ -68,7 +68,7 @@ public class SocialNetwork {
 	 * @param scanFile Scanner that parses through the file
 	 * @return a graph representation of the file
 	 */
-	public static GraphList<Node> createGraph(GraphList<Node> graphList, Scanner scanFile){
+	public static GenericList<Node> createGraph(GenericList<Node> graphList, Scanner scanFile){
 	    String name = null;
 	    Node person = null;
 		// Part where we create the nodes
