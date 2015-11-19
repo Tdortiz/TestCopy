@@ -2,15 +2,15 @@ import java.util.ArrayList;
 
 public class Graph {
 
-	private ArrayList<Node> nodes;
-	private ArrayList<Edge> edges;
+	private GraphList<Node> nodes;
+	private GraphList<Edge> edges;
 
 	/**
 	 * Constructs graph.
 	 */
 	public Graph() {
-		nodes = new ArrayList<Node>();
-		edges = new ArrayList<Edge>();
+		nodes = new GraphList<Node>();
+		edges = new GraphList<Edge>();
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class Graph {
 	 * 
 	 * @return arrayList of nodes.
 	 */
-	public ArrayList<Node> getNodeArray() {
+	public GraphList<Node> getNodeArray() {
 		return nodes;
 	}
 
@@ -100,12 +100,12 @@ public class Graph {
 	 * 
 	 * @return the removed edge
 	 */
-	public Edge removeEdge() {
-		Edge removed = edges.remove(0);
-		nodes.remove(removed.getFirstNode());
-		nodes.remove(removed.getSecondNode());
-		return removed;
-	}
+	//public Edge removeEdge() {
+		//Edge removed = edges.remove(0);
+		//nodes.remove(removed.getFirstNode());
+		//nodes.remove(removed.getSecondNode());
+		//return removed;
+	//}
 
 	/**
 	 * Removes/returns highest degree node.

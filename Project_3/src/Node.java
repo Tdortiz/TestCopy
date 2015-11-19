@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Node {
 
 	/** Array containing all the edges of the node */
-	private ArrayList<Edge> edges;
+	private GraphList<Edge> edges;
 	/** ID of the node, an integer */
 	private String id;
 
