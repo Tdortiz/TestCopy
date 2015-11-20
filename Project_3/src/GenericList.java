@@ -3,13 +3,13 @@
 
 import java.util.*;
 
-public class GraphList<E> {
+public class GenericList<E> {
 	private ListNode<E> front; // first value in the list
 	private ListNode<E> back; // last value in the list
 	private int size; // current number of elements
 
 	// post: constructs an empty list
-	public GraphList() {
+	public GenericList() {
 		front = new ListNode<E>(null);
 		back = new ListNode<E>(null);
 		clear();

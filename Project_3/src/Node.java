@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Node {
 
 	/** Array containing all the edges of the node */
-	private GraphList<Edge> edges;
+	private GenericList<Edge> edges;
 	/** ID of the node, an String*/
 	private String id;
 	
@@ -23,7 +23,7 @@ public class Node {
 	public Node(String id) {
 		this.id = id;
 		this.marked = false;
-		edges = new GraphList<Edge>();
+		edges = new GenericList<Edge>();
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class Node {
 		return this.marked;
 	}
 	
-	public GraphList<Edge> getEdges() {
+	public GenericList<Edge> getEdges() {
 		return edges;
 	}
 

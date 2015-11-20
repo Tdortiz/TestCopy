@@ -1,14 +1,14 @@
 public class Graph {
 
-	private GraphList<Node> nodes;
-	private GraphList<Edge> edges;
+	private GenericList<Node> nodes;
+	private GenericList<Edge> edges;
 
 	/**
 	 * Constructs graph.
 	 */
 	public Graph() {
-		nodes = new GraphList<Node>();
-		edges = new GraphList<Edge>();
+		nodes = new GenericList<Node>();
+		edges = new GenericList<Edge>();
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class Graph {
 	 * 
 	 * @return arrayList of nodes.
 	 */
-	public GraphList<Node> getNodeArray() {
+	public GenericList<Node> getNodeArray() {
 		return nodes;
 	}
 
