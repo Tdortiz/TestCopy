@@ -127,8 +127,83 @@ public class Graph {
 	}
 	
 	
-	public void mutual (Node person1, Node person2 ) {
+	public String relation (Node person1, Node person2 ) {
+		Queue<Node> q = new Queue<Node>();
+		q.add(person1);
+		person1.setMarked(true);
 		
+		boolean sameCom = false;
+		String shortestPath = "";
+		
+		
+		while (!q.isEmpty()) {
+			Node current = q.remove();
+			shortestPath += current.getid() + "\n";
+			if ( current.getid().equals(person2.getid()) ) {
+				sameCom = true;
+				break;
+			}
+			
+			//int AdjNum = current.getEdges().size();
+			GraphIterator<Edge> e = current.getEdges().iterator();
+			
+			while ( e.hasNext() ) {
+				Node adj = e.next().getSecondNode();
+				if (!adj.isMarked()) {
+					adj.setMarked(true);
+					q.add(adj);
+				}
+			}
+		}
+		
+		if (sameCom) {
+			return shortestPath;
+		} else {
+			return "\n";
+		}
 		
 	}
+	
+	public String mutual (Node person1, Node person2 ) {
+		Queue<Node> q = new Queue<Node>();
+		q.add(person1);
+		person1.setMarked(true);
+		
+		boolean sameCom = false;
+		String shortestPath = "";
+		
+		
+		while (!q.isEmpty()) {
+			Node current = q.remove();
+			
+			
+			if ( current.getid().equals(person2.getid()) ) {
+				sameCom = true;
+				break;
+			}
+			
+			if ( !( current.getid().equals(person1.getid()) ) ) {
+				shortestPath += current.getid() + "\n";
+			}
+			
+			
+			//int AdjNum = current.getEdges().size();
+			GraphIterator<Edge> e = current.getEdges().iterator();
+			
+			while ( e.hasNext() ) {
+				Node adj = e.next().getSecondNode();
+				if (!adj.isMarked()) {
+					adj.setMarked(true);
+					q.add(adj);
+				}
+			}
+		}
+		
+		if (sameCom) {
+			return shortestPath;
+		} else {
+			return "\n";
+		}
+	}
+	
 }

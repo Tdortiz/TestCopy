@@ -11,6 +11,8 @@ public class Node {
 	private GraphList<Edge> edges;
 	/** ID of the node, an String*/
 	private String id;
+	
+	private boolean marked;
 
 	/**
 	 * Contructs the node with the given ID.
@@ -20,6 +22,7 @@ public class Node {
 	 */
 	public Node(String id) {
 		this.id = id;
+		this.marked = false;
 		edges = new GraphList<Edge>();
 	}
 
@@ -101,6 +104,18 @@ public class Node {
 	 */
 	public String toString() {
 		return "" + this.id;
+	}
+	
+	public void setMarked (boolean flag) {
+		this.marked = flag;
+	}
+	
+	public boolean isMarked() {
+		return this.marked;
+	}
+	
+	public GraphList<Edge> getEdges() {
+		return edges;
 	}
 
 }
