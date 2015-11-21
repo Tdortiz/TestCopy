@@ -5,10 +5,10 @@ import java.util.ArrayList;
  * 
  * @author Curtis Moore
  */
-public class Node {
+public class Vertex {
 
 	/** Array containing all the edges of the node */
-	private GenericList<Edge> edges;
+	private GenericList<Vertex> adjVertices;
 	/** ID of the node, an String*/
 	private String id;
 	
@@ -20,10 +20,10 @@ public class Node {
 	 * @param id
 	 *            of node to be created.
 	 */
-	public Node(String id) {
+	public Vertex(String id) {
 		this.id = id;
 		this.marked = false;
-		edges = new GenericList<Edge>();
+		adjVertices = new GenericList<Vertex>();
 	}
 
 	/**
@@ -34,10 +34,10 @@ public class Node {
 	 * @param node2
 	 *            node that this will be linked to.
 	 */
-	public Node(String id, Node node2) {
-		this(id);
-		edges.add(new Edge(this, node2));
-	}
+	//public Node(String id, Node node2) {
+		//this(id);
+		//adjNodes.add(new Node(this, node2));
+	//}
 
 	/**
 	 * Returns ID of this node.
@@ -54,7 +54,7 @@ public class Node {
 	 * @return number of edges attached to this node.
 	 */
 	public int getDegree() {
-		return edges.size();
+		return adjVertices.size();
 	}
 
 	/**
@@ -64,9 +64,9 @@ public class Node {
 	 *            the node to check against.
 	 * @return true if the nodes have an edge.
 	 */
-	public boolean isAttached(Node node) {
-		for (int i = 0; i < edges.size(); i++) {
-			if (edges.get(i).contains(node)) {
+	public boolean isAttached(Vertex vrt) {
+		for (int i = 0; i < adjVertices.size(); i++) {
+			if (adjVertices.get(i).equals(vrt.getid())) {
 				return true;
 			}
 		}
@@ -79,11 +79,11 @@ public class Node {
 	 * @return true if the nodes have the same id.
 	 */
 	public boolean equals(Object o) {
-		if (!(o instanceof Node))
+		if (!(o instanceof Vertex))
 			return false;
-		Node node = (Node) o;
+		Vertex vrt = (Vertex) o;
 
-		return (node.getid() == this.getid());
+		return (vrt.getid() == this.getid());
 	}
 
 	/**
@@ -92,9 +92,9 @@ public class Node {
 	 * @param node
 	 *            node to link to.
 	 */
-	public void addLink(Node node) {
-		edges.add(new Edge(this, node));
-	}
+	//public void addLink(Node node) {
+		//edges.add(new Edge(this, node));
+	//}
 
 	
 	/**
@@ -114,8 +114,8 @@ public class Node {
 		return this.marked;
 	}
 	
-	public GenericList<Edge> getEdges() {
-		return edges;
+	public GenericList<Vertex> getAdjVertices() {
+		return adjVertices;
 	}
 
 }

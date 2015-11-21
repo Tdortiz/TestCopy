@@ -1,13 +1,13 @@
 public class Graph {
 
-	private GenericList<Node> nodes;
+	private GenericList<Vertex> vertices;
 	private GenericList<Edge> edges;
 
 	/**
 	 * Constructs graph.
 	 */
 	public Graph() {
-		nodes = new GenericList<Node>();
+		vertices = new GenericList<Vertex>();
 		edges = new GenericList<Edge>();
 	}
 
@@ -18,7 +18,7 @@ public class Graph {
 	 */
 	public boolean isEmpty() {
 
-		return nodes.isEmpty() && edges.isEmpty();
+		return vertices.isEmpty() && edges.isEmpty();
 
 	}
 
@@ -28,11 +28,11 @@ public class Graph {
 	 * @param edge
 	 *            to add to graph
 	 */
-	public void add(Edge edge) {
-		edges.add(edge);
-		nodes.add(edge.getFirstNode());
-		nodes.add(edge.getSecondNode());
-	}
+	//public void add(Edge edge) {
+		//edges.add(edge);
+		//vertices.add(edge.getFirstNode());
+		//vertices.add(edge.getSecondNode());
+	//}
 
 	/**
 	 * Returns true if the given edge is in the graph. 
@@ -60,10 +60,10 @@ public class Graph {
 	 *            to search for
 	 * @return true if node is in graph.
 	 */
-	public boolean nodeExists(Node node) {
+	public boolean VertexExists(Vertex vtr) {
 
-		for (int i = 0; i < nodes.size(); i++) {
-			if (nodes.get(i).equals(node)) {
+		for (int i = 0; i < vertices.size(); i++) {
+			if (vertices.get(i).equals(vtr)) {
 				return true;
 			}
 		}
@@ -75,10 +75,10 @@ public class Graph {
 	 *
 	 * @return node with given ID or null if absent.
 	 */
-	public Node getNode(String nodeID) {
-		for (int i = 0; i < nodes.size(); i++) {
-			if (nodes.get(i).getid().equals(nodeID) ) {
-				return nodes.get(i);
+	public Vertex getVertex(String nodeID) {
+		for (int i = 0; i < vertices.size(); i++) {
+			if (vertices.get(i).getid().equals(nodeID) ) {
+				return vertices.get(i);
 			}
 		}
 		return null;
@@ -89,8 +89,8 @@ public class Graph {
 	 * 
 	 * @return arrayList of nodes.
 	 */
-	public GenericList<Node> getNodeArray() {
-		return nodes;
+	public GenericList<Vertex> getVertexArray() {
+		return vertices;
 	}
 
 	/**
@@ -110,9 +110,9 @@ public class Graph {
 	 * 
 	 * @return highest degree node on the graph, which has just been removed.
 	 */
-	public Node removeHigestNode() {
+	public Vertex removeHigestNode() {
 
-		Node max;
+		Vertex max;
 		return null;
 	}
 	
@@ -122,13 +122,13 @@ public class Graph {
 	 * @param person2
 	 * @return
 	 */
-	public boolean isFriend( Node person1, Node person2 ) {
+	public boolean isFriend( Vertex person1, Vertex person2 ) {
 		return person1.isAttached(person2);
 	}
 	
 	
-	public String relation (Node person1, Node person2 ) {
-		Queue<Node> q = new Queue<Node>();
+	public String relation (Vertex person1, Vertex person2 ) {
+		Queue<Vertex> q = new Queue<Vertex>();
 		q.add(person1);
 		person1.setMarked(true);
 		
@@ -137,7 +137,7 @@ public class Graph {
 		
 		
 		while (!q.isEmpty()) {
-			Node current = q.remove();
+			Vertex current = q.remove();
 			shortestPath += current.getid() + "\n";
 			if ( current.getid().equals(person2.getid()) ) {
 				sameCom = true;
@@ -145,10 +145,10 @@ public class Graph {
 			}
 			
 			//int AdjNum = current.getEdges().size();
-			GraphIterator<Edge> e = current.getEdges().iterator();
+			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
 			
 			while ( e.hasNext() ) {
-				Node adj = e.next().getSecondNode();
+				Vertex adj = e.next();
 				if (!adj.isMarked()) {
 					adj.setMarked(true);
 					q.add(adj);
@@ -164,8 +164,8 @@ public class Graph {
 		
 	}
 	
-	public String mutual (Node person1, Node person2 ) {
-		Queue<Node> q = new Queue<Node>();
+	public String mutual (Vertex person1, Vertex person2 ) {
+		Queue<Vertex> q = new Queue<Vertex>();
 		q.add(person1);
 		person1.setMarked(true);
 		
@@ -174,7 +174,7 @@ public class Graph {
 		
 		
 		while (!q.isEmpty()) {
-			Node current = q.remove();
+			Vertex current = q.remove();
 			
 			
 			if ( current.getid().equals(person2.getid()) ) {
@@ -188,10 +188,10 @@ public class Graph {
 			
 			
 			//int AdjNum = current.getEdges().size();
-			GraphIterator<Edge> e = current.getEdges().iterator();
+			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
 			
 			while ( e.hasNext() ) {
-				Node adj = e.next().getSecondNode();
+				Vertex adj = e.next();
 				if (!adj.isMarked()) {
 					adj.setMarked(true);
 					q.add(adj);
@@ -204,6 +204,56 @@ public class Graph {
 		} else {
 			return "\n";
 		}
+	}
+	
+	
+	public int notConnected() {
+		int loners = 0;
+		int notCon = 1;
+		int componetNodes = 0;
+		
+		GraphIterator<Vertex> vrtList = vertices.iterator();
+		
+		while (vrtList.hasNext()) {
+			Vertex current = vrtList.next();
+			if (!current.isMarked()) {
+				componetNodes = findComponentNodes(current);
+				if ( componetNodes == 1 ) {
+					loners++;
+				} else {
+					notCon *= componetNodes;
+				}
+			}
+		}
+		
+		int notConLoners = loners * (vertices.size() - 1);
+		notCon += notConLoners;
+		
+		return notCon;
+	}
+	
+	public int findComponentNodes( Vertex person ) {
+		int count = 0;
+		Queue<Vertex> q = new Queue<Vertex>();
+		q.add(person);
+		person.setMarked(true);
+		count++;
+		
+		while (!q.isEmpty()) {
+			Vertex current = q.remove();
+			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
+			
+			while ( e.hasNext() ) {
+				Vertex adj = e.next();
+				if (!adj.isMarked()) {
+					adj.setMarked(true);
+					q.add(adj);
+					count++;
+				}
+			}
+		}
+		
+		return count;
 	}
 	
 }
