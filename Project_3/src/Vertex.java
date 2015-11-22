@@ -66,7 +66,7 @@ public class Vertex {
 	 */
 	public boolean isAttached(Vertex vrt) {
 		for (int i = 0; i < adjVertices.size(); i++) {
-			if (adjVertices.get(i).equals(vrt.getid())) {
+			if ( adjVertices.get(i).getid().equals(vrt.getid()) ) {
 				return true;
 			}
 		}
