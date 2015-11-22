@@ -173,7 +173,6 @@ public class SocialNetwork {
 		try{
 			String name1 = scanLine.next();
 			String name2 = scanLine.next();
-			System.out.println("isFriend " + name1 + " " + name2);
 			handler.isFriend(name1, name2);
 		} catch(NoSuchElementException e){
 			throw new Warning("command name1 name2");
@@ -216,7 +215,6 @@ public class SocialNetwork {
 	 * @param scanLine line to scan through for names 
 	 */
 	public static void handleNotConnected(CommandHandler handler){
-		System.out.println("notconnected");
 		handler.notConnected();
 	}
 	
@@ -226,7 +224,6 @@ public class SocialNetwork {
 	 * @param scanLine line to scan through for names 
 	 */
 	public static void handlePopular(CommandHandler handler){
-		System.out.println("popular");
 		handler.popular();
 	}
 }

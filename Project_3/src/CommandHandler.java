@@ -23,24 +23,33 @@ public class CommandHandler {
 	}
 	
 	public void isFriend(String name1, String name2){
-		System.out.println( graph.isFriend(hashGraph.get(name1), hashGraph.get(name2)) );
+		if( graph.isFriend(hashGraph.get(name1), hashGraph.get(name2)) ){
+			System.out.println("yes");
+		} else {
+			System.out.println("no");
+		}
+		graph.unmark();
 		
 	}
 	
 	public void mutual(String name1, String name2){
 		System.out.print( graph.mutual(hashGraph.get(name1), hashGraph.get(name2)) );
+		graph.unmark();
 	}
 	
 	public void relation(String name1, String name2){
 		System.out.print( graph.relation(hashGraph.get(name1), hashGraph.get(name2)) );
+		graph.unmark();
 	}
 	
 	public void notConnected(){
 		System.out.println( graph.notConnected() );
+		graph.unmark();
 	}
 	
 	public void popular(){
 		System.out.println("HI POPULAR, I'M DAD");
+		graph.unmark();
 		
 	}
 }
