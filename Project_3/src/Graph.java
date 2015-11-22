@@ -135,10 +135,17 @@ public class Graph {
 		boolean sameCom = false;
 		String shortestPath = "";
 		
-		
 		while (!q.isEmpty()) {
 			Vertex current = q.remove();
+			//System.out.println("current: " + current);
 			shortestPath += current.getid() + "\n";
+			
+			if( current.isAttached(person2) ){
+				sameCom = true;
+				shortestPath += person2.toString() + "\n";
+				break;
+			}
+			
 			if ( current.getid().equals(person2.getid()) ) {
 				sameCom = true;
 				break;
@@ -149,6 +156,7 @@ public class Graph {
 			
 			while ( e.hasNext() ) {
 				Vertex adj = e.next();
+				//System.out.println("e.hasNext = " + adj);
 				if (!adj.isMarked()) {
 					adj.setMarked(true);
 					q.add(adj);
