@@ -32,7 +32,7 @@ public class SocialNetwork {
 		
 		Scanner scanInput = new Scanner(System.in);
 		CommandHandler handler = new CommandHandler();
-		HashMap hashGraph = new HashMap<String, Vertex>();
+		HashMap<String, Vertex> hashGraph = new HashMap<String, Vertex>();
 		
 		GenericList<Vertex> vertexList = new GenericList<Vertex>();
 		createGraph(vertexList, hashGraph, scanFile);
@@ -102,20 +102,15 @@ public class SocialNetwork {
 			}
 	    	
 	    	// TODO this part for creating edges
-	    	Vertex person1 = new Vertex(name1);
-	    	Vertex person2 = new Vertex(name2);
+	    	Vertex person1 = hashGraph.get(name1);
+	    	Vertex person2 = hashGraph.get(name2);
 	    	
-	    	//System.out.println(person1 + " " + person2);
-	    	hashGraph.get(name1).getAdjVertices().add(person2);
-	    	hashGraph.get(name2).getAdjVertices().add(person1);
-	    	//System.out.println(hashGraph.get(name1).getAdjVertices());
-	    	//System.out.println(hashGraph.get(name2).getAdjVertices());
-
+	    	person1.getAdjVertices().add(person2);
+	    	person2.getAdjVertices().add(person1);
 	    }
 	    scanNameRelations.close();
 	    
 	    System.out.println("Vertex List: " + vertexList);
-	    
 	    System.out.println("Omar: " + hashGraph.get("Omar").getAdjVertices());
     	System.out.println("Sally: " + hashGraph.get("Sally").getAdjVertices());
     	System.out.println("Shantal: " + hashGraph.get("Shantal").getAdjVertices());
