@@ -256,4 +256,9 @@ public class Graph {
 		return count;
 	}
 	
+	public void unmark(){
+		for (int i = 0; i < vertices.size(); i++) {
+			vertices.get(i).setMarked(false) ;
+		}
+	}
 }
