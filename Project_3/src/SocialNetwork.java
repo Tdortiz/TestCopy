@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.io.*;
@@ -31,9 +32,10 @@ public class SocialNetwork {
 		
 		Scanner scanInput = new Scanner(System.in);
 		CommandHandler handler = new CommandHandler();
+		HashMap hashGraph = new HashMap<String, Vertex>();
 		
 		GenericList<Vertex> vertexList = new GenericList<Vertex>();
-		createGraph(vertexList, scanFile);
+		createGraph(vertexList, hashGraph, scanFile);
 	
 		while(scanInput.hasNextLine()){
 			try{
@@ -68,7 +70,7 @@ public class SocialNetwork {
 	 * @param scanFile Scanner that parses through the file
 	 * @return a graph representation of the file
 	 */
-	public static GenericList<Vertex> createGraph(GenericList<Vertex> vertexList, Scanner scanFile){
+	public static GenericList<Vertex> createGraph(GenericList<Vertex> vertexList, HashMap<String, Vertex> hashGraph, Scanner scanFile){
 		String name = null;
 	    Vertex person = null;
 		// Part where we create the nodes
@@ -79,12 +81,10 @@ public class SocialNetwork {
 	    		scanFile.nextLine(); // gets rid of all of space after names
 	    		break;
 	    	}
-	    	
 	    	person = new Vertex(name);
+	    	hashGraph.put(name, person);
 	    	vertexList.add(person);
 	    }
-	    
-	    System.out.println("Vertex List: " + vertexList);
 	    
 		// Part where we create the edges/adjacency list?
 	    Scanner scanNameRelations = null;
@@ -105,19 +105,25 @@ public class SocialNetwork {
 	    	Vertex person1 = new Vertex(name1);
 	    	Vertex person2 = new Vertex(name2);
 	    	
-	    	System.out.println(person1 + " " + person2);
-	    	person1 = new Vertex(name1);
-	    	//System.out.println( vertexList.indexOf(person1) );
-	    	//vertexList.get( vertexList.indexOf(person1) ).getAdjVertices().add(person2);
-	    	
-	    	person2 = new Vertex(name2);
-	    	//vertexList.get(vertexList.indexOf(person2)).getAdjVertices().add(person1);
-	    	
-	    
-	    	//System.out.println(vertexList.get(vertexList.indexOf(person1)).getAdjVertices());
-	    	//System.out.println(vertexList.get(vertexList.indexOf(person2)).getAdjVertices());
+	    	//System.out.println(person1 + " " + person2);
+	    	hashGraph.get(name1).getAdjVertices().add(person2);
+	    	hashGraph.get(name2).getAdjVertices().add(person1);
+	    	//System.out.println(hashGraph.get(name1).getAdjVertices());
+	    	//System.out.println(hashGraph.get(name2).getAdjVertices());
+
 	    }
 	    scanNameRelations.close();
+	    
+	    System.out.println("Vertex List: " + vertexList);
+	    
+	    System.out.println("Omar: " + hashGraph.get("Omar").getAdjVertices());
+    	System.out.println("Sally: " + hashGraph.get("Sally").getAdjVertices());
+    	System.out.println("Shantal: " + hashGraph.get("Shantal").getAdjVertices());
+    	System.out.println("Billy: " + hashGraph.get("Billy").getAdjVertices());
+    	System.out.println("Diego: " + hashGraph.get("Diego").getAdjVertices());
+    	System.out.println("Prabhu: " + hashGraph.get("Prabhu").getAdjVertices());
+    	System.out.println("Natasha: " + hashGraph.get("Natasha").getAdjVertices());
+	    
 	    
 	    return vertexList;
 	}
