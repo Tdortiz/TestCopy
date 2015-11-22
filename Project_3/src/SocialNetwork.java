@@ -110,7 +110,7 @@ public class SocialNetwork {
 	    	person2.getAdjVertices().add(person1);
 	    }
 	    scanNameRelations.close();
-	    
+	    /**
 	    System.out.println("Vertex List: " + graph.getVertexArray());
 	    System.out.println("Omar: " + graph.getVertex("Omar").getAdjVertices());
     	System.out.println("Sally: " + graph.getVertex("Sally").getAdjVertices());
@@ -118,7 +118,7 @@ public class SocialNetwork {
     	System.out.println("Billy: " + graph.getVertex("Billy").getAdjVertices());
     	System.out.println("Diego: " + graph.getVertex("Diego").getAdjVertices());
     	System.out.println("Prabhu: " + graph.getVertex("Prabhu").getAdjVertices());
-    	System.out.println("Natasha: " + graph.getVertex("Natasha").getAdjVertices()); 
+    	System.out.println("Natasha: " + graph.getVertex("Natasha").getAdjVertices()); */
 	    
 	    return graph;
 	}
@@ -189,7 +189,6 @@ public class SocialNetwork {
 		try{
 			String name1 = scanLine.next();
 			String name2 = scanLine.next();
-			System.out.println("mutual " + name1 + " " + name2);
 			handler.mutual(name1, name2);
 		} catch(NoSuchElementException e){
 			throw new Warning("command name1 name2");
@@ -205,7 +204,6 @@ public class SocialNetwork {
 		try{
 			String name1 = scanLine.next();
 			String name2 = scanLine.next();
-			System.out.println("relation " + name1 + " " + name2);
 			handler.relation(name1, name2);
 		} catch(NoSuchElementException e){
 			throw new Warning("command name1 name2");
