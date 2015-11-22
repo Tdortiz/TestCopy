@@ -11,8 +11,9 @@ public class Vertex {
 	private GenericList<Vertex> adjVertices;
 	/** ID of the node, an String*/
 	private String id;
-	
+	/** Determines if the vertex is marked or not */
 	private boolean marked;
+	private double popularity;
 
 	/**
 	 * Contructs the node with the given ID.
@@ -116,6 +117,14 @@ public class Vertex {
 	
 	public GenericList<Vertex> getAdjVertices() {
 		return adjVertices;
+	}
+
+	public double getPopularity() {
+		return popularity;
+	}
+
+	public void setPopularity(double popularity) {
+		this.popularity = popularity;
 	}
 
 }
