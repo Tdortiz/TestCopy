@@ -48,7 +48,7 @@ public class CommandHandler {
 	}
 	
 	public void popular(){
-		System.out.println("HI POPULAR, I'M DAD");
+		System.out.println( graph.popular() );
 		graph.unmark();
 		
 	}
