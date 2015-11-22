@@ -215,7 +215,6 @@ public class Graph {
 		}*/
 		String s = "";
 		GraphIterator<Vertex> e = person1.getAdjVertices().iterator();
-		GraphIterator<Vertex> f = person2.getAdjVertices().iterator();
 		while( e.hasNext() ){
 			Vertex next = e.next();
 			if( person2.getAdjVertices().contains( next )) {
@@ -228,8 +227,95 @@ public class Graph {
 	
 	public String popular(){
 		String popular = "";
+		GraphIterator<Vertex> e = vertices.iterator();
+		
+		while( e.hasNext() ){
+			Vertex person  = e.next();
+			System.out.println("BFS of " + person + " : " + BFSofVertex(person) );
+			//System.out.println("----------------------------------------" + person + "----------------------------------------");
+			unmark();
+			//person.setPopularity( getPow(person, 0) );
+		}
+			
+		
+		// Prints the popularities for testing purposes 
+		GraphIterator<Vertex> f = vertices.iterator();
+		while( f.hasNext() ){
+			Vertex temp = f.next();
+			System.out.println(temp + " " + temp.getPopularity());
+		}
 		
 		return popular;
+	}
+	
+	/**
+	 * This method gets the BFS of a specific node which equates to 
+	 * the number of nodes the vertex is connected to.
+	 * (The top part of fraction for popularity)
+	 * @param person vertex to run BFS on
+	 * @return numbers of nodes person is connected to.
+	 */
+	public int BFSofVertex(Vertex person){
+		int counter  = 0;
+		Queue<Vertex> q = new Queue<Vertex>();
+		q.add(person);
+		person.setMarked(true);
+		
+		while (!q.isEmpty()) {
+			Vertex current = q.remove();
+			current.setMarked(true);
+			//System.out.println("current: " + current +  " " +  current.isMarked() + " " + current.getAdjVertices());
+			
+			if(current.getid().equals(person.getid())){
+				
+			} else {
+				counter++;
+			}
+
+			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
+			
+			while ( e.hasNext() ) {
+				Vertex adj = e.next();
+				//System.out.println("adjacent is : " + adj);
+				
+				if(adj.isMarked() ){
+					continue;
+				} else if( !(adj.isMarked()) ){ 
+					adj.setMarked(true);
+					q.add(adj);
+				}
+				
+			}
+		}
+		return counter ;
+	}
+	
+	/**
+	 * Returns the total power of a vertex 
+	 * (the lower part of fraction for popularity)
+	 * @param person
+	 * @param depth
+	 * @return
+	 */
+	public int getPow(Vertex person, int depth){
+		person.setMarked(true);
+		GraphIterator<Vertex> e = person.getAdjVertices().iterator();
+		int power = 0;
+		
+		while ( e.hasNext() ) {
+			Vertex adj = e.next();
+			//System.out.print(adj);
+			
+			if(adj.isMarked() ){
+				continue;
+			}
+			
+			int atAdjacentPow = depth + getPow(adj, depth + 1);
+			//System.out.println(atAdjacentPow);
+			power += atAdjacentPow;
+		}
+		//System.out.println(person + " " + power);
+		return power;
 	}
 	
 	public int notConnected() {
