@@ -137,7 +137,8 @@ public class Graph {
 		
 		while (!q.isEmpty()) {
 			Vertex current = q.remove();
-			//System.out.println("current: " + current);
+			current.setMarked(true);
+			//System.out.println("current: " + current +  " " +  current.isMarked() + " " + current.getAdjVertices());
 			shortestPath += current.getid() + "\n";
 			
 			if( current.isAttached(person2) ){
@@ -156,11 +157,14 @@ public class Graph {
 			
 			while ( e.hasNext() ) {
 				Vertex adj = e.next();
-				//System.out.println("e.hasNext = " + adj);
-				if (!adj.isMarked()) {
-					adj.setMarked(true);
+				
+				if(adj.isMarked() ){
+					continue;
+				} else if( !(adj.isMarked()) ){
 					q.add(adj);
+					break;
 				}
+				
 			}
 		}
 		
