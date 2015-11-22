@@ -159,7 +159,7 @@ public class Graph {
 		if (sameCom) {
 			return shortestPath;
 		} else {
-			return "\n";
+			return "";
 		}
 		
 	}
@@ -202,7 +202,7 @@ public class Graph {
 		if (sameCom) {
 			return shortestPath;
 		} else {
-			return "\n";
+			return "";
 		}
 	}
 	
