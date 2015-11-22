@@ -177,17 +177,15 @@ public class Graph {
 	}
 	
 	public String mutual (Vertex person1, Vertex person2 ) {
-		Queue<Vertex> q = new Queue<Vertex>();
+		/**Queue<Vertex> q = new Queue<Vertex>();
 		q.add(person1);
 		person1.setMarked(true);
 		
 		boolean sameCom = false;
 		String shortestPath = "";
 		
-		
 		while (!q.isEmpty()) {
 			Vertex current = q.remove();
-			
 			
 			if ( current.getid().equals(person2.getid()) ) {
 				sameCom = true;
@@ -215,7 +213,18 @@ public class Graph {
 			return shortestPath;
 		} else {
 			return "";
+		}*/
+		String s = "";
+		GraphIterator<Vertex> e = person1.getAdjVertices().iterator();
+		GraphIterator<Vertex> f = person2.getAdjVertices().iterator();
+		while( e.hasNext() ){
+			Vertex next = e.next();
+			if( person2.getAdjVertices().contains( next )) {
+				s += next + "\n";
+			}
 		}
+		
+		return s;
 	}
 	
 	
