@@ -90,6 +90,7 @@ public class SocialNetwork {
 	    
 		// Part where we create the edges/adjacency list
 	    Scanner scanNameRelations = null;
+	    System.out.println("$");
 	    while( scanFile.hasNextLine() ){
 	    	scanNameRelations = new Scanner(scanFile.nextLine());
 	    	String name1 = null;
