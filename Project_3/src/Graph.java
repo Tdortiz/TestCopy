@@ -126,7 +126,6 @@ public class Graph {
 		return person1.isAttached(person2);
 	}
 	
-	
 	public String relation (Vertex person1, Vertex person2 ) {
 		Queue<Vertex> q = new Queue<Vertex>();
 		q.add(person1);
@@ -227,6 +226,11 @@ public class Graph {
 		return s;
 	}
 	
+	public String popular(){
+		String popular = "";
+		
+		return popular;
+	}
 	
 	public int notConnected() {
 		int loners = 0;
