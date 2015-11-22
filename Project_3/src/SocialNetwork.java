@@ -32,8 +32,8 @@ public class SocialNetwork {
 		Scanner scanInput = new Scanner(System.in);
 		CommandHandler handler = new CommandHandler();
 		
-		GenericList<Node> graphList = new GenericList<Node>();
-		createGraph(graphList, scanFile);
+		GenericList<Vertex> vertexList = new GenericList<Vertex>();
+		createGraph(vertexList, scanFile);
 	
 		while(scanInput.hasNextLine()){
 			try{
@@ -68,23 +68,23 @@ public class SocialNetwork {
 	 * @param scanFile Scanner that parses through the file
 	 * @return a graph representation of the file
 	 */
-	public static GenericList<Node> createGraph(GenericList<Node> graphList, Scanner scanFile){
-	    String name = null;
-	    Node person = null;
+	public static GenericList<Vertex> createGraph(GenericList<Vertex> vertexList, Scanner scanFile){
+		String name = null;
+	    Vertex person = null;
 		// Part where we create the nodes
 	    while ( scanFile.hasNext() ){
 	    	name = scanFile.next();
-	    	//System.out.println(name);
 	    	
 	    	if(name.equals("$")){
 	    		scanFile.nextLine(); // gets rid of all of space after names
 	    		break;
 	    	}
 	    	
-	    	person = new Node(name);
-	        graphList.add(person);
-	        System.out.println(graphList);
+	    	person = new Vertex(name);
+	    	vertexList.add(person);
 	    }
+	    
+	    System.out.println("Vertex List: " + vertexList);
 	    
 		// Part where we create the edges/adjacency list?
 	    Scanner scanNameRelations = null;
@@ -101,12 +101,25 @@ public class SocialNetwork {
 				throw new Warning("command name1 name2");
 			}
 	    	
-	    	System.out.println(name1 + " " + name2);
 	    	// TODO this part for creating edges
+	    	Vertex person1 = new Vertex(name1);
+	    	Vertex person2 = new Vertex(name2);
+	    	
+	    	System.out.println(person1 + " " + person2);
+	    	person1 = new Vertex(name1);
+	    	//System.out.println( vertexList.indexOf(person1) );
+	    	//vertexList.get( vertexList.indexOf(person1) ).getAdjVertices().add(person2);
+	    	
+	    	person2 = new Vertex(name2);
+	    	//vertexList.get(vertexList.indexOf(person2)).getAdjVertices().add(person1);
+	    	
+	    
+	    	//System.out.println(vertexList.get(vertexList.indexOf(person1)).getAdjVertices());
+	    	//System.out.println(vertexList.get(vertexList.indexOf(person2)).getAdjVertices());
 	    }
 	    scanNameRelations.close();
 	    
-	    return graphList;
+	    return vertexList;
 	}
 	
 	/**
