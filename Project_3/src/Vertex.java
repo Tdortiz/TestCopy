@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
  * Represents a node/vertex in a graph.
  * 

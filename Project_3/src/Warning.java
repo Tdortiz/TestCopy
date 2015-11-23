@@ -9,6 +9,8 @@ import java.util.InputMismatchException;
  */
 public class Warning extends InputMismatchException {
 
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Simple constructor for warning.
 	 */

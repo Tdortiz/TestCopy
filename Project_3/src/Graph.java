@@ -60,29 +60,6 @@ public class Graph {
 	public GenericList<Vertex> getVertexArray() {
 		return vertices;
 	}
-
-	/**
-	 * Removes an edge and returns it.
-	 * 
-	 * @return the removed edge
-	 
-	//public Edge removeEdge() {
-		//Edge removed = edges.remove(0);
-		//nodes.remove(removed.getFirstNode());
-		//nodes.remove(removed.getSecondNode());
-		//return removed;
-	//} */
-
-	/**
-	 * Removes/returns highest degree node.
-	 * 
-	 * @return highest degree node on the graph, which has just been removed.
-	 */
-	public Vertex removeHigestNode() {
-
-		Vertex max;
-		return null;
-	}
 	
 	/**
 	 * Determines if person1 is a friend of person2
