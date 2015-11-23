@@ -1,14 +1,12 @@
 public class Graph {
 
 	private GenericList<Vertex> vertices;
-	private GenericList<Edge> edges;
 
 	/**
 	 * Constructs graph.
 	 */
 	public Graph() {
 		vertices = new GenericList<Vertex>();
-		edges = new GenericList<Edge>();
 	}
 
 	/**
@@ -18,38 +16,8 @@ public class Graph {
 	 */
 	public boolean isEmpty() {
 
-		return vertices.isEmpty() && edges.isEmpty();
+		return vertices.isEmpty();
 
-	}
-
-	/**
-	 * Adds given edge to graph.
-	 * 
-	 * @param edge
-	 *            to add to graph
-	 
-	//public void add(Edge edge) {
-		//edges.add(edge);
-		//vertices.add(edge.getFirstNode());
-		//vertices.add(edge.getSecondNode());
-	//}*/
-
-	/**
-	 * Returns true if the given edge is in the graph. 
-	 * Runs in O(m) time.
-	 * 
-	 * @param edge
-	 *            to search for.
-	 * @return true if edge is in graph, false otherwise.
-	 */
-	public boolean edgeExists(Edge edge) {
-
-		for (int i = 0; i < edges.size(); i++) {
-			if (edges.get(i).equals(edge)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**
