@@ -1,7 +1,4 @@
 import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,28 +10,18 @@ import org.junit.Test;
 public class GraphTest {
 	
 	/**
-	 * first node used for testing
+	 * first Vertex used for testing
 	 */
-	private Node node1 = new Node(2);
+	private Vertex Vertex1 = new Vertex("A");
 	/**
-	 * second node used for testing
+	 * second Vertex used for testing
 	 */
-	private Node node2 = new Node(69);
-	/**
-	 * edge used for testing, composed
-	 * of nodes 1 and 2
-	 */
-	private Edge e1 = new Edge(node1, node2);
-	
-	
-	private ArrayList<Node> allTheNodes;
-	private ArrayList<Edge> allTheEdges;
-
-	
+	private Vertex Vertex2 = new Vertex("B");
+		
 	/**
 	 * tests to see if the graph has no edges
-	 * or nodes. Should work well because there
-	 * are no nodes or edges intantiazed in the
+	 * or Vertexs. Should work well because there
+	 * are no Vertexs or edges intantiazed in the
 	 * graph
 	 */
 	@Test
@@ -46,68 +33,47 @@ public class GraphTest {
 
 	/**
 	 * test for the method to add edges to a graph.
-	 * Tested by adding a node to the graph then
+	 * Tested by adding a Vertex to the graph then
 	 * checking to see that isEmpty is false
 	 */
 	@Test
 	public void testAdd() {
 		Graph g = new Graph();
 		assertEquals(true, g.isEmpty());
-		
-		g.add(e1);
 		assertEquals(false, g.isEmpty());
 		
 	}
 
 	/**
-	 * test to see if edgeexists works
-	 * add an edge and if it exists then the
-	 * method works
-	 */
-	@Test
-	public void testEdgeExists() {
-		Graph g = new Graph();
-		assertEquals(true, g.isEmpty());
-		
-		g.add(e1);
-		assertEquals(true, g.edgeExists(e1));
-	}
-
-	/**
-	 * test to see if nodeexists works.
-	 * Add an edge and test to see if the two nodes
+	 * test to see if Vertexexists works.
+	 * Add an edge and test to see if the two Vertexs
 	 * in that edge exist. If true, the method works
 	 */
 	@Test
-	public void testNodeExists() {
+	public void testVertexExists() {
 		Graph g = new Graph();
 		assertEquals(true, g.isEmpty());
 		
-		g.add(e1);
-		assertEquals(true, g.nodeExists(node1));
-		assertEquals(true, g.nodeExists(node2));
+		assertEquals(true, g.VertexExists(Vertex1));
+		assertEquals(true, g.VertexExists(Vertex2));
 		
 	}
 
 	/**
-	 * tests the getnode method by adding an
-	 * edge to the tree and seeing if the nodes
+	 * tests the getVertex method by adding an
+	 * edge to the tree and seeing if the Vertexs
 	 * in the edge are returned when the method is
 	 * called
 	 */
 	@Test
-	public void testGetNode() {
+	public void testGetVertex() {
 		Graph g = new Graph();
 		assertEquals(true, g.isEmpty());
-		
-		g.add(e1);
-		
-		assertEquals(node2, g.getNode(69));
 	}
 
 	
 	@Test
-	public void testGetNodeArray() {
+	public void testGetVertexArray() {
 		fail("Not yet implemented");
 	}
 
@@ -120,15 +86,10 @@ public class GraphTest {
 	public void testRemoveEdge() {
 		Graph g = new Graph();
 		assertEquals(true, g.isEmpty());
-		
-		g.add(e1);
-		g.removeEdge();
-		
-		assertEquals(true, g.isEmpty());
 	}
 
 	@Test
-	public void testRemoveHigestNode() {
+	public void testRemoveHigestVertex() {
 		fail("Not yet implemented");
 	}
 
