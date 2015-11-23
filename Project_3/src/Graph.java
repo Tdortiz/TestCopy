@@ -27,12 +27,12 @@ public class Graph {
 	 * 
 	 * @param edge
 	 *            to add to graph
-	 */
+	 
 	//public void add(Edge edge) {
 		//edges.add(edge);
 		//vertices.add(edge.getFirstNode());
 		//vertices.add(edge.getSecondNode());
-	//}
+	//}*/
 
 	/**
 	 * Returns true if the given edge is in the graph. 
@@ -97,13 +97,13 @@ public class Graph {
 	 * Removes an edge and returns it.
 	 * 
 	 * @return the removed edge
-	 */
+	 
 	//public Edge removeEdge() {
 		//Edge removed = edges.remove(0);
 		//nodes.remove(removed.getFirstNode());
 		//nodes.remove(removed.getSecondNode());
 		//return removed;
-	//}
+	//} */
 
 	/**
 	 * Removes/returns highest degree node.
@@ -231,19 +231,35 @@ public class Graph {
 		
 		while( e.hasNext() ){
 			Vertex person  = e.next();
-			System.out.println("BFS of " + person + " : " + BFSofVertex(person) );
-			//System.out.println("----------------------------------------" + person + "----------------------------------------");
+			
+			//System.out.println("BFS of " + person + " : " + BFSofVertex(person) );
+			double bfs = BFSofVertex(person);
 			unmark();
-			//person.setPopularity( getPow(person, 0) );
+			//System.out.println("getPow(" + person + ") = " + getPow(person,1));
+			person.setPopularity( bfs / getPow(person, 1) );
+			unmark();
 		}
 			
-		
 		// Prints the popularities for testing purposes 
 		GraphIterator<Vertex> f = vertices.iterator();
+		double max = Double.MIN_VALUE;
 		while( f.hasNext() ){
 			Vertex temp = f.next();
-			System.out.println(temp + " " + temp.getPopularity());
+			if(temp.getPopularity() >= max){
+				max = temp.getPopularity();
+			}
+			//System.out.println(temp + ".popularity = " + temp.getPopularity());
 		}
+		
+		GraphIterator<Vertex> f2 = vertices.iterator();
+		while( f2.hasNext() ){
+			Vertex temp = f2.next();
+			if(temp.getPopularity() == max){
+				popular += temp + "\n";
+			}
+			//System.out.println(temp + ".popularity = " + temp.getPopularity());
+		}
+		
 		
 		return popular;
 	}
@@ -297,27 +313,73 @@ public class Graph {
 	 * @param depth
 	 * @return
 	 */
+	//public int getPow(Vertex person, int depth){
 	public int getPow(Vertex person, int depth){
-		person.setMarked(true);
-		GraphIterator<Vertex> e = person.getAdjVertices().iterator();
+		/**
+ 		person.setMarked(true);
+		GraphIterator<Vertex> vertexList = person.getAdjVertices().iterator();
 		int power = 0;
 		
-		while ( e.hasNext() ) {
-			Vertex adj = e.next();
-			//System.out.print(adj);
-			
+		while ( vertexList.hasNext() ) {
+			Vertex adj = vertexList.next();
+
 			if(adj.isMarked() ){
 				continue;
 			}
 			
+			System.out.println("   " + adj);
+			adj.setMarked(true);
 			int atAdjacentPow = depth + getPow(adj, depth + 1);
-			//System.out.println(atAdjacentPow);
+			System.out.println("   adj depth is " + atAdjacentPow );
+			
+			System.out.println(atAdjacentPow);
+			
 			power += atAdjacentPow;
 		}
+		
 		//System.out.println(person + " " + power);
+		return power; 
+		*/
+		//System.out.println("getpow( " + person + ", " + depth + ")");
+		
+		boolean[] arr = new boolean[person.getAdjVertices().size()];
+		int i = 0;
+
+		person.setMarked(true);
+		GraphIterator<Vertex> adjList = person.getAdjVertices().iterator();
+		int power = 0;
+		
+		while(adjList.hasNext() ){
+			Vertex temp = adjList.next();
+			if( !temp.isMarked() ){
+				power += depth;
+			} else {
+				arr[i] = true;
+			}
+			i++;
+			temp.setMarked(true);
+		}
+		i = 0;
+		//System.out.println("    POWER: " + power);
+		GraphIterator<Vertex> adjList2 = person.getAdjVertices().iterator();
+		while(adjList2.hasNext()){
+			Vertex temp = adjList2.next();
+			//if(temp.isMarked() == false){
+			if(arr[i] == false){
+				arr[i] = true;
+				i++;
+				power += getPow(temp,depth + 1);
+				//return power += getPow(temp, depth + 1);
+			} else {
+				i++;
+				continue;
+			}
+		}
+		
+		//System.out.println("    FINAL POWER: " + power);
 		return power;
 	}
-	
+
 	public int notConnected() {
 		int loners = 0;
 		int notCon = 1;
