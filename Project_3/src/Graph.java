@@ -277,46 +277,19 @@ public class Graph {
 	/**
 	 * Returns the total power of a vertex 
 	 * (the lower part of fraction for popularity)
-	 * @param person
-	 * @param depth
-	 * @return
+	 * @param person to analyze 
+	 * @param depth of a node from the original vertex
+	 * @return the cumulative power of a vertex
 	 */
-	//public int getPow(Vertex person, int depth){
 	public int getPow(Vertex person, int depth){
-		/**
- 		person.setMarked(true);
-		GraphIterator<Vertex> vertexList = person.getAdjVertices().iterator();
-		int power = 0;
-		
-		while ( vertexList.hasNext() ) {
-			Vertex adj = vertexList.next();
-
-			if(adj.isMarked() ){
-				continue;
-			}
-			
-			System.out.println("   " + adj);
-			adj.setMarked(true);
-			int atAdjacentPow = depth + getPow(adj, depth + 1);
-			System.out.println("   adj depth is " + atAdjacentPow );
-			
-			System.out.println(atAdjacentPow);
-			
-			power += atAdjacentPow;
-		}
-		
-		//System.out.println(person + " " + power);
-		return power; 
-		*/
 		//System.out.println("getpow( " + person + ", " + depth + ")");
-		
 		boolean[] arr = new boolean[person.getAdjVertices().size()];
 		int i = 0;
 
 		person.setMarked(true);
 		GraphIterator<Vertex> adjList = person.getAdjVertices().iterator();
 		int power = 0;
-		
+		// Goes through each adjacent node and adds on to power if they haven't been marked yet.
 		while(adjList.hasNext() ){
 			Vertex temp = adjList.next();
 			if( !temp.isMarked() ){
@@ -343,7 +316,6 @@ public class Graph {
 				continue;
 			}
 		}
-		
 		//System.out.println("    FINAL POWER: " + power);
 		return power;
 	}
