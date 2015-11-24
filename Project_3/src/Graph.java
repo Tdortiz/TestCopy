@@ -68,11 +68,6 @@ public class Graph {
 		return person1.isAttached(person2);
 	}
 	
-	//public String relationDFS (Vertex person1, Vertex person2 ) {
-		//Queue<Vertex> path = relationHelper( person1, person2 );
-		//return null;
-	//}
-	
 	public String relation (Vertex start, Vertex goal) {
 		if(start.isAttached(goal)){
 			return "" + start.toString() + "\n" + goal.toString() + "\n";		
