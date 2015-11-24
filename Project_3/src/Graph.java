@@ -266,7 +266,7 @@ public class Graph {
 			
 		// Prints the popularities for testing purposes 
 		GraphIterator<Vertex> f = vertices.iterator();
-		double max = Double.MIN_VALUE;
+		double max = 0;
 		while( f.hasNext() ){
 			Vertex temp = f.next();
 			if(temp.getPopularity() >= max){
