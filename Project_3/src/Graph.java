@@ -86,8 +86,30 @@ public class Graph {
 		while (!q.isEmpty()) {
 			Vertex current = q.remove();
 			current.setMarked(true);
+			
+			
+			//int AdjNum = current.getEdges().size();
+			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
+			
+			// JACOB JUST ADDED THIS. IF THE CURRENT NODE HAS NO UNMARK FRIENDS, DO NOT ADD HIM TO THE LIST
+			boolean add = false;
+			
+			while ( e.hasNext() ) {
+				Vertex adj = e.next();
+				
+				if(adj.isMarked() ){
+					continue;
+				} else if( !(adj.isMarked()) ){
+					q.add(adj);
+					add = true;
+				}
+				
+			}
+			
 			//System.out.println("current: " + current +  " " +  current.isMarked() + " " + current.getAdjVertices());
-			shortestPath += current.getid() + "\n";
+			if ( add ) {
+				shortestPath += current.getid() + "\n";
+			}
 			
 			if( current.isAttached(person2) ){
 				sameCom = true;
@@ -100,20 +122,6 @@ public class Graph {
 				break;
 			}
 			
-			//int AdjNum = current.getEdges().size();
-			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
-			
-			while ( e.hasNext() ) {
-				Vertex adj = e.next();
-				
-				if(adj.isMarked() ){
-					continue;
-				} else if( !(adj.isMarked()) ){
-					q.add(adj);
-					break;
-				}
-				
-			}
 		}
 		
 		if (sameCom) {
