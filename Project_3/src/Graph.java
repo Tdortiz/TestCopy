@@ -71,6 +71,7 @@ public class Graph {
 		return person1.isAttached(person2);
 	}
 	
+	
 	public String relation (Vertex person1, Vertex person2 ) {
 		if(person1.isAttached(person2)){
 			return "" + person1.toString() + "\n" + person2.toString() + "\n";		
@@ -85,7 +86,7 @@ public class Graph {
 		
 		while (!q.isEmpty()) {
 			Vertex current = q.remove();
-			current.setMarked(true);
+			//current.setMarked(true);
 			
 			
 			//int AdjNum = current.getEdges().size();
@@ -97,13 +98,11 @@ public class Graph {
 			while ( e.hasNext() ) {
 				Vertex adj = e.next();
 				
-				if(adj.isMarked() ){
-					continue;
-				} else if( !(adj.isMarked()) ){
+				if( !(adj.isMarked()) ){
 					q.add(adj);
+					adj.setMarked(true);
 					add = true;
 				}
-				
 			}
 			
 			//System.out.println("current: " + current +  " " +  current.isMarked() + " " + current.getAdjVertices());
@@ -131,6 +130,9 @@ public class Graph {
 		}
 		
 	}
+	
+	
+	
 	
 	public String mutual (Vertex person1, Vertex person2 ) {
 		/**Queue<Vertex> q = new Queue<Vertex>();
