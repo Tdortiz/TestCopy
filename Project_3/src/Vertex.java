@@ -12,6 +12,7 @@ public class Vertex {
 	/** Determines if the vertex is marked or not */
 	private boolean marked;
 	private double popularity;
+	private Vertex backPointer;
 
 	/**
 	 * Contructs the node with the given ID.
@@ -23,6 +24,7 @@ public class Vertex {
 		this.id = id;
 		this.marked = false;
 		adjVertices = new GenericList<Vertex>();
+		this.backPointer = null;
 	}
 
 	/**
@@ -123,6 +125,14 @@ public class Vertex {
 
 	public void setPopularity(double popularity) {
 		this.popularity = popularity;
+	}
+	
+	public Vertex getBackPointer() {
+		return this.backPointer;
+	}
+	
+	public void setBackPointer( Vertex v ) {
+		this.backPointer = v;
 	}
 
 }

@@ -71,31 +71,75 @@ public class Graph {
 		return person1.isAttached(person2);
 	}
 	
-	public String relationDFS (Vertex person1, Vertex person2 ) {
-		if(person1.isAttached(person2)){
-			return "" + person1.toString() + "\n" + person2.toString() + "\n";		
+	//public String relationDFS (Vertex person1, Vertex person2 ) {
+		//Queue<Vertex> path = relationHelper( person1, person2 );
+		//return null;
+	//}
+	
+	public String relation (Vertex start, Vertex goal) {
+		if(start.isAttached(goal)){
+			return "" + start.toString() + "\n" + goal.toString() + "\n";		
 		}
 		
-		Stack<Vertex> s = new Stack<Vertex>();
-		person1.setMarked(true);
-		s.push(person1);
-		s = relationHelper( person1, person2, s);
-		String path = "";
 		
-		while ( !( s.isEmpty() ) ) {
-			path += s.peek().getid() + "\n";
-			s.pop();
+		Queue<Vertex> q = new Queue<Vertex>();
+		q.add(start);
+		start.setMarked(true);
+		boolean pathFound = false;
+		
+		while ( !(q.isEmpty()) ) {
+			Vertex current = q.remove();
+			
+			if ( current.getid().equals(goal.getid()) ) {
+				//path is found
+				pathFound = true;
+				break;
+			}
+			
+			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
+			
+			while (e.hasNext()) {
+				Vertex adj = e.next();
+				
+				if( !(adj.isMarked()) ){
+					q.add(adj);
+					adj.setMarked(true);
+					adj.setBackPointer(current);
+				}
+				
+			}
 		}
 		
-		return path;
-	}
-	
-	public Stack<Vertex> relationHelper (Vertex v, Vertex goal, Stack<Vertex> s ) {
 		
-		return null;
+		if ( pathFound ) {
+			String shortestPath = "";
+			boolean foundStart = false;
+			Vertex current = goal;
+			Stack<Vertex> s = new Stack<Vertex>();
+			while ( !foundStart ) {
+				
+				if ( current.getid().equals(start.getid()) ) {
+					foundStart = true;
+					s.push(current);
+				} else {
+					s.push(current);
+					current = current.getBackPointer();
+				}
+				
+			}
+			
+			while ( !(s.isEmpty()) ) {
+				shortestPath += s.peek().getid() + "\n";
+				s.pop();
+			}
+			return shortestPath;
+		}
+		
+		
+		return "";
 	}
 	
-	public String relation (Vertex person1, Vertex person2 ) {
+	public String relationBroke (Vertex person1, Vertex person2 ) {
 		if(person1.isAttached(person2)){
 			return "" + person1.toString() + "\n" + person2.toString() + "\n";		
 		}
