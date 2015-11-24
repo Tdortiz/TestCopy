@@ -249,9 +249,18 @@ public class Graph {
 			
 			//System.out.println("BFS of " + person + " : " + BFSofVertex(person) );
 			double bfs = BFSofVertex(person);
+			if(bfs == 0){
+				person.setPopularity(0);
+				continue;
+			}
 			unmark();
+			double pow = getPow(person, 1);
+			if(pow == 0){
+				person.setPopularity(0);
+				continue;
+			}
 			//System.out.println("getPow(" + person + ") = " + getPow(person,1));
-			person.setPopularity( bfs / getPow(person, 1) );
+			person.setPopularity( bfs / pow );
 			unmark();
 		}
 			
