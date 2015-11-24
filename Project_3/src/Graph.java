@@ -274,8 +274,6 @@ public class Graph {
 			}
 			//System.out.println(temp + ".popularity = " + temp.getPopularity());
 		}
-		
-		
 		return popular;
 	}
 	
