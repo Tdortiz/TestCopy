@@ -15,9 +15,7 @@ public class Graph {
 	 * @return true if the graph is empty.
 	 */
 	public boolean isEmpty() {
-
 		return vertices.isEmpty();
-
 	}
 
 	/**
@@ -29,7 +27,6 @@ public class Graph {
 	 * @return true if node is in graph.
 	 */
 	public boolean VertexExists(Vertex vtr) {
-
 		for (int i = 0; i < vertices.size(); i++) {
 			if (vertices.get(i).equals(vtr)) {
 				return true;
@@ -197,9 +194,6 @@ public class Graph {
 		}
 		
 	}
-	
-	
-	
 	
 	public String mutual (Vertex person1, Vertex person2 ) {
 		/**Queue<Vertex> q = new Queue<Vertex>();
