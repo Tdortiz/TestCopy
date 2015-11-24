@@ -23,6 +23,7 @@ public class CommandHandler {
 	}
 	
 	public void isFriend(String name1, String name2){
+		graph.unmark();
 		if( graph.isFriend(hashGraph.get(name1), hashGraph.get(name2)) ){
 			System.out.println("yes");
 		} else {
@@ -33,21 +34,25 @@ public class CommandHandler {
 	}
 	
 	public void mutual(String name1, String name2){
+		graph.unmark();
 		System.out.print( graph.mutual(hashGraph.get(name1), hashGraph.get(name2)) );
 		graph.unmark();
 	}
 	
 	public void relation(String name1, String name2){
+		graph.unmark();
 		System.out.print( graph.relation(hashGraph.get(name1), hashGraph.get(name2)) );
 		graph.unmark();
 	}
 	
 	public void notConnected(){
+		graph.unmark();
 		System.out.println( graph.notConnected() );
 		graph.unmark();
 	}
 	
 	public void popular(){
+		graph.unmark();
 		System.out.print( graph.popular() );
 		graph.unmark();
 		

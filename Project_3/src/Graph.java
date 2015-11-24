@@ -72,6 +72,10 @@ public class Graph {
 	}
 	
 	public String relation (Vertex person1, Vertex person2 ) {
+		if(person1.isAttached(person2)){
+			return "" + person1.toString() + "\n" + person2.toString() + "\n";		
+		}
+		
 		Queue<Vertex> q = new Queue<Vertex>();
 		q.add(person1);
 		person1.setMarked(true);

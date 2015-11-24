@@ -14,4 +14,3 @@ alpha gamma
 beta epsilon
 beta gamma
 epsilon delta
-
