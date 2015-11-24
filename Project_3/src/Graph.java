@@ -301,12 +301,14 @@ public class Graph {
 		int loners = 0;
 		int notCon = 1;
 		int componetNodes = 0;
+		int comCount = 0;
 		
 		GraphIterator<Vertex> vrtList = vertices.iterator();
 		
 		while (vrtList.hasNext()) {
 			Vertex current = vrtList.next();
 			if (!current.isMarked()) {
+				comCount++;
 				componetNodes = findComponentNodes(current);
 				if ( componetNodes == 1 ) {
 					loners++;
@@ -319,7 +321,12 @@ public class Graph {
 		int notConLoners = loners * (vertices.size() - 1);
 		notCon += notConLoners;
 		
-		return notCon;
+		if ( comCount == 1) {
+			return 0;
+		} else {
+			return notCon;
+		}
+		
 	}
 	
 	public int findComponentNodes( Vertex person ) {
