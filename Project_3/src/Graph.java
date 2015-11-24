@@ -71,6 +71,29 @@ public class Graph {
 		return person1.isAttached(person2);
 	}
 	
+	public String relationDFS (Vertex person1, Vertex person2 ) {
+		if(person1.isAttached(person2)){
+			return "" + person1.toString() + "\n" + person2.toString() + "\n";		
+		}
+		
+		Stack<Vertex> s = new Stack<Vertex>();
+		person1.setMarked(true);
+		s.push(person1);
+		s = relationHelper( person1, person2, s);
+		String path = "";
+		
+		while ( !( s.isEmpty() ) ) {
+			path += s.peek().getid() + "\n";
+			s.pop();
+		}
+		
+		return path;
+	}
+	
+	public Stack<Vertex> relationHelper (Vertex v, Vertex goal, Stack<Vertex> s ) {
+		
+		return null;
+	}
 	
 	public String relation (Vertex person1, Vertex person2 ) {
 		if(person1.isAttached(person2)){
