@@ -329,6 +329,9 @@ public class Graph {
 				
 			}
 		}
+		if(counter == 0){
+			return 1;
+		}
 		return counter ;
 	}
 	
