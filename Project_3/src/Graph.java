@@ -1,12 +1,14 @@
 public class Graph {
 
 	private GenericList<Vertex> vertices;
+	private String popular;
 
 	/**
 	 * Constructs graph.
 	 */
 	public Graph() {
 		vertices = new GenericList<Vertex>();
+		popular = null;
 	}
 
 	/**
@@ -240,6 +242,14 @@ public class Graph {
 		return s;
 	}
 	
+	public String getPopular(){
+		if(this.popular == null){
+			return popular();
+		} else {
+			return this.popular;
+		}
+	}
+	
 	public String popular(){
 		String popular = "";
 		GraphIterator<Vertex> e = vertices.iterator();
@@ -260,6 +270,7 @@ public class Graph {
 				continue;
 			}
 			//System.out.println("getPow(" + person + ") = " + getPow(person,1));
+			//System.out.println(person + " bfs: " + bfs + " pow: " + pow);
 			person.setPopularity( bfs / pow );
 			unmark();
 		}
@@ -283,6 +294,7 @@ public class Graph {
 			}
 			//System.out.println(temp + ".popularity = " + temp.getPopularity());
 		}
+		this.popular = popular;
 		return popular;
 	}
 	
