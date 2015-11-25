@@ -113,17 +113,7 @@ public class SocialNetwork {
         
         if(scanNameRelations != null){
             scanNameRelations.close();
-        }
-        /**
-        System.out.println("Vertex List: " + graph.getVertexArray());
-        System.out.println("Omar: " + graph.getVertex("Omar").getAdjVertices());
-        System.out.println("Sally: " + graph.getVertex("Sally").getAdjVertices());
-        System.out.println("Shantal: " + graph.getVertex("Shantal").getAdjVertices());
-        System.out.println("Billy: " + graph.getVertex("Billy").getAdjVertices());
-        System.out.println("Diego: " + graph.getVertex("Diego").getAdjVertices());
-        System.out.println("Prabhu: " + graph.getVertex("Prabhu").getAdjVertices());
-        System.out.println("Natasha: " + graph.getVertex("Natasha").getAdjVertices()); */
-        
+        }        
         return graph;
     }
     
