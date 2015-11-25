@@ -35,6 +35,8 @@ public class SocialNetwork {
         Graph graph = new Graph();
         createGraph(graph, hashGraph, scanFile);
         CommandHandler handler = new CommandHandler(graph, hashGraph);
+        
+        System.out.println(graph);
     
         while(scanInput.hasNextLine()){
             try{

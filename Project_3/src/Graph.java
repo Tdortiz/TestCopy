@@ -462,4 +462,8 @@ public class Graph {
 			vertices.get(i).setMarked(false) ;
 		}
 	}
+
+	public String toString(){
+		return this.vertices.toString();
+	}
 }
