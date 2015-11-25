@@ -255,6 +255,7 @@ public class Graph {
 	private String popular(){
 		String popular = "";
 		GraphIterator<Vertex> e = vertices.iterator();
+		double max = 0;
 		
 		while( e.hasNext() ){
 			Vertex person  = e.next();
@@ -274,27 +275,21 @@ public class Graph {
 			//System.out.println("getPow(" + person + ") = " + getPow(person,1));
 			//System.out.println(person + " bfs: " + bfs + " pow: " + pow);
 			person.setPopularity( bfs / pow );
+			
+			if(person.getPopularity() >= max){
+				max = person.getPopularity();
+			}
+			
 			unmark();
 		}
-			
-		// Prints the popularities for testing purposes 
-		GraphIterator<Vertex> f = vertices.iterator();
-		double max = 0;
-		while( f.hasNext() ){
-			Vertex temp = f.next();
-			if(temp.getPopularity() >= max){
-				max = temp.getPopularity();
-			}
-			//System.out.println(temp + ".popularity = " + temp.getPopularity());
-		}
-		
+
 		GraphIterator<Vertex> f2 = vertices.iterator();
 		while( f2.hasNext() ){
 			Vertex temp = f2.next();
 			if(temp.getPopularity() == max){
 				popular += temp + "\n";
 			}
-			//System.out.println(temp + ".popularity = " + temp.getPopularity());
+			System.out.println(temp + ".popularity = " + temp.getPopularity());
 		}
 		this.popular = popular;
 		return popular;
