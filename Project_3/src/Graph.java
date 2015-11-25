@@ -289,7 +289,7 @@ public class Graph {
 			if(temp.getPopularity() == max){
 				popular += temp + "\n";
 			}
-			System.out.println(temp + ".popularity = " + temp.getPopularity());
+			//System.out.println(temp + ".popularity = " + temp.getPopularity());
 		}
 		this.popular = popular;
 		return popular;
