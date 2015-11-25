@@ -2,6 +2,7 @@ public class Graph {
 
 	private GenericList<Vertex> vertices;
 	private String popular;
+	private int notConnected;
 
 	/**
 	 * Constructs graph.
@@ -9,6 +10,7 @@ public class Graph {
 	public Graph() {
 		vertices = new GenericList<Vertex>();
 		popular = null;
+		notConnected = -1;
 	}
 
 	/**
@@ -250,7 +252,7 @@ public class Graph {
 		}
 	}
 	
-	public String popular(){
+	private String popular(){
 		String popular = "";
 		GraphIterator<Vertex> e = vertices.iterator();
 		
@@ -305,7 +307,7 @@ public class Graph {
 	 * @param person vertex to run BFS on
 	 * @return numbers of nodes person is connected to.
 	 */
-	public int BFSofVertex(Vertex person){
+	private int BFSofVertex(Vertex person){
 		int counter  = 0;
 		Queue<Vertex> q = new Queue<Vertex>();
 		q.add(person);
@@ -350,7 +352,7 @@ public class Graph {
 	 * @param depth of a node from the original vertex
 	 * @return the cumulative power of a vertex
 	 */
-	public int getPow(Vertex person, int depth){
+	private int getPow(Vertex person, int depth){
 		//System.out.println("getpow( " + person + ", " + depth + ")");
 		boolean[] arr = new boolean[person.getAdjVertices().size()];
 		int i = 0;
@@ -389,7 +391,15 @@ public class Graph {
 		return power;
 	}
 
-	public int notConnected() {
+	public int getNotConnected(){
+		if(this.notConnected == -1){ // if we haven't done not connected yet.
+			return notConnected();
+		} else {
+			return this.notConnected;
+		}
+	}
+	
+	private int notConnected() {
 		int loners = 0;
 		int notCon = 1;
 		int componetNodes = 0;
@@ -414,14 +424,16 @@ public class Graph {
 		notCon += notConLoners;
 		
 		if ( comCount == 1) {
+			this.notConnected = 0;
 			return 0;
 		} else {
+			this.notConnected = notCon;
 			return notCon;
 		}
 		
 	}
 	
-	public int findComponentNodes( Vertex person ) {
+	private int findComponentNodes( Vertex person ) {
 		int count = 0;
 		Queue<Vertex> q = new Queue<Vertex>();
 		q.add(person);

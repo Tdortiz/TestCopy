@@ -47,7 +47,7 @@ public class CommandHandler {
 	
 	public void notConnected(){
 		graph.unmark();
-		System.out.println( graph.notConnected() );
+		System.out.println( graph.getNotConnected() );
 		graph.unmark();
 	}
 	
