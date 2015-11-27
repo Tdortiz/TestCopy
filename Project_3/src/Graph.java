@@ -270,10 +270,11 @@ public class Graph {
 			double pow = getPow(person, 1);
 			if(pow == 0){
 				person.setPopularity(0);
+				System.out.println(person + ": " + person.getPopularity());
 				continue;
 			}
 			//System.out.println("getPow(" + person + ") = " + getPow(person,1));
-			//System.out.println(person + " bfs: " + bfs + " pow: " + pow);
+			System.out.println(person + ": " + bfs + " / " + pow);
 			person.setPopularity( bfs / pow );
 			
 			if(person.getPopularity() >= max){
@@ -331,13 +332,12 @@ public class Graph {
 					adj.setMarked(true);
 					q.add(adj);
 				}
-				
 			}
 		}
 		if(counter == 0){
 			return 1;
 		}
-		return counter ;
+		return counter;
 	}
 	
 	/**
