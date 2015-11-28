@@ -488,10 +488,10 @@ public class Graph {
 		while ( e.hasNext() ) {
 			Vertex current = e.next();
 			//find all the people this vertex is connected to
-			int top = findComponentNodes( current );
+			int top = findComponentNodes( current ) - 1;
 			
 			// A special case, if the person has no friends their popularity is 0
-			if ( top == 1 ) {
+			if ( top == 0 ) {
 				current.setPopularity( 0.0 );
 				unmark();
 			} else {
