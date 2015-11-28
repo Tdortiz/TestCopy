@@ -246,13 +246,13 @@ public class Graph {
 	
 	public String getPopular(){
 		if(this.popular == null){
-			return popular();
+			return Tpopular();
 		} else {
 			return this.popular;
 		}
 	}
 	
-	private String popular(){
+	private String Tpopular(){
 		String popular = "";
 		GraphIterator<Vertex> e = vertices.iterator();
 		double max = 0;
@@ -471,4 +471,210 @@ public class Graph {
 	public String toString(){
 		return this.vertices.toString();
 	}
+	
+	
+	
+	
+	
+	
+	
+	//////////////////////////////////////////////////
+	/// JACOB'S POPULAR ALGORITHM
+	public void popular() {
+		double max = 0;
+		GraphIterator<Vertex> e = vertices.iterator();
+		
+		//For each vertex in the graph, calculate the popularity
+		while ( e.hasNext() ) {
+			Vertex current = e.next();
+			//find all the people this vertex is connected to
+			int top = findComponentNodes( current );
+			
+			// A special case, if the person has no friends their popularity is 0
+			if ( top == 1 ) {
+				current.setPopularity( 0.0 );
+				unmark();
+			} else {
+				unmark();
+				// calculate the sum of length(current, B) for all persons B.
+				int bottom = power( current );
+				// calculate the popularity for the current person and
+				//set it as their field
+				double pop = (double) top / bottom;
+				current.setPopularity( pop );
+				// if the popularity of the current person is greater
+				// than the max popularity thus far, set it to the max
+				if ( pop > max )
+					max = pop;
+				unmark();
+			}
+		}
+		
+		//build the popular String to use in the program
+		String popularString = "";
+		e = vertices.iterator();
+		while ( e.hasNext() ) {
+			Vertex current = e.next();
+			// If the current person's popularity is one of the 
+			// most popular people, add them to the string
+			if ( current.getPopularity() == max )
+				popularString += current.getid() + "\n";
+		}
+		this.popular = popularString;
+	}
+	
+	private int power ( Vertex a ) {
+		int sum = 0;
+		GraphIterator<Vertex> e = vertices.iterator();
+		
+		// for every pair in the graph, sum their length
+		while ( e.hasNext() ) {
+			Vertex b = e.next();
+			
+			if ( a.getid() == b.getid() ) {
+				//Do nothing, this pair does not count
+			} else {
+				// calculate the number of edges in the shortest path from
+				// a to b, if it exits, zero otherwise
+				sum += shortestPathEdgesBFS( a, b );
+			}
+			unmark();
+		}
+		return sum;
+	}
+	
+	private int shortestPathEdgesBFS( Vertex start, Vertex goal ) {
+		// if start and goal have a direct friend relationship,
+		//length( start, goal ) == 1
+		if ( start.isAttached(goal) ) {
+			return 1;
+		}
+		
+		// otherwise, it is the number of edges in the shortest path
+		//from start to goal
+		Queue<Vertex> q = new Queue<Vertex>();
+		q.add(start);
+		start.setMarked(true);
+		boolean pathFound = false;
+		
+		while ( !(q.isEmpty()) ) {
+			Vertex current = q.remove();
+			
+			if ( current.getid().equals(goal.getid()) ) {
+				//path is found
+				pathFound = true;
+				break;
+			}
+			
+			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
+			
+			while (e.hasNext()) {
+				Vertex adj = e.next();
+				
+				if( !(adj.isMarked()) ){
+					q.add(adj);
+					adj.setMarked(true);
+					adj.setBackPointer(current);
+				}
+				
+			}
+		}
+		
+		if ( pathFound ) {
+			int pathCount = 0;
+			boolean foundStart = false;
+			Vertex current = goal;
+			while ( !foundStart ) {
+				
+				if ( current.getid().equals(start.getid()) ) {
+					foundStart = true;
+					pathCount++;
+				} else {
+					pathCount++;
+					current = current.getBackPointer();
+				}
+				
+			}
+			//return the number of edges in the shortest path,
+			//which is the number of vertices in the path minus 1
+			return pathCount - 1;
+		}
+		
+		// return 0 if there was no path between start and goal
+		return 0;
+	}
+	
+	
+	
+	
+	
+	
+	
+	/**public String relation (Vertex start, Vertex goal) {
+		if(start.isAttached(goal)){
+			return "" + start.toString() + "\n" + goal.toString() + "\n";		
+		}
+		
+		
+		Queue<Vertex> q = new Queue<Vertex>();
+		q.add(start);
+		start.setMarked(true);
+		boolean pathFound = false;
+		
+		while ( !(q.isEmpty()) ) {
+			Vertex current = q.remove();
+			
+			if ( current.getid().equals(goal.getid()) ) {
+				//path is found
+				pathFound = true;
+				break;
+			}
+			
+			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
+			
+			while (e.hasNext()) {
+				Vertex adj = e.next();
+				
+				if( !(adj.isMarked()) ){
+					q.add(adj);
+					adj.setMarked(true);
+					adj.setBackPointer(current);
+				}
+				
+			}
+		}
+		
+		
+		if ( pathFound ) {
+			String shortestPath = "";
+			boolean foundStart = false;
+			Vertex current = goal;
+			Stack<Vertex> s = new Stack<Vertex>();
+			while ( !foundStart ) {
+				
+				if ( current.getid().equals(start.getid()) ) {
+					foundStart = true;
+					s.push(current);
+				} else {
+					s.push(current);
+					current = current.getBackPointer();
+				}
+				
+			}
+			
+			while ( !(s.isEmpty()) ) {
+				shortestPath += s.peek().getid() + "\n";
+				s.pop();
+			}
+			return shortestPath;
+		}
+		
+		
+		return "";
+	} */
+	
+	
+	
+	
+	
 }
