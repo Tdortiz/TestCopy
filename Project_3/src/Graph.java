@@ -415,7 +415,17 @@ public class Graph {
 			}
 		}
 		
-		int notConLoners = loners * (vertices.size() - 1);
+		
+		
+		
+		int remaining = vertices.size();
+		int notConLoners = 0;
+		
+		for ( int i = 0; i < loners; i++ ) {
+			notConLoners += (remaining - 1 );
+			remaining--;
+		}
+		
 		notCon += notConLoners;
 		
 		if ( comCount == 1) {
