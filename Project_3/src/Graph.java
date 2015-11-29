@@ -246,7 +246,7 @@ public class Graph {
 	
 	public String getPopular(){
 		if(this.popular == null){
-			return Tpopular();
+			return popular();
 		} else {
 			return this.popular;
 		}
@@ -472,15 +472,9 @@ public class Graph {
 		return this.vertices.toString();
 	}
 	
-	
-	
-	
-	
-	
-	
 	//////////////////////////////////////////////////
 	/// JACOB'S POPULAR ALGORITHM
-	public void popular() {
+	public String popular() {
 		double max = 0;
 		GraphIterator<Vertex> e = vertices.iterator();
 		
@@ -521,6 +515,7 @@ public class Graph {
 				popularString += current.getid() + "\n";
 		}
 		this.popular = popularString;
+		return popularString;
 	}
 	
 	private int power ( Vertex a ) {
@@ -603,12 +598,6 @@ public class Graph {
 		// return 0 if there was no path between start and goal
 		return 0;
 	}
-	
-	
-	
-	
-	
-	
 	
 	/**public String relation (Vertex start, Vertex goal) {
 		if(start.isAttached(goal)){
