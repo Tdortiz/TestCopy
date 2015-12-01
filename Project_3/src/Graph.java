@@ -664,12 +664,12 @@ public class Graph {
 	
 	public double popularBFS( Vertex start ) {
 		int lengthSum = 0;
-		int level = 1;
 		int vertCounter = 0;
 		
 		Queue<Vertex> q = new Queue<Vertex>();
 		q.add(start);
 		start.setMarked(true);
+		start.setLevel(0);
 		
 		while ( !(q.isEmpty()) ) {
 			Vertex current = q.remove();
@@ -681,13 +681,12 @@ public class Graph {
 				if( !(adj.isMarked()) ){
 					q.add(adj);
 					adj.setMarked(true);
+					adj.setLevel( current.getLevel() + 1 );
 					vertCounter++;
-					lengthSum += level;
+					lengthSum += adj.getLevel();
 				}
 			}
-			level++;
 		}
-		
 		
 		if ( vertCounter == 0 ) {
 			return 0.0;

@@ -13,6 +13,8 @@ public class Vertex {
 	private boolean marked;
 	private double popularity;
 	private Vertex backPointer;
+	
+	private int level;
 
 	/**
 	 * Contructs the node with the given ID.
@@ -25,6 +27,8 @@ public class Vertex {
 		this.marked = false;
 		adjVertices = new GenericList<Vertex>();
 		this.backPointer = null;
+		this.level = 0;
+		this.popularity = 0.0;
 	}
 
 	/**
@@ -133,6 +137,14 @@ public class Vertex {
 	
 	public void setBackPointer( Vertex v ) {
 		this.backPointer = v;
+	}
+	
+	public int getLevel() {
+		return this.level;
+	}
+	
+	public void setLevel( int level ) {
+		this.level = level;
 	}
 
 }
