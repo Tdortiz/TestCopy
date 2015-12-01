@@ -511,7 +511,7 @@ public class Graph {
 	
 	//////////////////////////////////////////////////
 	/// JACOB'S POPULAR ALGORITHM
-	public String popular() {
+	public String Jpopular() {
 		double max = 0;
 		GraphIterator<Vertex> e = vertices.iterator();
 		
@@ -528,7 +528,7 @@ public class Graph {
 			} else {
 				unmark();
 				// calculate the sum of length(current, B) for all persons B.
-				int bottom = power( current );
+				int bottom = Jpower( current );
 				// calculate the popularity for the current person and
 				//set it as their field
 				double pop = (double) top / bottom;
@@ -555,7 +555,7 @@ public class Graph {
 		return popularString;
 	}
 	
-	private int power ( Vertex a ) {
+	private int Jpower ( Vertex a ) {
 		int sum = 0;
 		GraphIterator<Vertex> e = vertices.iterator();
 		
@@ -637,8 +637,125 @@ public class Graph {
 	}
 	
 	
+	public String popular() {
+		double max = 0;
+		GraphIterator<Vertex> e = vertices.iterator();
+		
+		while ( e.hasNext() ) {
+			Vertex current = e.next();
+			current.setPopularity( popularBFS( current ) );
+			unmark();
+		}
+		
+		//build the popular String to use in the program
+		String popularString = "";
+		e = vertices.iterator();
+		while ( e.hasNext() ) {
+			Vertex current = e.next();
+			// If the current person's popularity is one of the 
+			// most popular people, add them to the string
+			if ( current.getPopularity() == max )
+				popularString += current.getid() + "\n";
+			}
+			this.popular = popularString;
+			return popularString;
+	}
 	
 	
+	public double popularBFS( Vertex start ) {
+		int lengthSum = 0;
+		int level = 1;
+		int vertCounter = 0;
+		
+		Queue<Vertex> q = new Queue<Vertex>();
+		q.add(start);
+		start.setMarked(true);
+		
+		while ( !(q.isEmpty()) ) {
+			Vertex current = q.remove();
+			
+			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
+			
+			while (e.hasNext()) {
+				Vertex adj = e.next();
+				if( !(adj.isMarked()) ){
+					q.add(adj);
+					adj.setMarked(true);
+					vertCounter++;
+					lengthSum += level;
+				}
+			}
+			level++;
+		}
+		
+		
+		if ( vertCounter == 0 ) {
+			return 0.0;
+		} else {
+			return (double) vertCounter / lengthSum;
+		}
+		
+	}
 	
+	/** private int shortestPathEdgesBFS( Vertex start, Vertex goal ) {
+		// if start and goal have a direct friend relationship,
+		//length( start, goal ) == 1
+		if ( start.isAttached(goal) ) {
+			return 1;
+		}
+		
+		// otherwise, it is the number of edges in the shortest path
+		//from start to goal
+		Queue<Vertex> q = new Queue<Vertex>();
+		q.add(start);
+		start.setMarked(true);
+		boolean pathFound = false;
+		
+		while ( !(q.isEmpty()) ) {
+			Vertex current = q.remove();
+			
+			if ( current.getid().equals(goal.getid()) ) {
+				//path is found
+				pathFound = true;
+				break;
+			}
+			
+			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
+			
+			while (e.hasNext()) {
+				Vertex adj = e.next();
+				
+				if( !(adj.isMarked()) ){
+					q.add(adj);
+					adj.setMarked(true);
+					adj.setBackPointer(current);
+				}
+				
+			}
+		}
+		
+		if ( pathFound ) {
+			int pathCount = 0;
+			boolean foundStart = false;
+			Vertex current = goal;
+			while ( !foundStart ) {
+				
+				if ( current.getid().equals(start.getid()) ) {
+					foundStart = true;
+					pathCount++;
+				} else {
+					pathCount++;
+					current = current.getBackPointer();
+				}
+				
+			}
+			//return the number of edges in the shortest path,
+			//which is the number of vertices in the path minus 1
+			return pathCount - 1;
+		}
+		
+		// return 0 if there was no path between start and goal
+		return 0;
+	} */
 	
 }
