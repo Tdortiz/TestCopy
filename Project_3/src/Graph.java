@@ -645,6 +645,9 @@ public class Graph {
 			Vertex current = e.next();
 			current.setPopularity( popularBFS( current ) );
 			unmark();
+			if ( current.getPopularity() > max) {
+				max = current.getPopularity();
+			}
 		}
 		
 		//build the popular String to use in the program
