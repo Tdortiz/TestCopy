@@ -394,7 +394,7 @@ public class Graph {
 		}
 	}
 	
-	private int notConnected() {
+	private int oldNotConnected() {
 		int loners = 0;
 		int notCon = 1;
 		int componetNodes = 0;
@@ -415,9 +415,6 @@ public class Graph {
 			}
 		}
 		
-		
-		
-		
 		int remaining = vertices.size();
 		int notConLoners = 0;
 		
@@ -436,6 +433,46 @@ public class Graph {
 			return notCon;
 		}
 		
+	}
+	
+	//////////////////////////////////
+	//// JACOB'S NEW NOT CONNECTED
+	
+	public int notConnected() {
+		// The sum we will return
+		int overallSum = 0;
+		// A list of integers, each entry will be the number of vertices
+		//in each connected component
+		GenericList< Integer > cc = new GenericList< Integer >();
+		// An iterator over the entire list of vertices in the graph
+		GraphIterator<Vertex> vrtList = vertices.iterator();
+		// For each vertex in the graph, find it's connected component and
+		// calculate how many vertices are in that particular connected component
+		while( vrtList.hasNext() ) {
+			//the current vertex we are looking at
+			Vertex current = vrtList.next();
+			// if we have not seen this vertex before, it means that this is a
+			// new connected component we have not seen yet.
+			if ( !current.isMarked() ) {
+				//add this connected component to our list of integers. That is, add it as
+				// the number of vertices in that connect component
+				cc.add( findComponentNodes(current) );
+			}
+		}
+		
+		// now sum up all the node that are not connected to each other
+		// note, this may could be done in just one for loop, but even so
+		// it is not directly affected by input unless no vertices are connected
+		// in the graph at all
+		for (int i = 0; i < cc.size(); i++ ) {
+			int currentSum = 0;
+			for (int j = i + 1; j < cc.size(); j++ ) {
+				currentSum += cc.get(i) * cc.get(j);
+			}
+			overallSum += currentSum;
+		}
+		this.notConnected = overallSum;
+		return overallSum;
 	}
 	
 	private int findComponentNodes( Vertex person ) {
@@ -599,68 +636,6 @@ public class Graph {
 		return 0;
 	}
 	
-	/**public String relation (Vertex start, Vertex goal) {
-		if(start.isAttached(goal)){
-			return "" + start.toString() + "\n" + goal.toString() + "\n";		
-		}
-		
-		
-		Queue<Vertex> q = new Queue<Vertex>();
-		q.add(start);
-		start.setMarked(true);
-		boolean pathFound = false;
-		
-		while ( !(q.isEmpty()) ) {
-			Vertex current = q.remove();
-			
-			if ( current.getid().equals(goal.getid()) ) {
-				//path is found
-				pathFound = true;
-				break;
-			}
-			
-			GraphIterator<Vertex> e = current.getAdjVertices().iterator();
-			
-			while (e.hasNext()) {
-				Vertex adj = e.next();
-				
-				if( !(adj.isMarked()) ){
-					q.add(adj);
-					adj.setMarked(true);
-					adj.setBackPointer(current);
-				}
-				
-			}
-		}
-		
-		
-		if ( pathFound ) {
-			String shortestPath = "";
-			boolean foundStart = false;
-			Vertex current = goal;
-			Stack<Vertex> s = new Stack<Vertex>();
-			while ( !foundStart ) {
-				
-				if ( current.getid().equals(start.getid()) ) {
-					foundStart = true;
-					s.push(current);
-				} else {
-					s.push(current);
-					current = current.getBackPointer();
-				}
-				
-			}
-			
-			while ( !(s.isEmpty()) ) {
-				shortestPath += s.peek().getid() + "\n";
-				s.pop();
-			}
-			return shortestPath;
-		}
-		
-		
-		return "";
-	} */
 	
 	
 	
