@@ -28,13 +28,13 @@ public class CommandHandler {
 		} else {
 			System.out.println("no");
 		}
-		graph.unmark();
+		//graph.unmark();
 		
 	}
 	
 	public void mutual(String name1, String name2){
 		System.out.print( graph.mutual(hashGraph.get(name1), hashGraph.get(name2)) );
-		graph.unmark();
+		//graph.unmark();
 	}
 	
 	public void relation(String name1, String name2){
