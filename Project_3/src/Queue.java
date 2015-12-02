@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
  * @param <E> Generic Type of an Queue.
  *
  */
-public class Queue<E> implements SimpleQueue<E> {
+public class Queue<E> {
 	
 	private Node head;
 	

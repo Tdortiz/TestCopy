@@ -16,7 +16,7 @@ import java.util.EmptyStackException;
  * @author Jacob Stone
  * @param <E> Generic type of an Stack
  */
-public class Stack<E> implements SimpleStack<E> {
+public class Stack<E> {
 
 	/**
 	 * The data for this stack.
