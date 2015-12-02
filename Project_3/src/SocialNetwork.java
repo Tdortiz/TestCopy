@@ -18,6 +18,7 @@ public class SocialNetwork {
 
     /**
      * Initiates the program and retrieves all input from the file and user. 
+     * 
      * @param args command line arguments
      */
     public static void main(String[] args) {
@@ -52,6 +53,7 @@ public class SocialNetwork {
 
     /**
      * Method to retrieve the scanner for the file.
+     * 
      * @param filename to retrieve input from
      * @return a scanner for the input file
      */
@@ -67,6 +69,7 @@ public class SocialNetwork {
 
     /**
      * Creates a graph based off of the input file.
+     * 
      * @param graphList object that holds our vertices
      * @param hashGraph String object mapping for efficient access
      * @param scanFile Scanner that parses through the file
@@ -121,6 +124,7 @@ public class SocialNetwork {
     
     /**
      * Determines the next command to handle
+     * 
      * @param handler the CommandHandler object for the program
      * @param input the input from the user
      * @return true if the command was successful, false otherwise
@@ -162,6 +166,7 @@ public class SocialNetwork {
     
     /**
      * Handles the command isfriend from the user by passing it to the commandhandler class.
+     * 
      * @param handler that we pass the command to
      * @param scanLine line to scan through for names 
      */
@@ -177,6 +182,7 @@ public class SocialNetwork {
     
     /**
      * Handles the command mutual from the user by passing it to the commandhandler class.
+     * 
      * @param handler that we pass the command to
      * @param scanLine line to scan through for names 
      */
@@ -192,6 +198,7 @@ public class SocialNetwork {
     
     /**
      * Handles the command relation from the user by passing it to the commandhandler class.
+     * 
      * @param handler that we pass the command to
      * @param scanLine line to scan through for names 
      */
@@ -207,6 +214,7 @@ public class SocialNetwork {
     
     /**
      * Handles the command notconnected from the user by passing it to the commandhandler class.
+     * 
      * @param handler that we pass the command to
      * @param scanLine line to scan through for names 
      */
@@ -216,6 +224,7 @@ public class SocialNetwork {
     
     /**
      * Handles the command popular from the user by passing it to the commandhandler class.
+     * 
      * @param handler that we pass the command to
      * @param scanLine line to scan through for names 
      */
