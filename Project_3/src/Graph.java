@@ -111,23 +111,32 @@ public class Graph {
 			String shortestPath = "";
 			boolean foundStart = false;
 			Vertex current = goal;
-			Stack<Vertex> s = new Stack<Vertex>();
+			//Stack<Vertex> s = new Stack<Vertex>();
+			Queue<Vertex> answer = new Queue<Vertex>();
+			//GenericList<Vertex> answer = new GenericList<Vertex>();
 			while ( !foundStart ) {
 				
 				if ( current.getid().equals(start.getid()) ) {
 					foundStart = true;
-					s.push(current);
+					//s.push(current);
+					answer.add(current);
 				} else {
-					s.push(current);
+					//s.push(current);
+					answer.add(current);
 					current = current.getBackPointer();
 				}
 				
 			}
 			
-			while ( !(s.isEmpty()) ) {
-				shortestPath += s.peek().getid() + "\n";
-				s.pop();
+			while ( !(answer.isEmpty()) ) {
+				shortestPath = answer.peek().getid() + "\n" + shortestPath;
+				answer.remove();
 			}
+			
+			//for (int i = answer.size() - 1; i >= 0; i-- ) {
+				//shortestPath += s.peek().getid() + "\n";
+			//}
+			
 			return shortestPath;
 		}
 		
