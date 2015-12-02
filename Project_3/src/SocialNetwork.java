@@ -67,7 +67,7 @@ public class SocialNetwork {
 
     /**
      * Creates a graph based off of the input file.
-     * @param graphList object that holds our verticies
+     * @param graphList object that holds our vertices
      * @param hashGraph String object mapping for efficient access
      * @param scanFile Scanner that parses through the file
      * @return a graph representation of the file
