@@ -1,26 +1,30 @@
 /**
- * Represents a node/vertex in a graph.
+ * Represents a vertex in a graph.
  * 
+ * @author Thomas Ortiz
+ * @author Michael Mackrell
+ * @author Jacob Stone
  * @author Curtis Moore
  */
 public class Vertex {
 
-	/** Array containing all the edges of the node */
+	/** Array containing all the edges of the vertex */
 	private GenericList<Vertex> adjVertices;
-	/** ID of the node, an String*/
+	/** ID of the vertex, an String*/
 	private String id;
 	/** Determines if the vertex is marked or not */
 	private boolean marked;
+	/** The popularity of the vertex */
 	private double popularity;
+	/** A pointer to this vertex's previous vertex in a path */
 	private Vertex backPointer;
-	
+	/** Current popular BFS depth */
 	private int level;
 
 	/**
-	 * Contructs the node with the given ID.
+	 * Constructs the vertex with the given ID.
 	 *
-	 * @param id
-	 *            of node to be created.
+	 * @param id of vertex to be created.
 	 */
 	public Vertex(String id) {
 		this.id = id;
@@ -32,34 +36,12 @@ public class Vertex {
 	}
 
 	/**
-	 * Constructs the node with given ID. Links it to given second node.
-	 *
-	 * @param id
-	 *            of node to be created.
-	 * @param node2
-	 *            node that this will be linked to.
-	 */
-	//public Node(String id, Node node2) {
-		//this(id);
-		//adjNodes.add(new Node(this, node2));
-	//}
-
-	/**
 	 * Returns ID of this node.
 	 *
 	 * @return id of this node.
 	 */
 	public String getid() {
 		return this.id;
-	}
-
-	/**
-	 * Returns number of edges associated with this node.
-	 *
-	 * @return number of edges attached to this node.
-	 */
-	public int getDegree() {
-		return adjVertices.size();
 	}
 
 	/**
@@ -90,17 +72,6 @@ public class Vertex {
 
 		return (vrt.getid() == this.getid());
 	}
-
-	/**
-	 * Adds an edge to the given node.
-	 *
-	 * @param node
-	 *            node to link to.
-	 */
-	//public void addLink(Node node) {
-		//edges.add(new Edge(this, node));
-	//}
-
 	
 	/**
 	 * Basic override of default toString method.
@@ -111,38 +82,84 @@ public class Vertex {
 		return "" + this.id;
 	}
 	
+	/**
+	 * Sets the node to a marked status 
+	 * meaning that it has been visited. 
+	 * 
+	 * @param flag boolean variable to set vertex's marked to
+	 */
 	public void setMarked (boolean flag) {
 		this.marked = flag;
 	}
 	
+	/** 
+	 * Checks if the vertex is marked (visited)
+	 * 
+	 * @return true if marked, false if unmarked
+	 */
 	public boolean isMarked() {
 		return this.marked;
 	}
 	
+	/**
+	 * Returns the adjacency list of a vertex
+	 * 
+	 * @return adjacency list of current vertex
+	 */
 	public GenericList<Vertex> getAdjVertices() {
 		return adjVertices;
 	}
 
+	/**
+	 * Gets the popularity of a vertex in the graph
+	 * 
+	 * @return popularity of the current vertex
+	 */
 	public double getPopularity() {
 		return popularity;
 	}
 
+	/**
+	 * Sets the popularity of a vertex to a specified value
+	 * 
+	 * @param popularity to set vertex to
+	 */
 	public void setPopularity(double popularity) {
 		this.popularity = popularity;
 	}
 	
+	/**
+	 * Gets the back pointer of a vertex
+	 * 
+	 * @return previous vertex in a path
+	 */
 	public Vertex getBackPointer() {
 		return this.backPointer;
 	}
 	
-	public void setBackPointer( Vertex v ) {
-		this.backPointer = v;
+	/**
+	 * Sets the back pointer of a vertex
+	 * 
+	 * @param back previous vertex in the path
+	 */
+	public void setBackPointer( Vertex back ) {
+		this.backPointer = back;
 	}
 	
+	/**
+	 * Gets the current level of the vertex in a popular BFS
+	 * 
+	 * @return the level of the vertex in the popular BFS
+	 */
 	public int getLevel() {
 		return this.level;
 	}
 	
+	/**
+	 * Sets the level of the vertex in a popular BFS
+	 * 
+	 * @param level of the vertex in the popular BFS
+	 */
 	public void setLevel( int level ) {
 		this.level = level;
 	}
