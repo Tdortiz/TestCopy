@@ -145,7 +145,6 @@ public class Graph {
 		return "";
 	}
 	
-	
 	public String mutual (Vertex person1, Vertex person2 ) {
 		String s = "";
 		GenericIterator<Vertex> e = person1.getAdjVertices().iterator();
@@ -167,7 +166,6 @@ public class Graph {
 		}
 	}
 	
-
 	public int getNotConnected(){
 		if(this.notConnected == -1){ // if we haven't done not connected yet.
 			return notConnected();
@@ -176,8 +174,7 @@ public class Graph {
 		}
 	}
 	
-	
-	public int notConnected() {
+	private int notConnected() {
 		// The sum we will return
 		int overallSum = 0;
 		// A list of integers, each entry will be the number of vertices
@@ -248,8 +245,7 @@ public class Graph {
 		return this.vertices.printGenericList();
 	}
 	
-	
-	public String popular() {
+	private String popular() {
 		double max = 0;
 		GenericIterator<Vertex> e = vertices.iterator();
 		
@@ -276,8 +272,7 @@ public class Graph {
 			return popularString;
 	}
 	
-	
-	public double popularBFS( Vertex start ) {
+	private double popularBFS( Vertex start ) {
 		int lengthSum = 0;
 		int vertCounter = 0;
 		
