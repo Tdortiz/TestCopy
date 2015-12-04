@@ -55,9 +55,6 @@ public class GraphTest {
 		Graph g = new Graph();
 		assertEquals(true, g.isEmpty());
 		
-		assertEquals(true, g.VertexExists(Vertex1));
-		assertEquals(true, g.VertexExists(Vertex2));
-		
 	}
 
 	/**

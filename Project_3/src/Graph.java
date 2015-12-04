@@ -34,37 +34,6 @@ public class Graph {
 	}
 
 	/**
-	 * Returns true if the graph has this node. 
-	 * Runs in O(n) time.
-	 * 
-	 * @param node
-	 *            to search for
-	 * @return true if node is in graph.
-	 */
-	public boolean VertexExists(Vertex vtr) {
-		for (int i = 0; i < vertices.size(); i++) {
-			if (vertices.get(i).equals(vtr)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Returns the node with the given ID.
-	 *
-	 * @return node with given ID or null if absent.
-	 */
-	public Vertex getVertex(String nodeID) {
-		for (int i = 0; i < vertices.size(); i++) {
-			if (vertices.get(i).getid().equals(nodeID) ) {
-				return vertices.get(i);
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * returns the array of nodes. Used in printing.
 	 * 
 	 * @return arrayList of nodes.
