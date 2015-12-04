@@ -8,7 +8,7 @@
  * @author Jacob Stone
  * @author Curtis Moore
  */
-public interface GraphIterator<E> {
+public interface GenericIterator<E> {
 	
 	/**
 	 * Checks if the list has another element E 

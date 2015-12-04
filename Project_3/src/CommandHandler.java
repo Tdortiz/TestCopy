@@ -37,7 +37,6 @@ public class CommandHandler {
 		} else {
 			System.out.println("no");
 		}
-		//graph.unmark();
 		
 	}
 	
@@ -49,7 +48,6 @@ public class CommandHandler {
 	 */
 	public void mutual(String name1, String name2){
 		System.out.print( graph.mutual(hashGraph.get(name1), hashGraph.get(name2)) );
-		//graph.unmark();
 	}
 	
 	/**

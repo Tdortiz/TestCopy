@@ -1,35 +1,57 @@
 
-//Class LinkedList<E> can be used to store a list of values of type E.
 
 import java.util.*;
 
+/**
+ * This class can be used to store a list of values of type E. This code
+ * was mostly written by Martty Stepp, the author of the Building Java
+ * Programs 3rd Edition. This book was used in CSC 116 and CSC 216 at NCSU.
+ * The code was in the 16th chapter of the book on linked lists. The code is
+ * also on the textbook's website for chapter 16's supplements.
+ * Textbook website citation: http://www.buildingjavaprograms.com/
+ * 
+ * @author Marty Stepp
+ */
 public class GenericList<E> {
 	private ListNode<E> front; // first value in the list
 	private ListNode<E> back; // last value in the list
 	private int size; // current number of elements
 
-	// post: constructs an empty list
+	/**
+	 * Constructs an empty list
+	 */
 	public GenericList() {
 		front = new ListNode<E>(null);
 		back = new ListNode<E>(null);
 		clear();
 	}
 
-	// post: returns the current number of elements in the list
+	/**
+	 * Gives the current size of the list
+	 * @return the size of the list
+	 */
 	public int size() {
 		return size;
 	}
 
-	// pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-	// post: returns the value at the given index in the list
+	/**
+	 * Gets the element at the given index
+	 * if 0 <= index < size() (throws IndexOutOfBoundsException if not)
+	 * @param index the index to check
+	 * @return the value at the given index in the list
+	 */
 	public E get(int index) {
 		checkIndex(index);
 		ListNode<E> current = nodeAt(index);
 		return current.data;
 	}
 
-	// post: creates a comma-separated, bracketed version of the list
-	public String toString() {
+	
+	/**
+	 * creates a comma-separated, bracketed version of the list
+	 * @return a string representation of the list
+	 */
+	public String printGenericList() {
 		if (size == 0) {
 			return "[]";
 		} else {
@@ -44,8 +66,12 @@ public class GenericList<E> {
 		}
 	}
 
-	// post : returns the position of the first occurrence of the given
-	// value (-1 if not found)
+	/**
+	 * Gives the index of the given value
+	 * @param value value to search with
+	 * @return the position of the first occurrence of the given
+	 * value (-1 if not found)
+	 */
 	public int indexOf(E value) {
 		int index = 0;
 		ListNode<E> current = front.next;
@@ -59,25 +85,41 @@ public class GenericList<E> {
 		return -1;
 	}
 
-	// post: returns true if list is empty, false otherwise
+	/**
+	 * Checks if the list is empty
+	 * @return true if list is empty, false otherwise
+	 */
 	public boolean isEmpty() {
 		return size == 0;
 	}
 
-	// post: returns true if the given value is contained in the list,
-	// false otherwise
+	/**
+	 * Checks if the given value is in the list
+	 * @param value value to each with
+	 * @return true if the given value is contained in the list,
+	 * false otherwise
+	 */
 	public boolean contains(E value) {
 		return indexOf(value) >= 0;
 	}
 
-	// post: appends the given value to the end of the list
+	
+	/**
+	 * Appends the given value to the end of the list
+	 * @param value the value to add
+	 */
 	public void add(E value) {
 		add(size, value);
 	}
 
-	// pre: 0 <= index <= size() (throws IndexOutOfBoundsException if not)
-	// post: inserts the given value at the given index, shifting subsequent
-	// values right
+	
+	/**
+	 *  inserts the given value at the given index, shifting
+	 *  subsequent values right,
+	 *  If 0 <= index <= size() (throws IndexOutOfBoundsException if not)
+	 *  @param index the index to add at
+	 *  @param value the value to add
+	 */
 	public void add(int index, E value) {
 		if (index < 0 || index > size) {
 			throw new IndexOutOfBoundsException("index: " + index);
@@ -89,15 +131,21 @@ public class GenericList<E> {
 		size++;
 	}
 
-	// post: appends all values in the given list to the end of this list
+	/**
+	 * appends all values in the given list to the end of this list
+	 * @param other the other list to add with
+	 */
 	public void addAll(List<E> other) {
 		for (E value : other) {
 			add(value);
 		}
 	}
 
-	// pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-	// post: removes value at the given index, shifting subsequent values left
+	/**
+	 * removes value at the given index, shifting subsequent values left,
+	 * if 0 <= index < size() (throws IndexOutOfBoundsException if not)
+	 * @param index the index to remove at
+	 */
 	public void remove(int index) {
 		checkIndex(index);
 		ListNode<E> current = nodeAt(index - 1);
@@ -106,30 +154,42 @@ public class GenericList<E> {
 		size--;
 	}
 
-	// pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-	// post: replaces the value at the given index with the given value
+	/**
+	 * replaces the value at the given index with the given value, if
+	 * 0 <= index < size() (throws IndexOutOfBoundsException if not)
+	 * @param index the index of the value to set
+	 * @param value the new value of the given index
+	 */
 	public void set(int index, E value) {
 		checkIndex(index);
 		ListNode<E> current = nodeAt(index);
 		current.data = value;
 	}
 
-	// post: list is empty
+	/**
+	 * Makes the current list empty
+	 */
 	public void clear() {
 		front.next = back;
 		back.prev = front;
 		size = 0;
 	}
 
-	// post: returns an iterator for this list
-	public GraphIterator<E> iterator() {
+	/**
+	 * Makes an iterator for this list
+	 * @return  an iterator for this list
+	 */
+	public GenericIterator<E> iterator() {
 		return new LinkedIterator();
 	}
 
-	// pre : 0 <= index < size()
-	// post: returns the node at a specific index. Uses the fact that the list
-	// is doubly-linked to start from the front or the back, whichever
-	// is closer.
+	
+	/**
+	 * returns the node at a specific index. Uses the fact that the list
+	 * is doubly-linked to start from the front or the back, whichever
+	 * is closer.
+	 * @param index the index of the node to find
+	 */
 	private ListNode<E> nodeAt(int index) {
 		ListNode<E> current;
 		if (index < size / 2) {
@@ -146,49 +206,79 @@ public class GenericList<E> {
 		return current;
 	}
 
-	// post: throws an IndexOutOfBoundsException if the given index is
-	// not a legal index of the current list
+	/**
+	 * throws an IndexOutOfBoundsException if the given index is
+	 * not a legal index of the current list
+	 * @param index the index to check
+	 */
 	private void checkIndex(int index) {
 		if (index < 0 || index >= size()) {
 			throw new IndexOutOfBoundsException("index: " + index);
 		}
 	}
-
+	
+	/**
+	 * This inner class is used to make nodes in the outer classes linked list of
+	 * type E. This code was mostly written by Martty Stepp, the author of the Building Java
+	 * Programs 3rd Edition. This book was used in CSC 116 and CSC 216 at NCSU.
+	 * The code was in the 16th chapter of the book on linked lists. The code is
+	 * also on the textbook's website for chapter 16's supplements.
+	 * Textbook website citation: http://www.buildingjavaprograms.com/
+	 * @author Marty Stepp
+	 */
 	private static class ListNode<E> {
 		public E data; // data stored in this node
 		public ListNode<E> next; // link to next node in the list
 		public ListNode<E> prev; // link to previous node in the list
 
 		// post: constructs a node with given data and null links
+		/**
+		 * 
+		 */
 		public ListNode(E data) {
 			this(data, null, null);
 		}
 
 		// post: constructs a node with given data and given links
+		/**
+		 * 
+		 */
 		public ListNode(E data, ListNode<E> next, ListNode<E> prev) {
 			this.data = data;
 			this.next = next;
 			this.prev = prev;
 		}
 	}
-
-	private class LinkedIterator implements GraphIterator<E> {
+	
+	/**
+	 * 
+	 */
+	private class LinkedIterator implements GenericIterator<E> {
 		private ListNode<E> current; // location of next value to return
 		private boolean removeOK; // whether it's okay to remove now
 
 		// post: constructs an iterator for the given list
+		/**
+		 * 
+		 */
 		public LinkedIterator() {
 			current = front.next;
 			removeOK = false;
 		}
 
 		// post: returns true if there are more elements left, false otherwise
+		/**
+		 * 
+		 */
 		public boolean hasNext() {
 			return current != back;
 		}
 
 		// pre : hasNext()
 		// post: returns the next element in the iteration
+		/**
+		 * 
+		 */
 		public E next() {
 			if (!hasNext()) {
 				throw new NoSuchElementException();
@@ -202,6 +292,9 @@ public class GenericList<E> {
 		// pre : next() has been called without a call on remove (i.e., at most
 		// one call per call on next)
 		// post: removes the last element returned by the iterator
+		/**
+		 * 
+		 */
 		public void remove() {
 			if (!removeOK) {
 				throw new IllegalStateException();
