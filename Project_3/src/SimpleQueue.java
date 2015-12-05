@@ -1,46 +1,42 @@
-
-
-
 import java.util.NoSuchElementException;
 
 /**
- * A simple collection designed for holding elements prior to processing.
- * A Queue typically orders elements in a FIFO (First-In-First-Out) manner.
- * 
- * @author David Wright
- *
+ * Interface for the Queue class. This code is re-used code from Jacob Stone's
+ * past CSC 215 projects from NCSU. The code was also influenced
+ * by the Building Java Programs Book for CSC 116 AND CSC 216.
+ * Citation from textbook website http://www.buildingjavaprograms.com/code-files/3ed/
+ * @param <E> Generic Type of an Queue.
+ * @author Thomas Ortiz
+ * @author Michael Mackrell
+ * @author Jacob Stone
+ * @author Curtis Moore
  */
 public interface SimpleQueue<E> {
 
 	/**
-	 * Inserts the specified element into this queue.
-	 * 
-	 * @param item the element to add
+	 * Adds the Object in the Queue
+	 * @param item Generic item to add to the queue
 	 */
 	public void add(E item);
 	
 	/**
-	 * Retrieves and removes the head of this queue.
-	 * 
-	 * @return the element at head of this queue
-	 * 
-	 * @throws NoSuchElementException if this queue is empty
+	 * Removes the first Object from the Queue
+	 * @return the Object that was removed
+	 * @throws NoSuchElementException if object is not in the queue
 	 */
-	public E remove() throws NoSuchElementException;
+	public E remove();
 	
 	/**
-	 * Retrieves, but does not remove, the head of this queue.
-	 * 
-	 * @return the head of this queue
-	 * 
-	 * @throws NoSuchElementException if this queue is empty
+	 * Retrieves, but does not remove the
+	 * first object in the Queue
+	 * @return Object that was retrieved
+	 * @throws NoSuchElementException if the queue is empty
 	 */
-	public E peek() throws NoSuchElementException;
+	public E peek();
 	
 	/**
-	 * Tests if this queue is empty.
-	 * 
-	 * @return true if and only if this queue contains no items; false otherwise.
+	 * Checks to see if the Queue is Empty or not
+	 * @return true if the Queue is Empty, false if its not.
 	 */
 	public boolean isEmpty();
 }

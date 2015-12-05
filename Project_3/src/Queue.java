@@ -1,117 +1,105 @@
-/**
- * 
- */
-
-
 import java.util.NoSuchElementException;
 
-
-
-
 /**
- * Generic Queue class.  
- * Code used from textbook website http://www.buildingjavaprograms.com/code-files/3ed/
- * and from the 216 Slides.
- * @author Shoaib
+ * Generic Queue class. This code is re-used code from Jacob Stone's
+ * past CSC 215 projects from NCSU. The code was also influenced
+ * by the Building Java Programs Book for CSC 116 AND CSC 216.
+ * Citation from textbook website http://www.buildingjavaprograms.com/code-files/3ed/
  * @param <E> Generic Type of an Queue.
- *
+ * @author Thomas Ortiz
+ * @author Michael Mackrell
+ * @author Jacob Stone
+ * @author Curtis Moore
  */
 public class Queue<E> implements SimpleQueue<E> {
 	
 	private Node head;
 	
-	
-	
 	//--------------------Inner Class------------------------//
 	
    /**
-    * Node Class created to implement Queue as an
-    * Linked List
+    * Inner Node class for the Queue
     */
     private class Node {
 		
-		/** Create a node nest*/
+		/** The next node in the queue*/
 		public Node next;
 		
-		/** Create a device d*/
-		public E c;
+		/** element for this node */
+		public E value;
 		
 		/**
-		 * Constructor of Node Object
-		 * @param d device that is in the node
-		 * @param next the location of next device
+		 * Constructor of the Node Object
+		 * @param value the value for the node
+		 * @param next the location of next element
 		 */
-		public Node(E c, Node next){
-			this.c = c;
+		public Node(E value, Node next) {
+			this.value = value;
 			this.next = next;
 		}
-
+		
 	}
 
 	//-------------------------------Inner Class---------------------//
     
     /**
-	 * Constructing  Queue
+	 * Constructor for the Queue class
 	 */
-	public Queue(){
+	public Queue() {
 		head = null;
-		
-		
 	}
 
 	/**
-	 * Adding the Object in the Queue
-	 * @param item Generic item that needed to be added
+	 * Adds the Object in the Queue
+	 * @param item Generic item to add to the queue
 	 */
 	public void add(E item) {
 		Node current = head;
-		if(head == null){
+		if(head == null) {
 			head = new Node(item, null);
 			
 		}
-		else{
-			while(current.next != null){
+		else {
+			while(current.next != null) {
 				current = current.next;
 			}
 			current.next = new Node(item, current.next);
-			
-			
 		}
 	}
 
 	/**
-	 * Removing the Object from the Queue
-	 * @return Object that get removed
-	 * @throws NoSuchElementException  if object is not there.
+	 * Removes the first Object from the Queue
+	 * @return the Object that was removed
+	 * @throws NoSuchElementException if object is not in the queue
 	 */
 	@Override
 	public E remove() {
 		Node current = head;
 		
-		if(head == null){
+		if(head == null) {
 			throw new NoSuchElementException();
 		}
 		
 		head = head.next;
-		return current.c;
+		return current.value;
 	}
 
 	
 	/**
-	 * Retrieve, but does not remove the
+	 * Retrieves, but does not remove the
 	 * first object in the Queue
-	 * @return Object that got retrieve
+	 * @return Object that was retrieved
+	 * @throws NoSuchElementException if the queue is empty
 	 */
 	public E peek() {
-		if(head == null){
+		if(head == null) {
 			throw new NoSuchElementException();
 		}
-		return head.c;
+		return head.value;
 	}
 
 	/**
-	 * Check to see if the Queue is Empty or
-	 * not
+	 * Checks to see if the Queue is Empty or not
 	 * @return true if the Queue is Empty, false if its not.
 	 */
 	@Override
@@ -121,6 +109,5 @@ public class Queue<E> implements SimpleQueue<E> {
 		}
 		return false;
 	}
-
 
 }

@@ -1,5 +1,3 @@
-
-
 import java.util.*;
 
 /**
@@ -11,11 +9,21 @@ import java.util.*;
  * Textbook website citation: http://www.buildingjavaprograms.com/
  * 
  * @author Marty Stepp
+ * @author Thomas Ortiz
+ * @author Michael Mackrell
+ * @author Jacob Stone
+ * @author Curtis Moore
  */
 public class GenericList<E> {
-	private ListNode<E> front; // first value in the list
-	private ListNode<E> back; // last value in the list
-	private int size; // current number of elements
+	
+	/** first value in the list */
+	private ListNode<E> front;
+	
+	/** last value in the list */
+	private ListNode<E> back;
+	
+	/** current number of elements */
+	private int size;
 
 	/**
 	 * Constructs an empty list
@@ -45,7 +53,6 @@ public class GenericList<E> {
 		ListNode<E> current = nodeAt(index);
 		return current.data;
 	}
-
 	
 	/**
 	 * creates a comma-separated, bracketed version of the list
@@ -103,7 +110,6 @@ public class GenericList<E> {
 		return indexOf(value) >= 0;
 	}
 
-	
 	/**
 	 * Appends the given value to the end of the list
 	 * @param value the value to add
@@ -112,13 +118,13 @@ public class GenericList<E> {
 		add(size, value);
 	}
 
-	
 	/**
 	 *  inserts the given value at the given index, shifting
 	 *  subsequent values right,
 	 *  If 0 <= index <= size() (throws IndexOutOfBoundsException if not)
 	 *  @param index the index to add at
 	 *  @param value the value to add
+	 *  @throws IndexOutOfBoundsException if the index is not in the list
 	 */
 	public void add(int index, E value) {
 		if (index < 0 || index > size) {
@@ -177,18 +183,18 @@ public class GenericList<E> {
 
 	/**
 	 * Makes an iterator for this list
-	 * @return  an iterator for this list
+	 * @return an iterator for this list
 	 */
 	public GenericIterator<E> iterator() {
 		return new LinkedIterator();
 	}
 
-	
 	/**
-	 * returns the node at a specific index. Uses the fact that the list
+	 * Gives the node at a specific index. Uses the fact that the list
 	 * is doubly-linked to start from the front or the back, whichever
 	 * is closer.
 	 * @param index the index of the node to find
+	 * @return the node at the given index
 	 */
 	private ListNode<E> nodeAt(int index) {
 		ListNode<E> current;
@@ -207,7 +213,8 @@ public class GenericList<E> {
 	}
 
 	/**
-	 * throws an IndexOutOfBoundsException if the given index is
+	 * checks the index passed in to see if it is in the list
+	 * @throws an IndexOutOfBoundsException if the given index is
 	 * not a legal index of the current list
 	 * @param index the index to check
 	 */
@@ -225,23 +232,29 @@ public class GenericList<E> {
 	 * also on the textbook's website for chapter 16's supplements.
 	 * Textbook website citation: http://www.buildingjavaprograms.com/
 	 * @author Marty Stepp
+	 * @author Thomas Ortiz
+	 * @author Michael Mackrell
+	 * @author Jacob Stone
+	 * @author Curtis Moore
 	 */
 	private static class ListNode<E> {
 		public E data; // data stored in this node
 		public ListNode<E> next; // link to next node in the list
 		public ListNode<E> prev; // link to previous node in the list
 
-		// post: constructs a node with given data and null links
 		/**
-		 * 
+		 * constructs a node with given data and null links
+		 * @param data the data of this node
 		 */
 		public ListNode(E data) {
 			this(data, null, null);
 		}
 
-		// post: constructs a node with given data and given links
 		/**
-		 * 
+		 * constructs a node with given data and given links
+		 * @param data the data of this node
+		 * @param a reference to the next node for this node
+		 * @param prev a reference to the previous node for this node
 		 */
 		public ListNode(E data, ListNode<E> next, ListNode<E> prev) {
 			this.data = data;
@@ -251,33 +264,45 @@ public class GenericList<E> {
 	}
 	
 	/**
-	 * 
+	 * This inner class is used to make iterators of the outer class list of
+	 * type E. This code was mostly written by Martty Stepp, the author of the Building Java
+	 * Programs 3rd Edition. This book was used in CSC 116 and CSC 216 at NCSU.
+	 * The code was in the 16th chapter of the book on linked lists. The code is
+	 * also on the textbook's website for chapter 16's supplements.
+	 * Textbook website citation: http://www.buildingjavaprograms.com/
+	 * @author Marty Stepp
+	 * @author Thomas Ortiz
+	 * @author Michael Mackrell
+	 * @author Jacob Stone
+	 * @author Curtis Moore
 	 */
 	private class LinkedIterator implements GenericIterator<E> {
-		private ListNode<E> current; // location of next value to return
-		private boolean removeOK; // whether it's okay to remove now
+		/** location of next value to return */
+		private ListNode<E> current;
+		
+		/** whether it's okay to remove now */
+		private boolean removeOK;
 
-		// post: constructs an iterator for the given list
 		/**
-		 * 
+		 * Constructs an iterator for the given list
 		 */
 		public LinkedIterator() {
 			current = front.next;
 			removeOK = false;
 		}
 
-		// post: returns true if there are more elements left, false otherwise
 		/**
-		 * 
+		 * Determines if the list has another element
+		 * @return true if there is another element, false otherwise
 		 */
 		public boolean hasNext() {
 			return current != back;
 		}
 
-		// pre : hasNext()
-		// post: returns the next element in the iteration
 		/**
-		 * 
+		 * Get the next element in the list
+		 * @return the next element in the iteration
+		 * @throws NoSuchElementException() if no other element
 		 */
 		public E next() {
 			if (!hasNext()) {
@@ -289,11 +314,12 @@ public class GenericList<E> {
 			return result;
 		}
 
-		// pre : next() has been called without a call on remove (i.e., at most
-		// one call per call on next)
-		// post: removes the last element returned by the iterator
 		/**
-		 * 
+		 * Removes the last element returned by the iterator
+		 * pre : next() has been called without a call on remove (i.e., at most
+		 * one call per call on next)
+		 * post: removes the last element returned by the iterator
+		 * @throws IllegalStateException if removing is not okay
 		 */
 		public void remove() {
 			if (!removeOK) {
