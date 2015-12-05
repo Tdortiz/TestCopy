@@ -52,6 +52,13 @@ public class Graph {
 		return person1.isAttached(person2);
 	}
 	
+	/**
+	 * Method to get how vertices are related to one another
+	 * @param start the first vertex to start at
+	 * @param goal the final vertex to end at
+	 * @return string the string representation of the 
+	 * path from start to finish
+	 */
 	public String relation (Vertex start, Vertex goal) {
 		if(start.isAttached(goal)){
 			return "" + start.toString() + "\n" + goal.toString() + "\n";		
@@ -114,6 +121,13 @@ public class Graph {
 		return "";
 	}
 	
+	/**
+	 * method to return all the mutual friends between two
+	 * people
+	 * @param person1 the first person to check
+	 * @param person2 the second person to check
+	 * @return
+	 */
 	public String mutual (Vertex person1, Vertex person2 ) {
 		String s = "";
 		GenericIterator<Vertex> e = person1.getAdjVertices().iterator();
@@ -127,6 +141,10 @@ public class Graph {
 		return s;
 	}
 	
+	/**
+	 * method to call popular if needed
+	 * @return the result of calling popular
+	 */
 	public String getPopular(){
 		if(this.popular == null){
 			return popular();
@@ -135,6 +153,10 @@ public class Graph {
 		}
 	}
 	
+	/**
+	 * method to call notConnected
+	 * @return the result of notConnected
+	 */
 	public int getNotConnected(){
 		if(this.notConnected == -1){ // if we haven't done not connected yet.
 			return notConnected();
@@ -143,6 +165,11 @@ public class Graph {
 		}
 	}
 	
+	/**
+	 * method to report how many people are not connected in 
+	 * the social network
+	 * @return the number of non-connected people
+	 */
 	private int notConnected() {
 		// The sum we will return
 		int overallSum = 0;
@@ -180,6 +207,13 @@ public class Graph {
 		return overallSum;
 	}
 	
+	/**
+	 * Finds the number of component nodes each person
+	 * has, effectively telling us how many "friends"
+	 * they have
+	 * @param person the person we are finding the nodes from
+	 * @return the number of component nodes that person has
+	 */
 	private int findComponentNodes( Vertex person ) {
 		int count = 0;
 		Queue<Vertex> q = new Queue<Vertex>();
@@ -204,16 +238,31 @@ public class Graph {
 		return count;
 	}
 	
+	/**
+	 * method to unmark a vertex
+	 */
 	public void unmark(){
 		for (int i = 0; i < vertices.size(); i++) {
 			vertices.get(i).setMarked(false) ;
 		}
 	}
 
+	/**
+	 * method to print out the graph
+	 * @return a string representation of the graph
+	 */
 	public String printGraph(){
 		return this.vertices.printGenericList();
 	}
 	
+	/**
+	 * method to report the most popular people 
+	 * in the social network. popularity is determined 
+	 * by the number of relations that a node has to
+	 * other nodes
+	 * @return a string of the most popular people in
+	 * the social network
+	 */
 	private String popular() {
 		double max = 0;
 		GenericIterator<Vertex> e = vertices.iterator();
@@ -241,6 +290,12 @@ public class Graph {
 			return popularString;
 	}
 	
+	/**
+	 * method to search for popularity using 
+	 * a breadth first search
+	 * @param start the node to begin the search at
+	 * @return 
+	 */
 	private double popularBFS( Vertex start ) {
 		int lengthSum = 0;
 		int vertCounter = 0;
