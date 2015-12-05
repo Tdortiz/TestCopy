@@ -40,7 +40,7 @@ public class Queue<E> implements SimpleQueue<E> {
 		
 	}
 
-	//-------------------------------Inner Class---------------------//
+	//---------------------------- End Inner Class---------------------//
     
     /**
 	 * Constructor for the Queue class
