@@ -1,3 +1,13 @@
+/**
+ * Representation of a Graph object
+ * 
+ * @author Thomas Ortiz
+ * @author Michael Mackrell
+ * @author Jacob Stone
+ * @author Curtis Moore
+ *
+ */
+
 public class Graph {
 	
 	/**
