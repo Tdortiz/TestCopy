@@ -307,7 +307,8 @@ public class Graph {
 	}
 
 	/**
-	 * Method to search for popularity using a breadth first search
+	 * Method to search for popularity using a breadth first search.
+	 * Returns the number of connected nodes vs the depth at which they are connected.
 	 * 
 	 * @param start the node to begin the search at
 	 * @return the representation of the popularity as a double
