@@ -133,7 +133,7 @@ public class Graph {
 	}
 
 	/**
-	 * method to return all the mutual friends between two people
+	 * Method to return all the mutual friends between two people
 	 * 
 	 * @param person1 the first person to check
 	 * @param person2 the second person to check

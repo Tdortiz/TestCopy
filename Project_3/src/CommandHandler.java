@@ -74,7 +74,5 @@ public class CommandHandler {
 	 */
 	public void popular(){
 		System.out.print( graph.getPopular() );
-		//graph.unmark();
-		
 	}
 }
